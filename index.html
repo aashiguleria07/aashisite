@@ -1,54 +1,239 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Aashi Guleria’s Personal Site</title>
-  <style>
-    body {
-      background-color: #fff8f0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    h1 {
-      color: #b30059;
-    }
-    p {
-      font-size: 20px;
-      color: #333;
-    }
-    img {
-      width: 300px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-    hr {
-      margin: 40px auto;
-      width: 60%;
-      border: 1px solid #b30059;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aashi Guleria | Advanced Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-bg: #f4f9ff;
+            --card-bg: #ffffff;
+            --text-color: #222;
+            --primary: #007bff;
+            --secondary: #ff9800;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        body.dark {
+            --main-bg: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #f0f6fc;
+            --primary: #1f6feb;
+            --secondary: #ffa726;
+            --shadow: rgba(255,255,255,0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--main-bg);
+            font-family: "Poppins", sans-serif;
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .darkToggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 10px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            margin-top: -10px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: var(--primary);
+            border: none;
+            border-radius: 30px;
+            margin: 15px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section */
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px var(--shadow);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Skills */
+        .skill-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .skill {
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+        }
+
+        /* Projects */
+        .project {
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--shadow);
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text-color);
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Welcome to Aashi Guleria’s World 💫</h1>
-  <p>Hi, I’m <b>Aashi Guleria</b> — a passionate learner and tech enthusiast!</p>
-  <p>This site is hosted on <b>RHEL 9</b> using Apache Web Server.</p>
 
-  <img src="WhatsApp Image 2025-11-02 at 1.07.16 PM.jpeg"
-  alt="Aashi’s Photo" style="width:250px;
-  border-radius:20px;">     
+    <div class="container">
 
-  <p>Stay tuned for more updates ✨</p>
+        <header>
+            <h2>Aashi Guleria</h2>
+            <button class="darkToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </header>
 
-  <hr>
-  <h2 style="color:#8A2BE2;">✨ Latest Updates ✨</h2>
-  <div style="text-align:left; margin:auto; width:70%; font-size:18px;">
-    <ul>
-      <li><b>Nov 2, 2025:</b> Just launched my website hosted on <b>RHEL 9</b> 🚀</li>
-      <li><b>Nov 3, 2025:</b> Added my personal photo and design updates 💖</li>
-      <li><b>Coming soon:</b> Tutorials and my tech projects!</li>
-    </ul>
-  </div>
+        <!-- HERO -->
+        <div class="hero">
+            <img src="aashi.jpg" class="profile-img">
+            <h1>Hello, I'm <span style="color: var(--primary);">Aashi</span> 👋</h1>
+            <p class="tagline">Linux Admin | RHEL 9 | Web Developer | Tech Explorer</p>
 
-  <p>© 2025 Aashi Guleria | All Rights Reserved</p>
+            <a href="https://github.com/aashiguleria07" target="_blank">
+                <button class="btn">Visit GitHub</button>
+            </a>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="section">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate Linux Administrator and Web Developer.  
+                Skilled in RHEL 9, server management, networking, automation and web technologies.
+            </p>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="section">
+            <h2>My Skills</h2>
+            <div class="skill-box">
+                <div class="skill">User Management</div>
+                <div class="skill">Group Management</div>
+                <div class="skill">File Permissions</div>
+                <div class="skill">Cron Jobs</div>
+                <div class="skill">Firewall (firewalld)</div>
+                <div class="skill">Networking</div>
+                <div class="skill">YUM / DNF / RPM</div>
+                <div class="skill">Local Repositories</div>
+                <div class="skill">Monitoring</div>
+            </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="section">
+            <h2>My Projects</h2>
+
+            <div class="project">
+                <h3>✔ Personal Portfolio Website</h3>
+                <p>Advanced portfolio hosted on GitHub Pages.</p>
+            </div>
+
+            <div class="project">
+                <h3>✔ Linux Automation Scripts</h3>
+                <p>Shell scripts for cronjobs, backup and monitoring.</p>
+            </div>
+
+        </div>
+
+        <!-- CONTACT -->
+        <div class="section">
+            <h2>Contact Me</h2>
+            <p>📧 Email: guleriaaashi.com</p>
+        </div>
+
+        <footer>
+            © 2025 Aashi Guleria — All Rights Reserved
+        </footer>
+
+    </div>
+
+<script>
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+</script>
+
 </body>
 </html>
