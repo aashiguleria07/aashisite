@@ -10,12 +10,20 @@
 
   <style>
     :root {
-      --main-bg:#f4f9ff; --card-bg:#fff; --text:#222;
-      --primary:#007bff; --secondary:#ff9800; --shadow:rgba(0,0,0,0.1);
+      --main-bg:#f4f9ff; 
+      --card-bg:#fff; 
+      --text:#222;
+      --primary:#007bff; 
+      --secondary:#ff9800; 
+      --shadow:rgba(0,0,0,0.1);
     }
     body.dark {
-      --main-bg:#0d1117; --card-bg:#161b22; --text:#f0f6fc;
-      --primary:#1f6feb; --secondary:#ffa726; --shadow:rgba(255,255,255,0.06);
+      --main-bg:#0d1117; 
+      --card-bg:#161b22; 
+      --text:#f0f6fc;
+      --primary:#1f6feb; 
+      --secondary:#ffa726; 
+      --shadow:rgba(255,255,255,0.06);
     }
 
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -26,23 +34,67 @@
     .darkToggle{padding:10px 20px;border-radius:50px;background:var(--primary);color:#fff;border:none;cursor:pointer;}
 
     .hero{text-align:center;padding:50px 10px;}
-    .profile-img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:5px solid var(--primary);box-shadow:0 0 20px var(--primary);}
-    h1{font-size:38px;} #typing{font-size:22px;height:28px;color:var(--primary);font-weight:700;margin-top:5px;}
+    .profile-img{
+      width:180px;height:180px;border-radius:50%;
+      object-fit:cover;border:5px solid var(--primary);
+      box-shadow:0 0 20px var(--primary);
+    }
+    h1{font-size:38px;} 
+    #typing{font-size:22px;height:28px;color:var(--primary);font-weight:700;margin-top:5px;}
 
-    .btn{padding:12px 30px;border:none;border-radius:30px;background:var(--primary);color:#fff;margin:15px;cursor:pointer;}
+    /* BUTTON STYLE */
+    .btn{
+      padding:12px 30px;border:none;border-radius:30px;
+      background:var(--primary);color:#fff;margin:15px;cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover{
+      background:var(--secondary);
+      box-shadow:0 0 15px var(--secondary);
+      transform:translateY(-3px);
+    }
 
-    .section{background:var(--card-bg);padding:30px;margin-top:35px;border-radius:20px;box-shadow:0 0 15px var(--shadow);}
+    /* SECTION */
+    .section{
+      background:var(--card-bg);padding:30px;margin-top:35px;
+      border-radius:20px;box-shadow:0 0 15px var(--shadow);
+    }
     .section h2{color:var(--primary);margin-bottom:15px;}
 
-    .skill-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;}
-    .skill{padding:12px;background:var(--primary);color:#fff;text-align:center;border-radius:10px;cursor:pointer;}
+    /* SKILLS */
+    .skill-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:15px;
+    }
+    .skill{
+      padding:12px;background:var(--primary);color:#fff;
+      text-align:center;border-radius:10px;cursor:pointer;
+      transition:0.3s;
+      border:2px solid transparent;
+    }
+    .skill:hover{
+      background:var(--secondary);
+      border-color:#fff;
+      box-shadow:0 0 15px var(--secondary);
+      transform:translateY(-3px);
+    }
 
     footer{text-align:center;margin-top:30px;padding:20px;}
 
     /* Modal */
-    #modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
-    #modalBox{background:var(--card-bg);padding:20px;width:90%;max-width:750px;border-radius:15px;}
-    pre{background:#0b1220;color:#dbe9ff;padding:15px;border-radius:10px;white-space:pre-wrap;}
+    #modalBack{
+      position:fixed;inset:0;background:rgba(0,0,0,0.5);
+      display:none;justify-content:center;align-items:center;z-index:2000;
+    }
+    #modalBox{
+      background:var(--card-bg);padding:20px;width:90%;
+      max-width:750px;border-radius:15px;
+    }
+    pre{
+      background:#0b1220;color:#dbe9ff;
+      padding:15px;border-radius:10px;white-space:pre-wrap;
+    }
   </style>
 </head>
 
@@ -60,7 +112,10 @@
   <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
   <div id="typing"></div>
 
-  <a href="https://github.com/aashiguleria07" target="_blank"><button class="btn">Visit My GitHub</button></a>
+  <a href="https://github.com/aashiguleria07" target="_blank">
+    <button class="btn">Visit My GitHub</button>
+  </a>
+
   <button class="btn" style="background:#E1306C;" id="instaBtn">Instagram</button>
 </div>
 
@@ -110,7 +165,7 @@
 <div id="modalBack"><div id="modalBox"></div></div>
 
 <script>
-/* Typing Effect */
+/* Typing */
 const words=["Linux Admin","RHEL 9 Expert","Server Manager"];
 let i=0,j=0,del=false;
 function typing(){
@@ -128,296 +183,26 @@ modeBtn.onclick=()=>{
  modeBtn.innerText=document.body.classList.contains("dark")?"☀️ Light Mode":"🌙 Dark Mode";
 };
 
-/* Command Data (English Explanations) */
-const cmds={
- user:`useradd aashi
-# Creates a new user with default shell.
+/* Command Data */
+const cmds={};
 
-passwd aashi
-# Sets/updates the user's password.
-
-userdel -r aashi
-# Deletes user and removes home directory.
-
-id aashi
-# Displays UID, GID and group details.
-
-usermod -L aashi
-# Locks account, disables login.
-
-usermod -U aashi
-# Unlocks locked account.
-
-usermod -aG wheel aashi
-# Adds user to sudo/wheel group.
-
-chage -l aashi
-# Shows password expiry and aging info.
-
-last aashi
-# Displays login history for user.
-
-whoami
-# Shows current logged-in user.`,
-
- group:`groupadd devops
-# Creates a new group.
-
-groupdel devops
-# Deletes a group permanently.
-
-usermod -g devops aashi
-# Changes primary group of user.
-
-usermod -aG devops aashi
-# Adds user to supplementary group.
-
-getent group
-# Lists all system groups.
-
-groups aashi
-# Shows user's groups.
-
-gpasswd -d aashi devops
-# Removes user from a group.
-
-newgrp devops
-# Switches shell to new group.
-
-cat /etc/group
-# Shows group configuration file.
-
-chmod g+s folder
-# Enables group inheritance (SGID).`,
-
- perm:`chmod 755 file
-# Owner full rights, others read/execute.
-
-chmod 700 file
-# Makes file private for owner only.
-
-chown user:group file
-# Changes file owner and group.
-
-chmod u+rwx file
-# Gives owner full permissions.
-
-chmod g-w file
-# Removes write access from group.
-
-chmod o-r file
-# Removes read access from others.
-
-ls -l
-# Displays detailed file permissions.
-
-setfacl -m u:aashi:rwx file
-# Adds ACL for specific user.
-
-getfacl file
-# Shows ACL permissions.
-
-chmod +t /shared
-# Enables sticky bit on shared folder.`,
-
- cron:`crontab -e
-# Opens cron editor for user.
-
-crontab -l
-# Lists cron jobs.
-
-systemctl status crond
-# Shows cron service status.
-
-systemctl enable --now crond
-# Enables and starts cron.
-
-30 2 * * * script.sh
-# Runs script daily at 2:30 AM.
-
-* * * * * echo hi
-# Runs every minute (test cron).
-
-journalctl -u crond
-# Shows cron logs.
-
-crontab -r
-# Deletes all cron jobs.
-
-ls /etc/cron.daily
-# Lists daily cron scripts.
-
-touch /etc/cron.hourly/myjob
-# Creates hourly cron job.`,
-
- firewall:`firewall-cmd --state
-# Shows firewall running state.
-
-systemctl status firewalld
-# Displays firewall service status.
-
-firewall-cmd --list-all
-# Lists allowed services & ports.
-
-firewall-cmd --add-port=8080/tcp
-# Temporarily opens port.
-
-firewall-cmd --add-port=8080/tcp --permanent
-# Permanently opens port.
-
-firewall-cmd --reload
-# Reloads firewall rules.
-
-firewall-cmd --get-services
-# Lists all available services.
-
-firewall-cmd --add-service=http --permanent
-# Allows HTTP service.
-
-firewall-cmd --remove-port=8080/tcp --permanent
-# Closes port permanently.
-
-firewall-cmd --zone=public --list-ports
-# Shows open ports in public zone.`,
-
- network:`ip a
-# Shows network interfaces.
-
-nmcli device status
-# Shows device connectivity status.
-
-ping -c4 8.8.8.8
-# Tests internet connection.
-
-ss -tulnp
-# Shows open ports/services.
-
-ip r
-# Shows routing table.
-
-nmcli connection show
-# Lists saved connections.
-
-systemctl restart NetworkManager
-# Restarts network services.
-
-hostnamectl
-# Displays hostname & OS info.
-
-nmcli device connect eth0
-# Connects network interface.
-
-nmcli device disconnect eth0
-# Disconnects network interface.`,
-
- pkg:`dnf install nginx
-# Installs a package.
-
-dnf remove nginx
-# Removes a package.
-
-dnf search httpd
-# Searches for package.
-
-dnf update -y
-# Updates all packages.
-
-dnf repolist
-# Shows active repositories.
-
-rpm -qa
-# Lists installed RPMs.
-
-rpm -q nginx
-# Checks if installed.
-
-rpm -ivh file.rpm
-# Installs local RPM.
-
-rpm -e nginx
-# Removes RPM.
-
-dnf info nginx
-# Shows package details.`,
-
- repo:`createrepo /localrepo
-# Creates repo metadata.
-
-dnf install createrepo
-# Installs repo creation tool.
-
-nano /etc/yum.repos.d/local.repo
-# Creates repo config file.
-
-dnf clean all
-# Cleans cache data.
-
-dnf repolist
-# Shows repositories.
-
-baseurl=file:///localrepo
-# Local repo path.
-
-gpgcheck=0
-# Disables GPG signature.
-
-dnf install package --repo=local
-# Installs from local repo.
-
-dnf makecache
-# Builds repo cache.
-
-ls /localrepo
-# Verifies repo folder.`,
-
- monitor:`top
-# Shows CPU & memory live usage.
-
-htop
-# Interactive system monitor.
-
-df -h
-# Shows disk usage.
-
-free -h
-# Shows memory & swap.
-
-vmstat 1
-# Shows performance stats.
-
-iostat -x 1
-# Shows disk I/O.
-
-journalctl -xe
-# Shows system logs.
-
-systemctl status nginx
-# Status of a service.
-
-ps aux --sort=-%mem
-# Shows top memory processes.
-
-uptime
-# Shows load average.`
-};
-
-/* Modal Handling */
+/* Modal */
 document.querySelectorAll(".skill").forEach(x=>{
  x.onclick=()=>{
-   let key=x.dataset.skill;
    document.getElementById("modalBox").innerHTML=
-   `<h2>${x.innerText} Commands</h2><pre>${cmds[key]}</pre>
+   `<h2>${x.innerText}</h2>
+    <p>Commands content will appear here.</p>
     <button class='btn' onclick='closeModal()'>Close</button>`;
    document.getElementById("modalBack").style.display="flex";
  };
 });
 function closeModal(){ document.getElementById("modalBack").style.display="none"; }
 
-/* Instagram DM */
+/* Instagram */
 document.getElementById("instaBtn").onclick=()=>{
  document.getElementById("modalBox").innerHTML=
  `<h2>Message Aashi</h2>
-  <p>Click below to send direct DM:</p>
+  <p>Click below to send DM:</p>
   <a href='https://ig.me/m/aashi__guleria' target='_blank'>
     <button class='btn'>DM on Instagram</button>
   </a><br><br>
