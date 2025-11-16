@@ -1,250 +1,332 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashi Guleria | Portfolio</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <style>
-    :root {
-      --main-bg:#f4f9ff;
-      --card-bg:#fff;
-      --text:#222;
-      --primary:#007bff;
-      --secondary:#ff9800;
-      --shadow:rgba(0,0,0,0.1);
-    }
-    body.dark {
-      --main-bg:#0d1117;
-      --card-bg:#161b22;
-      --text:#f0f6fc;
-      --primary:#1f6feb;
-      --secondary:#ffa726;
-      --shadow:rgba(255,255,255,0.06);
-    }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{background:var(--main-bg);color:var(--text);}    
-    .container{max-width:1100px;margin:auto;padding:20px;}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aashi Guleria | Portfolio (Commands)</title>
 
-    header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
-    .darkToggle{padding:10px 20px;border-radius:50px;background:var(--primary);color:#fff;border:none;cursor:pointer;}
-
-    .hero{text-align:center;padding:50px 10px;}
-    .profile-img{
-      width:180px;height:180px;border-radius:50%;object-fit:cover;
-      border:5px solid var(--primary);box-shadow:0 0 20px var(--primary);
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f4f9ff; --card:#ffffff; --text:#111; --accent:#0d90ff; --accent2:#ff3f7a;
+      --bubble-color: #ff8a00; /* orange bubble */
+      --shadow: 0 6px 20px rgba(10,10,20,0.06);
     }
-    h1{font-size:38px;}   
-    #typing{font-size:22px;height:28px;color:var(--primary);font-weight:700;margin-top:5px;}
-
-    .btn{
-      padding:12px 30px;border:none;border-radius:30px;
-      background:var(--primary);color:#fff;margin:15px;cursor:pointer;
-      transition:0.3s;
+    body.dark{
+      --bg:#0b1220; --card:#0f1720; --text:#e6f0ff; --accent:#4aa3ff; --accent2:#ff7aa6;
+      --bubble-color: #ff9a40;
+      --shadow: 0 6px 26px rgba(0,0,0,0.6);
     }
-    .btn:hover{background:var(--secondary);box-shadow:0 0 15px var(--secondary);transform:translateY(-3px);}  
 
-    .section{
-      background:var(--card-bg);padding:30px;margin-top:35px;
-      border-radius:20px;box-shadow:0 0 15px var(--shadow);
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: 'Poppins',sans-serif; background:var(--bg); color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    .section h2{color:var(--primary);margin-bottom:15px;}
 
-    .skill-box{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;
+    .wrap{max-width:1100px; margin:28px auto; padding:18px;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-size:22px;margin:0}
+    .mode-btn{
+      background:var(--accent); color:#fff; border:0; padding:8px 14px; border-radius:999px; cursor:pointer;
+      box-shadow:var(--shadow);
     }
+    .hero{
+      display:flex;gap:18px;align-items:center;padding:22px;border-radius:14px;background:var(--card);
+      box-shadow:var(--shadow);
+    }
+    .avatar{
+      width:110px;height:110px;border-radius:50%;object-fit:cover;border:5px solid var(--accent);
+    }
+    .hero-text{flex:1}
+    .buttons{margin-top:12px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;border:0;margin-right:8px;cursor:pointer;}
+    .btn.ig{background:var(--accent2)}
+
+    .sections{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:18px}
+    @media (max-width:900px){ .sections{grid-template-columns:1fr} .avatar{width:86px;height:86px} }
+
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+
+    /* skill + bubble styles */
     .skill{
-      padding:12px;background:var(--primary);color:#fff;text-align:center;
-      border-radius:10px;cursor:pointer;transition:0.3s;border:2px solid transparent;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(90deg,var(--accent),#2fa0ff);
+      color:#fff;padding:12px;border-radius:10px;text-align:center;cursor:pointer;
+      user-select:none;font-weight:600;box-shadow:0 6px 18px rgba(10,80,160,0.12);
+      transition:transform .18s ease, box-shadow .18s ease;
     }
-    .skill:hover{background:var(--secondary);border-color:#fff;box-shadow:0 0 15px var(--secondary);transform:translateY(-3px);} 
+    .skill:active{transform:translateY(2px)}
+    .skill.pop { transform: scale(1.03); box-shadow:0 10px 28px rgba(10,80,160,0.16); }
 
-    footer{text-align:center;margin-top:30px;padding:20px;}    
+    /* bubble pseudo-element uses CSS variables set by JS (--bx, --by) */
+    .skill::after{
+      content:"";
+      position:absolute;
+      left:var(--bx,50%);
+      top:var(--by,50%);
+      width:12px;height:12px;border-radius:50%;
+      transform:translate(-50%,-50%) scale(0);
+      background: radial-gradient(circle at 40% 30%, rgba(255,255,255,0.15), rgba(255,255,255,0) 40%), var(--bubble-color);
+      opacity:.9;
+      pointer-events:none;
+      transition: transform .55s cubic-bezier(.2,.9,.2,1), opacity .55s linear;
+      will-change: transform, opacity;
+      z-index:2;
+      filter: blur(0.2px);
+    }
 
-    #modalBack{
-      position:fixed;inset:0;background:rgba(0,0,0,0.5);
-      display:none;justify-content:center;align-items:center;z-index:2000;
+    /* active bubble state */
+    .skill.bubble::after{
+      transform:translate(-50%,-50%) scale(18);
+      opacity:0;
+      transition: transform .6s cubic-bezier(.2,.9,.2,1), opacity .6s linear;
     }
-    #modalBox{
-      background:var(--card-bg);padding:20px;width:90%;max-width:750px;border-radius:15px;
-    }
-    pre{
-      background:#0b1220;color:#dbe9ff;padding:15px;border-radius:10px;white-space:pre-wrap;
-    }
-  </style></head>
+
+    footer{text-align:center;margin-top:18px;color:var(--text);opacity:.8}
+
+    /* modal */
+    #modalBack{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:9999;padding:20px}
+    #modal{width:100%;max-width:880px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);color:var(--text)}
+    #modal h2{margin:0 0 12px 0;color:var(--accent)}
+    pre{background:#071021;color:#dbeeff;padding:14px;border-radius:8px;overflow:auto;white-space:pre-wrap}
+    .modal-close{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;margin-top:12px}
+
+    /* small accessibility focus */
+    .skill:focus { outline: 3px solid rgba(255,138,0,0.18); outline-offset:3px; }
+  </style>
+</head>
 <body>
-<div class="container">
-  <header>
-    <h2>Aashi Guleria</h2>
-    <button class="darkToggle" id="modeBtn">🌙 Dark Mode</button>
-  </header>  <div class="hero">
-    <img src="aashi.jpg" class="profile-img">
-    <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
-    <div id="typing"></div><a href="https://github.com/aashiguleria07" target="_blank"><button class="btn">Visit My GitHub</button></a>
-<button class="btn" style="background:#E1306C;" id="instaBtn">Instagram</button>
+  <div class="wrap">
+    <header>
+      <h1>Aashi Guleria — Portfolio</h1>
+      <button id="modeBtn" class="mode-btn">🌙 Dark</button>
+    </header>
 
-  </div>  <div class="section">
-    <h2>About Me</h2>
-    <p>I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> skilled in RHEL 9, automation, permissions, networking,<br>cronjobs, firewall and server management.<br><br>📞 <b>Contact:</b> 9805427313 &nbsp; ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a></p>
-  </div>  <div class="section">
-    <h2>My Skills</h2>
-    <div class="skill-box">
-      <div class="skill" data-skill="user">User Management</div>
-      <div class="skill" data-skill="group">Group Management</div>
-      <div class="skill" data-skill="perm">File Permissions</div>
-      <div class="skill" data-skill="cron">Cron Jobs</div>
-      <div class="skill" data-skill="firewall">Firewall</div>
-      <div class="skill" data-skill="network">Networking</div>
-      <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
-      <div class="skill" data-skill="repo">Local Repository</div>
-      <div class="skill" data-skill="monitor">Monitoring</div>
+    <div class="hero">
+      <img src="aashi.jpg" alt="Aashi" class="avatar" onerror="this.style.display='none'">
+      <div class="hero-text">
+        <div style="font-size:18px;font-weight:700">Hello, I'm Aashi</div>
+        <div style="margin-top:6px;color:gray;font-size:14px">Linux Administrator • RHEL 9</div>
+        <div class="buttons">
+          <a href="https://github.com/aashiguleria07" target="_blank" class="btn">GitHub</a>
+          <button class="btn ig" id="instaBtn">Instagram</button>
+        </div>
+      </div>
     </div>
-  </div>  <div class="section">
-    <h2>My Projects</h2>
-    <h3>✔ Linux Automation Scripts</h3>
-    <p>Shell scripts for cronjobs, backups and monitoring.</p>
-  </div>  <footer>
-    © 2025 Aashi Guleria — Made by Aashi | Updated Today
-  </footer>
-</div><div id="modalBack"><div id="modalBox"></div></div><script>
-/* Typing */
-const words=["Linux Admin","RHEL 9 Expert","Server Manager"]; let i=0,j=0,del=false;
-function typing(){ let w=words[i]; document.getElementById("typing").innerText=w.substring(0,j);
-  if(!del){ j++; if(j==w.length){del=true; setTimeout(typing,800); return;} }
-  else{ j--; if(j==0){del=false; i=(i+1)%words.length;} }
-  setTimeout(typing,120);} typing();
 
-/* Dark Mode */
-modeBtn.onclick=()=>{ document.body.classList.toggle("dark"); modeBtn.innerText=document.body.classList.contains("dark")?"☀️ Light Mode":"🌙 Dark Mode"; };
+    <div class="sections">
+      <div class="card">
+        <h3 style="margin-top:0">My Skills</h3>
+        <div class="skills-grid" id="skillsBox">
+          <div tabindex="0" class="skill" data-key="user">User Management</div>
+          <div tabindex="0" class="skill" data-key="group">Group Management</div>
+          <div tabindex="0" class="skill" data-key="perm">File Permissions</div>
+          <div tabindex="0" class="skill" data-key="cron">Cron Jobs</div>
+          <div tabindex="0" class="skill" data-key="firewall">Firewall</div>
+          <div tabindex="0" class="skill" data-key="network">Networking</div>
+          <div tabindex="0" class="skill" data-key="pkg">YUM / DNF / RPM</div>
+          <div tabindex="0" class="skill" data-key="repo">Local Repository</div>
+          <div tabindex="0" class="skill" data-key="monitor">Monitoring</div>
+        </div>
+      </div>
 
-/* Commands Data */
-const cmds={
-  user:`1) useradd user1
-2) passwd user1
-3) userdel user1
-4) chage -l user1
-5) chage -E 2025-01-01 user1
-6) id user1
-7) lastlog
-8) su - user1
-9) finger user1
-10) whoami
+      <div class="card">
+        <h3 style="margin-top:0">Projects</h3>
+        <p style="color:gray;margin-top:6px">✔ Linux automation scripts for backups, monitoring and cron tasks.</p>
+        <hr style="margin:12px 0;border:none;height:1px;background:rgba(0,0,0,0.06)">
+        <div style="font-size:13px;color:gray">© <span id="year"></span> Aashi Guleria — Made by Aashi</div>
+      </div>
+    </div>
 
-User accounts creation, password setting and expiry control. Useful for managing system users easily.`,
+    <footer>Click any skill to view commands (only commands will show).</footer>
+  </div>
 
-  group:`1) groupadd devs
-2) groupdel devs
-3) usermod -aG devs user1
-4) gpasswd -a user1 devs
-5) gpasswd -d user1 devs
-6) groups user1
-7) getent group devs
-8) newgrp devs
-9) chgrp devs file1
-10) groupmod -n newdev devs
+  <!-- modal -->
+  <div id="modalBack">
+    <div id="modal" role="dialog" aria-modal="true">
+      <h2 id="modalTitle">Commands</h2>
+      <pre id="cmdsArea"></pre>
+      <button class="modal-close" id="closeModal">Close</button>
+    </div>
+  </div>
 
-Group creation and modification for managing users together. Helps in permission and team access control.`,
+<script>
+  // date
+  document.getElementById('year').innerText = new Date().getFullYear();
 
-  perm:`1) chmod 755 file
-2) chmod -R 700 folder
-3) chown user1 file
-4) chown user1:dev file
-5) chgrp dev file
-6) umask 022
-7) ls -l
-8) setfacl -m u:user1:rwx file
-9) getfacl file
-10) chmod +x script.sh
+  // dark/light toggle
+  const modeBtn = document.getElementById('modeBtn');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (prefersDark) document.body.classList.add('dark'), modeBtn.textContent = '☀️ Light';
+  modeBtn.addEventListener('click', ()=>{
+    document.body.classList.toggle('dark');
+    modeBtn.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+  });
 
-Controls file access levels. Ensures proper security for users and groups.`,
+  // commands dictionary — ONLY commands, no explanations
+  const commands = {
+    user:
+`useradd user1
+passwd user1
+usermod -c "Aashi User" user1
+userdel -r user1
+id user1
+chage -l user1
+chage -E 2025-12-31 user1
+lastlog
+su - user1
+getent passwd | grep user1`,
 
-  cron:`1) crontab -e
-2) crontab -l
-3) crontab -r
-4) systemctl status crond
-5) systemctl restart crond
-6) echo "* * * * * cmd" >> /etc/crontab
-7) at 5pm
-8) atq
-9) atrm 1
-10) systemctl enable crond
+    group:
+`groupadd devs
+groupdel devs
+groupmod -n newdev devs
+gpasswd -a user1 devs
+gpasswd -d user1 devs
+usermod -aG devs user1
+getent group devs
+groups user1
+chgrp devs file1
+newgrp devs`,
 
-Automates tasks at fixed times. Good for backups, cleanup and scheduling actions.`,
+    perm:
+`ls -l
+chmod 755 script.sh
+chmod -R 700 /secure_folder
+chown user1 file1
+chown user1:devs file2
+chgrp devs file3
+setfacl -m u:user1:rwx file1
+getfacl file1
+umask 0022
+chmod +x run.sh`,
 
-  firewall:`1) firewall-cmd --state
-2) firewall-cmd --zone=public --add-port=80/tcp
-3) firewall-cmd --permanent --add-port=22/tcp
-4) firewall-cmd --reload
-5) firewall-cmd --list-all
-6) firewall-cmd --add-service=http
-7) firewall-cmd --remove-service=ssh
-8) systemctl status firewalld
-9) systemctl restart firewalld
-10) firewall-cmd --get-zones
+    cron:
+`crontab -e
+crontab -l
+crontab -r
+systemctl status crond
+systemctl enable --now crond
+echo "0 2 * * * /usr/local/bin/backup.sh" >> /etc/crontab
+at 17:00 12/31/2025 -f /path/to/script
+atq
+atrm 1
+systemctl restart crond`,
 
-Controls allowed ports and services. Protects the server from unwanted traffic.`,
+    firewall:
+`firewall-cmd --state
+firewall-cmd --zone=public --add-port=22/tcp --permanent
+firewall-cmd --zone=public --remove-port=22/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+firewall-cmd --add-service=http --permanent
+firewall-cmd --remove-service=http --permanent
+firewall-cmd --get-active-zones
+firewall-cmd --list-ports
+systemctl status firewalld`,
 
-  network:`1) ip a
-2) ip r
-3) nmcli connection show
-4) nmcli device status
-5) ping -c3 google.com
-6) ss -tulnp
-7) nslookup google.com
-8) dig yahoo.com
-9) traceroute google.com
-10) hostnamectl
+    network:
+`ip a
+ip r
+nmcli device status
+nmcli connection show
+nmcli connection up id "Wired connection 1"
+nmcli connection down id "Wired connection 1"
+ping -c 3 8.8.8.8
+ss -tulnp
+resolvectl status
+ethtool eth0`,
 
-Used to configure IP, test connectivity and check routing. Important for debugging network issues.`,
+    pkg:
+`yum install httpd -y
+dnf install nginx -y
+dnf update -y
+yum remove httpd -y
+rpm -qa | grep httpd
+rpm -ivh package.rpm
+rpm -e package
+yum search openssh
+dnf info nano
+yum clean all`,
 
-  pkg:`1) yum install httpd
-2) dnf install nginx
-3) rpm -qa
-4) rpm -ql httpd
-5) yum remove httpd
-6) dnf update
-7) rpm -ivh pkg.rpm
-8) rpm -e pkg
-9) yum search ftp
-10) dnf info nano
+    repo:
+`mkdir -p /repo
+cp /path/to/*.rpm /repo/
+createrepo /repo
+cat > /etc/yum.repos.d/local.repo <<EOF
+[local]
+name=Local Repo
+baseurl=file:///repo
+enabled=1
+gpgcheck=0
+EOF
+yum repolist
+yum install somepkg --disablerepo=* --enablerepo=local
+dnf config-manager --add-repo file:///repo
+ls /etc/yum.repos.d`,
 
-Manages software installation and updates. RPM handles low-level package files.`,
+    monitor:
+`top -b -n1 | head -n 20
+htop
+free -h
+df -h
+du -sh /var/log
+ps aux --sort=-%mem | head -n 15
+systemctl status --no-pager
+journalctl -xe | tail -n 100
+uptime
+vmstat 1 5`
+  };
 
-  repo:`1) mkdir /repo
-2) cp *.rpm /repo
-3) createrepo /repo
-4) yum clean all
-5) vim /etc/yum.repos.d/local.repo
-6) yum repolist
-7) yum install pkg --disablerepo=* --enablerepo=local
-8) dnf config-manager --add-repo=/repo
-9) ls /etc/yum.repos.d
-10) dnf update
+  // modal controls
+  const modalBack = document.getElementById('modalBack');
+  const modalTitle = document.getElementById('modalTitle');
+  const cmdsArea = document.getElementById('cmdsArea');
+  const closeModal = document.getElementById('closeModal');
 
-Used when no internet repo available. Local repo makes offline installation possible.`,
+  // bubble + click handler
+  document.querySelectorAll('.skill').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      // bubble position variables (relative to element)
+      const rect = el.getBoundingClientRect();
+      const bx = (e.clientX - rect.left) + "px";
+      const by = (e.clientY - rect.top) + "px";
+      el.style.setProperty('--bx', bx);
+      el.style.setProperty('--by', by);
 
-  monitor:`1) top
-2) htop
-3) free -h
-4) df -h
-5) du -sh *
-6) ps aux
-7) systemctl status
-8) journalctl -xe
-9) uptime
-10) vmstat 1
+      // trigger pop/bubble animation
+      el.classList.add('bubble', 'pop');
+      // remove pop shortly after for smooth reset
+      setTimeout(()=> el.classList.remove('pop'), 260);
+      setTimeout(()=> el.classList.remove('bubble'), 620);
 
-Monitors CPU, RAM, disk and processes. Helps detect system load and issues.`
-};
+      // open modal with commands
+      const key = el.getAttribute('data-key');
+      if (!commands[key]) return;
+      modalTitle.textContent = el.textContent + ' — Commands';
+      cmdsArea.textContent = commands[key];
+      modalBack.style.display = 'flex';
+      closeModal.focus();
+    });
 
-/* Modal */
-document.querySelectorAll(".skill").forEach(x=>{
-  x.onclick=()=>{
-    let k=x.getAttribute("data-skill");
-    document.getElementById("modalBox").innerHTML=
-    <h2>${x.innerText}</h2><pre>${cmds[k]}</pre><button class='btn' onclick='closeModal()'>Close</button>;document.getElementById("modalBack").style.display="flex";
+    // keyboard accessibility: Enter or Space triggers click behavior
+    el.addEventListener('keydown', (ev)=>{
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        el.click();
+      }
+    });
+  });
 
-}; }); function closeModal(){ document.getElementById("modalBack").style.display="none"; }
+  closeModal.addEventListener('click', ()=> modalBack.style.display = 'none');
+  modalBack.addEventListener('click', (e)=>{ if (e.target === modalBack) modalBack.style.display = 'none'; });
+  window.addEventListener('keydown', (e)=> { if (e.key === 'Escape') modalBack.style.display = 'none'; });
 
-/* Instagram */ document.getElementById("instaBtn").onclick=()=>{ document.getElementById("modalBox").innerHTML= <h2>Message Aashi</h2><p>Click below to send DM:</p> <a href='https://ig.me/m/aashi__guleria' target='_blank'><button class='btn'>DM on Instagram</button></a><br><br> <button class='btn' onclick='closeModal()'>Close</button>; document.getElementById("modalBack").style.display="flex"; }; </script>
-
+  // instagram button
+  document.getElementById('instaBtn').addEventListener('click', ()=>{ window.open('https://ig.me/m/aashi__guleria', '_blank'); });
+</script>
 </body>
 </html>
