@@ -1,427 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aashi Guleria | Portfolio</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome (icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    :root{
-      --main-bg:#f4f9ff; --card-bg:#ffffff; --text:#222; --primary:#007bff; --accent:#ff9800; --shadow: rgba(0,0,0,0.08);
+    :root {
+      --main-bg:#f4f9ff; --card-bg:#fff; --text:#222;
+      --primary:#007bff; --secondary:#ff9800; --shadow:rgba(0,0,0,0.1);
     }
-    body.dark{ --main-bg:#0d1117; --card-bg:#161b22; --text:#f0f6fc; --primary:#1f6feb; --accent:#ffa726; --shadow: rgba(255,255,255,0.03); }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
-    body{background:var(--main-bg);color:var(--text);overflow-x:hidden;}
-    .container{max-width:1100px;margin:20px auto;padding:20px;}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;}
-    .darkToggle{cursor:pointer;padding:10px 18px;border-radius:999px;background:var(--primary);color:#fff;border:none;}
-    .hero{text-align:center;padding:32px 10px;}
-    .profile-img{width:160px;height:160px;border-radius:50%;object-fit:cover;border:4px solid var(--primary);box-shadow:0 0 18px var(--primary);}
-    h1{font-size:34px;margin-top:12px;}
-    #typing{height:28px;font-size:18px;color:var(--primary);font-weight:700;margin-top:6px;}
-    .btn{padding:10px 20px;border-radius:30px;border:none;background:var(--primary);color:#fff;margin:8px;cursor:pointer;}
-    .btn.secondary{background:#E1306C;} /* instagram color */
-    .section{background:var(--card-bg);padding:20px;margin-top:20px;border-radius:14px;box-shadow:0 6px 22px var(--shadow);}
-    .section h2{color:var(--primary);margin-bottom:12px;}
-    .skill-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
-    .skill{padding:12px;background:var(--primary);color:#fff;border-radius:8px;text-align:center;font-weight:600;cursor:pointer;}
-    .skill:hover{transform:scale(1.03);transition:0.15s; background:var(--accent);}
-    .project{padding:12px;background:var(--card-bg);border-radius:12px;box-shadow:0 6px 18px var(--shadow);margin-bottom:10px;border-left:5px solid var(--primary);}
-    footer{text-align:center;margin-top:18px;padding:10px;color:gray;}
+    body.dark {
+      --main-bg:#0d1117; --card-bg:#161b22; --text:#f0f6fc;
+      --primary:#1f6feb; --secondary:#ffa726; --shadow:rgba(255,255,255,0.06);
+    }
 
-    /* fade */
-    .fade{opacity:0;transform:translateY(20px);transition:800ms ease;}
-    .fade.visible{opacity:1;transform:none;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:var(--main-bg);color:var(--text);}
+    .container{max-width:1100px;margin:auto;padding:20px;}
 
-    /* modal */
-    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:1200;padding:18px;}
-    .modal{background:var(--card-bg);max-width:760px;width:100%;border-radius:12px;padding:18px;box-shadow:0 10px 30px var(--shadow);position:relative;}
-    .modal h3{margin-bottom:10px;color:var(--primary);}
-    .close-btn{position:absolute;right:12px;top:10px;background:transparent;border:none;font-size:18px;cursor:pointer;color:var(--text);}
-    pre.cmd{background:#0b1220;color:#dbe9ff;padding:12px;border-radius:8px;overflow:auto;white-space:pre-wrap;}
-    .copy-btn{float:right;margin-left:8px;padding:6px 10px;border-radius:8px;border:none;cursor:pointer;background:var(--primary);color:#fff;}
-    .contact-grid{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
-    .contact-card{flex:1;min-width:220px;padding:12px;border-radius:10px;background:var(--card-bg);box-shadow:0 6px 18px var(--shadow);border:1px solid rgba(0,0,0,0.03);}
-    label{display:block;font-size:13px;margin-bottom:6px;color:gray;}
-    input[type=text], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);margin-bottom:8px;}
-    .send-mail{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+    .darkToggle{padding:10px 20px;border-radius:50px;background:var(--primary);color:#fff;border:none;cursor:pointer;}
 
-    @media (max-width:600px){ .profile-img{width:120px;height:120px;} h1{font-size:26px;} .contact-grid{flex-direction:column;} }
+    .hero{text-align:center;padding:50px 10px;}
+    .profile-img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:5px solid var(--primary);box-shadow:0 0 20px var(--primary);}
+    h1{font-size:38px;} #typing{font-size:22px;height:28px;color:var(--primary);font-weight:700;margin-top:5px;}
+
+    .btn{padding:12px 30px;border:none;border-radius:30px;background:var(--primary);color:#fff;margin:15px;cursor:pointer;}
+
+    .section{background:var(--card-bg);padding:30px;margin-top:35px;border-radius:20px;box-shadow:0 0 15px var(--shadow);}
+    .section h2{color:var(--primary);margin-bottom:15px;}
+
+    .skill-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;}
+    .skill{padding:12px;background:var(--primary);color:#fff;text-align:center;border-radius:10px;cursor:pointer;}
+
+    footer{text-align:center;margin-top:30px;padding:20px;}
+
+    /* Modal */
+    #modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
+    #modalBox{background:var(--card-bg);padding:20px;width:90%;max-width:750px;border-radius:15px;}
+    pre{background:#0b1220;color:#dbe9ff;padding:15px;border-radius:10px;white-space:pre-wrap;}
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <h2>Aashi Guleria</h2>
-      <div>
-        <button class="darkToggle" id="themeToggle">🌙 Dark Mode</button>
-      </div>
-    </header>
+<div class="container">
 
-    <!-- HERO -->
-    <div class="hero fade">
-      <img src="aashi.jpg" alt="Aashi" class="profile-img" />
-      <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
-      <div id="typing"></div>
+<header>
+  <h2>Aashi Guleria</h2>
+  <button class="darkToggle" id="modeBtn">🌙 Dark Mode</button>
+</header>
 
-      <a href="https://github.com/aashiguleria07" target="_blank" rel="noopener noreferrer"><button class="btn">Visit My GitHub</button></a>
+<!-- HERO -->
+<div class="hero">
+  <img src="aashi.jpg" class="profile-img">
+  <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
+  <div id="typing"></div>
 
-      <!-- Instagram: opens contact modal (NOT direct profile by default) -->
-      <button class="btn secondary" id="instaBtn"><i class="fa-brands fa-instagram"></i> Message Me</button>
-    </div>
+  <a href="https://github.com/aashiguleria07" target="_blank"><button class="btn">Visit My GitHub</button></a>
+  <button class="btn" style="background:#E1306C;" id="instaBtn">Instagram</button>
+</div>
 
-    <!-- ABOUT -->
-    <div class="section fade">
-      <h2>About Me</h2>
-      <p>
-        I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> and </b>.<br>
-        Skilled in <b>RHEL 9, server management, user/group management, firewalls, networking, permissions, cronjobs, automation, </b> 
-        <br><br>
-        📞 <b>Contact:</b> 9805427313 &nbsp; • &nbsp; ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a>
-      </p>
-    </div>
+<!-- ABOUT -->
+<div class="section">
+  <h2>About Me</h2>
+  <p>
+    I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b>.
+    Skilled in <b>RHEL 9, user/group management, permissions, firewall, networking, cronjobs,
+    automation, shell scripting</b> and server management.
+    <br><br>
+    📞 <b>Contact:</b> 9805427313  
+    ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a>
+  </p>
+</div>
 
-    <!-- SKILLS -->
-    <div class="section fade">
-      <h2>My Skills</h2>
-      <div class="skill-box">
-        <div class="skill" data-skill="user">User Management</div>
-        <div class="skill" data-skill="group">Group Management</div>
-        <div class="skill" data-skill="perm">File Permissions</div>
-        <div class="skill" data-skill="cron">Cron Jobs</div>
-        <div class="skill" data-skill="firewall">Firewall (firewalld)</div>
-        <div class="skill" data-skill="network">Networking</div>
-        <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
-        <div class="skill" data-skill="repo">Local Repositories</div>
-        <div class="skill" data-skill="monitor">Monitoring</div>
-      </div>
-    </div>
-
-    <!-- PROJECTS -->
-    <div class="section fade">
-      <h2>My Projects</h2>
-      <div class="project"><h3>✔ Linux Automation Scripts</h3><p>Shell scripts for cronjobs, backups and monitoring.</p></div>
-      <div class="project"><h3>✔ Web Development Projects</h3><p>Portfolio UI, templates, advanced web designs.</p></div>
-    </div>
-
-    <footer>© 2025 Aashi Guleria — All Rights Reserved</footer>
+<!-- SKILLS -->
+<div class="section">
+  <h2>My Skills</h2>
+  <div class="skill-box">
+    <div class="skill" data-skill="user">User Management</div>
+    <div class="skill" data-skill="group">Group Management</div>
+    <div class="skill" data-skill="perm">File Permissions</div>
+    <div class="skill" data-skill="cron">Cron Jobs</div>
+    <div class="skill" data-skill="firewall">Firewall</div>
+    <div class="skill" data-skill="network">Networking</div>
+    <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
+    <div class="skill" data-skill="repo">Local Repository</div>
+    <div class="skill" data-skill="monitor">Monitoring</div>
   </div>
+</div>
 
-  <!-- Modal: shows commands / contact -->
-  <div class="modal-back" id="modalBack">
-    <div class="modal" id="modal">
-      <button class="close-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-      <div id="modalContent">
-        <!-- dynamic content injected here -->
-      </div>
-    </div>
+<!-- PROJECTS -->
+<div class="section">
+  <h2>My Projects</h2>
+  <div class="project">
+    <h3>✔ Linux Automation Scripts</h3>
+    <p>Shell scripts for cronjobs, backups and monitoring.</p>
   </div>
+</div>
 
-  <script>
-    /* Typing effect */
-    const textArr = ["Linux Admin", "RHEL 9 Expert", "Web Developer", "Tech Explorer"];
-    let ti=0, tj=0, pause=0;
-    function typingEffect(){
-      const el = document.getElementById("typing");
-      const full = textArr[ti];
-      el.innerText = full.slice(0, tj);
-      if(tj < full.length && pause===0){ tj++; setTimeout(typingEffect, 120); }
-      else if (pause === 0) { pause = 1; setTimeout(typingEffect, 900); }
-      else { tj = 0; pause = 0; ti = (ti+1)%textArr.length; setTimeout(typingEffect, 200); }
-    }
-    typingEffect();
+<footer>© 2025 Aashi Guleria — All Rights Reserved</footer>
 
-    /* Fade on scroll */
-    const fades = document.querySelectorAll(".fade");
-    function showOnScroll(){
-      fades.forEach(f => {
-        const r = f.getBoundingClientRect().top;
-        if(r < window.innerHeight - 50) f.classList.add("visible");
-      });
-    }
-    window.addEventListener("scroll", showOnScroll);
-    showOnScroll();
+</div>
 
-    /* Theme toggle */
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      themeToggle.innerText = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
-    });
+<!-- MODAL -->
+<div id="modalBack"><div id="modalBox"></div></div>
 
-    /* Modal helpers */
-    const modalBack = document.getElementById("modalBack");
-    const modalContent = document.getElementById("modalContent");
-    const closeModalBtn = document.getElementById("closeModal");
-    function openModal(html){
-      modalContent.innerHTML = html;
-      modalBack.style.display = "flex";
-      // attach copy handlers after content inserted
-      setTimeout(()=> {
-        document.querySelectorAll(".copy-btn").forEach(btn=>{
-          btn.addEventListener("click", (e)=>{
-            const targetId = btn.getAttribute("data-target");
-            const text = document.getElementById(targetId).innerText;
-            navigator.clipboard.writeText(text).then(()=>{
-              btn.innerText = "Copied ✓";
-              setTimeout(()=> btn.innerText = "Copy", 1200);
-            }).catch(()=> { alert("Copy failed — use select & ctrl+c"); });
-          });
-        });
-      },50);
-    }
-    function closeModal(){ modalBack.style.display = "none"; modalContent.innerHTML=""; }
-    closeModalBtn.addEventListener("click", closeModal);
-    modalBack.addEventListener("click", (e)=> { if(e.target === modalBack) closeModal(); });
+<script>
+/* Typing Effect */
+const words=["Linux Admin","RHEL 9 Expert","Server Manager"];
+let i=0,j=0,del=false;
+function typing(){
+ let w=words[i];
+ document.getElementById("typing").innerText=w.substring(0,j);
+ if(!del){ j++; if(j==w.length){del=true; setTimeout(typing,800); return;} }
+ else{ j--; if(j==0){del=false; i=(i+1)%words.length;} }
+ setTimeout(typing,120);
+}
+typing();
 
-    /* Commands data (RHEL 9 oriented) */
-    const commands = {
-      user: {
-        title: "User Management — Common Commands",
-        cmds:
-`# Create user & set password
-sudo useradd -m -s /bin/bash alice
-sudo passwd alice
+/* Dark Mode */
+modeBtn.onclick=()=>{
+ document.body.classList.toggle("dark");
+ modeBtn.innerText=document.body.classList.contains("dark")?"☀️ Light Mode":"🌙 Dark Mode";
+};
 
-# Delete user (keep home)
-sudo userdel -r alice
+/* Command Data (English Explanations) */
+const cmds={
+ user:`useradd aashi
+# Creates a new user with default shell.
 
-# Lock / unlock user
-sudo usermod -L alice
-sudo usermod -U alice
+passwd aashi
+# Sets/updates the user's password.
 
-# Add user to groups
-sudo usermod -aG wheel,audit alice
+userdel -r aashi
+# Deletes user and removes home directory.
 
-# Show user info
-id alice
-getent passwd alice`
-      },
-      group: {
-        title: "Group Management — Common Commands",
-        cmds:
-`# Create / delete group
-sudo groupadd devops
-sudo groupdel devops
+id aashi
+# Displays UID, GID and group details.
 
-# Change primary group of a user
-sudo usermod -g devops alice
+usermod -L aashi
+# Locks account, disables login.
 
-# Add user to supplementary group
-sudo usermod -aG docker alice
+usermod -U aashi
+# Unlocks locked account.
 
-# List groups & members
-getent group | grep devops
-groups alice`
-      },
-      perm: {
-        title: "File Permissions & Ownership",
-        cmds:
-`# Change owner & group
-sudo chown alice:devops /var/www/html -R
+usermod -aG wheel aashi
+# Adds user to sudo/wheel group.
 
-# Change permissions (numeric & symbolic)
-sudo chmod 755 /var/www/html
-sudo chmod u=rwx,g=rx,o=rx file.txt
+chage -l aashi
+# Shows password expiry and aging info.
 
-# Set SGID / SUID / sticky bit
-sudo chmod g+s /opt/shared
-sudo chmod u+s /usr/bin/someprog
-sudo chmod +t /tmp
+last aashi
+# Displays login history for user.
 
-# ACLs (set/get)
-sudo setfacl -m u:alice:rwx /data
-getfacl /data`
-      },
-      cron: {
-        title: "Cron Jobs — scheduling",
-        cmds:
-`# Edit crontab for current user
-crontab -e
+whoami
+# Shows current logged-in user.`,
 
-# Example: run backup daily at 2:30AM
-30 2 * * * /usr/local/bin/backup.sh
+ group:`groupadd devops
+# Creates a new group.
 
-# Systemd timers (recommended alternative)
-sudo systemctl enable --now myjob.timer
-journalctl -u myjob.service -f`
-      },
-      firewall: {
-        title: "Firewall (firewalld) — Basic Commands",
-        cmds:
-`# Check status
-sudo systemctl status firewalld
-sudo firewall-cmd --state
+groupdel devops
+# Deletes a group permanently.
 
-# List zones and services
-sudo firewall-cmd --get-zones
-sudo firewall-cmd --list-all --zone=public
+usermod -g devops aashi
+# Changes primary group of user.
 
-# Open port permanently
-sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
-sudo firewall-cmd --reload
+usermod -aG devops aashi
+# Adds user to supplementary group.
 
-# Add service (permanent)
-sudo firewall-cmd --zone=public --add-service=http --permanent
-sudo firewall-cmd --reload`
-      },
-      network: {
-        title: "Networking — Useful Commands (RHEL 9)",
-        cmds:
-`# Show interfaces & IPs
-ip addr show
+getent group
+# Lists all system groups.
+
+groups aashi
+# Shows user's groups.
+
+gpasswd -d aashi devops
+# Removes user from a group.
+
+newgrp devops
+# Switches shell to new group.
+
+cat /etc/group
+# Shows group configuration file.
+
+chmod g+s folder
+# Enables group inheritance (SGID).`,
+
+ perm:`chmod 755 file
+# Owner full rights, others read/execute.
+
+chmod 700 file
+# Makes file private for owner only.
+
+chown user:group file
+# Changes file owner and group.
+
+chmod u+rwx file
+# Gives owner full permissions.
+
+chmod g-w file
+# Removes write access from group.
+
+chmod o-r file
+# Removes read access from others.
+
+ls -l
+# Displays detailed file permissions.
+
+setfacl -m u:aashi:rwx file
+# Adds ACL for specific user.
+
+getfacl file
+# Shows ACL permissions.
+
+chmod +t /shared
+# Enables sticky bit on shared folder.`,
+
+ cron:`crontab -e
+# Opens cron editor for user.
+
+crontab -l
+# Lists cron jobs.
+
+systemctl status crond
+# Shows cron service status.
+
+systemctl enable --now crond
+# Enables and starts cron.
+
+30 2 * * * script.sh
+# Runs script daily at 2:30 AM.
+
+* * * * * echo hi
+# Runs every minute (test cron).
+
+journalctl -u crond
+# Shows cron logs.
+
+crontab -r
+# Deletes all cron jobs.
+
+ls /etc/cron.daily
+# Lists daily cron scripts.
+
+touch /etc/cron.hourly/myjob
+# Creates hourly cron job.`,
+
+ firewall:`firewall-cmd --state
+# Shows firewall running state.
+
+systemctl status firewalld
+# Displays firewall service status.
+
+firewall-cmd --list-all
+# Lists allowed services & ports.
+
+firewall-cmd --add-port=8080/tcp
+# Temporarily opens port.
+
+firewall-cmd --add-port=8080/tcp --permanent
+# Permanently opens port.
+
+firewall-cmd --reload
+# Reloads firewall rules.
+
+firewall-cmd --get-services
+# Lists all available services.
+
+firewall-cmd --add-service=http --permanent
+# Allows HTTP service.
+
+firewall-cmd --remove-port=8080/tcp --permanent
+# Closes port permanently.
+
+firewall-cmd --zone=public --list-ports
+# Shows open ports in public zone.`,
+
+ network:`ip a
+# Shows network interfaces.
+
 nmcli device status
+# Shows device connectivity status.
 
-# Bring interface up/down
-sudo ip link set enp0s3 up
-sudo ip link set enp0s3 down
-
-# Manage NetworkManager connections
-nmcli connection show
-nmcli connection up "Wired connection 1"
-
-# Test connectivity
 ping -c4 8.8.8.8
-ss -tulnp | grep :22`
-      },
-      pkg: {
-        title: "YUM / DNF / RPM — Package Management",
-        cmds:
-`# Search & install with dnf
-sudo dnf search nginx
-sudo dnf install -y nginx
+# Tests internet connection.
 
-# Update system
-sudo dnf update -y
+ss -tulnp
+# Shows open ports/services.
 
-# rpm local package
-sudo rpm -ivh mypkg.rpm
-sudo rpm -qa | grep httpd
+ip r
+# Shows routing table.
 
-# Show repos
-sudo dnf repolist
-sudo dnf info nginx`
-      },
-      repo: {
-        title: "Local Repository — Create & Use",
-        cmds:
-`# Install createrepo tool
-sudo dnf install -y createrepo
+nmcli connection show
+# Lists saved connections.
 
-# Create repo from directory
-sudo createrepo /var/www/html/repos/myrepo
+systemctl restart NetworkManager
+# Restarts network services.
 
-# Create repo file
-sudo tee /etc/yum.repos.d/local.repo > /dev/null <<EOF
-[local]
-name=Local Repo
-baseurl=file:///var/www/html/repos/myrepo
-enabled=1
+hostnamectl
+# Displays hostname & OS info.
+
+nmcli device connect eth0
+# Connects network interface.
+
+nmcli device disconnect eth0
+# Disconnects network interface.`,
+
+ pkg:`dnf install nginx
+# Installs a package.
+
+dnf remove nginx
+# Removes a package.
+
+dnf search httpd
+# Searches for package.
+
+dnf update -y
+# Updates all packages.
+
+dnf repolist
+# Shows active repositories.
+
+rpm -qa
+# Lists installed RPMs.
+
+rpm -q nginx
+# Checks if installed.
+
+rpm -ivh file.rpm
+# Installs local RPM.
+
+rpm -e nginx
+# Removes RPM.
+
+dnf info nginx
+# Shows package details.`,
+
+ repo:`createrepo /localrepo
+# Creates repo metadata.
+
+dnf install createrepo
+# Installs repo creation tool.
+
+nano /etc/yum.repos.d/local.repo
+# Creates repo config file.
+
+dnf clean all
+# Cleans cache data.
+
+dnf repolist
+# Shows repositories.
+
+baseurl=file:///localrepo
+# Local repo path.
+
 gpgcheck=0
-EOF
+# Disables GPG signature.
 
-# Clean & use
-sudo dnf clean all
-sudo dnf --disablerepo='*' --enablerepo=local install mypkg`
-      },
-      monitor: {
-        title: "Monitoring — Tools & Commands",
-        cmds:
-`# Systemd & logs
-sudo journalctl -f
-sudo journalctl -u sshd -n 200
+dnf install package --repo=local
+# Installs from local repo.
 
-# Top-like tools
-top
-# (if installed) htop
+dnf makecache
+# Builds repo cache.
 
-# Disk / iostat / vmstat
+ls /localrepo
+# Verifies repo folder.`,
+
+ monitor:`top
+# Shows CPU & memory live usage.
+
+htop
+# Interactive system monitor.
+
 df -h
-sudo iostat -x 1 5
-vmstat 1 5
+# Shows disk usage.
 
-# Resource usage by process
-ps aux --sort=-%mem | head -n 10`
-      }
-    };
+free -h
+# Shows memory & swap.
 
-    /* When skill clicked open modal with commands */
-    document.querySelectorAll(".skill").forEach(el=>{
-      el.addEventListener("click", ()=> {
-        const key = el.getAttribute("data-skill");
-        const data = commands[key];
-        if(!data) return;
-        const html = `
-          <h3>${data.title}</h3>
-          <p style="color:gray;margin-bottom:8px;">Click <strong>Copy</strong> to copy commands to clipboard. Paste in terminal on your RHEL 9 system (run as root or with sudo).</p>
-          <button class="copy-btn" data-target="cmdBlock">Copy</button>
-          <pre id="cmdBlock" class="cmd">${escapeHtml(data.cmds)}</pre>
-        `;
-        openModal(html);
-      });
-    });
+vmstat 1
+# Shows performance stats.
 
-    /* Instagram / Contact modal */
-    document.getElementById("instaBtn").addEventListener("click", ()=>{
-      const html = `
-        <h3>Contact / Message Aashi</h3>
-        <p style="color:gray">You can message Aashi using email (preferred) or open Instagram manually. Email will open your mail app with a prefilled subject.</p>
+iostat -x 1
+# Shows disk I/O.
 
-        <div style="margin-top:12px;">
-          <label>Email Aashi (direct)</label>
-          <button class="send-mail" id="emailNow">✉️ Send Email</button>
-          <small style="display:block;margin-top:8px;color:gray">Email: <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a></small>
-        </div>
+journalctl -xe
+# Shows system logs.
 
-        <hr style="margin:12px 0;opacity:0.08">
+systemctl status nginx
+# Status of a service.
 
-        <div>
-          <label>Quick message form (will open your mail client)</label>
-          <input type="text" id="contactName" placeholder="Your name" />
-          <input type="text" id="contactSubject" placeholder="Subject (e.g. Hi Aashi — query)" />
-          <textarea id="contactBody" rows="4" placeholder="Type your message here..."></textarea>
-          <button class="send-mail" id="contactSend">Open Mail App</button>
-        </div>
+ps aux --sort=-%mem
+# Shows top memory processes.
 
-        <hr style="margin:12px 0;opacity:0.08">
+uptime
+# Shows load average.`
+};
 
-        <div>
-          <label>Open Instagram (manual)</label>
-          <p style="color:gray;font-size:13px">If you want to open Instagram to DM from the Instagram app/web, use the button below — it will open Instagram (if user is logged in).</p>
-          <button class="send-mail" id="openInsta">Open Instagram</button>
-        </div>
-      `;
-      openModal(html);
+/* Modal Handling */
+document.querySelectorAll(".skill").forEach(x=>{
+ x.onclick=()=>{
+   let key=x.dataset.skill;
+   document.getElementById("modalBox").innerHTML=
+   `<h2>${x.innerText} Commands</h2><pre>${cmds[key]}</pre>
+    <button class='btn' onclick='closeModal()'>Close</button>`;
+   document.getElementById("modalBack").style.display="flex";
+ };
+});
+function closeModal(){ document.getElementById("modalBack").style.display="none"; }
 
-      // after modal opens, attach listeners:
-      setTimeout(()=>{
-        document.getElementById("emailNow").addEventListener("click", ()=>{
-          window.location.href = "mailto:guleriaaashi@gmail.com?subject=Hello%20Aashi&body=Hi%20Aashi,%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ARegards,";
-        });
-        document.getElementById("contactSend").addEventListener("click", ()=>{
-          const name = encodeURIComponent(document.getElementById("contactName").value || "Friend");
-          const subject = encodeURIComponent(document.getElementById("contactSubject").value || "Message from portfolio site");
-          const body = encodeURIComponent((document.getElementById("contactBody").value || "") + "\n\n— " + name);
-          window.location.href = mailto:guleriaaashi@gmail.com?subject=${subject}&body=${body};
-        });
-        document.getElementById("openInsta").addEventListener("click", ()=>{
-          // opens Instagram profile — user must DM from instagram after login
-          window.open("https://instagram.com/aashi__guleria", "_blank", "noopener");
-        });
-      }, 50);
-    });
+/* Instagram DM */
+document.getElementById("instaBtn").onclick=()=>{
+ document.getElementById("modalBox").innerHTML=
+ `<h2>Message Aashi</h2>
+  <p>Click below to send direct DM:</p>
+  <a href='https://ig.me/m/aashi__guleria' target='_blank'>
+    <button class='btn'>DM on Instagram</button>
+  </a><br><br>
+  <button class='btn' onclick='closeModal()'>Close</button>`;
+ document.getElementById("modalBack").style.display="flex";
+};
+</script>
 
-    /* small util: escape HTML for code block */
-    function escapeHtml(s){
-      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
-
-  </script>
 </body>
 </html>
