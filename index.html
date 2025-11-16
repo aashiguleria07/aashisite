@@ -1,178 +1,173 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashi Guleria | Personal Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Aashi Guleria - Portfolio</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-    }
+    <!-- INTERNAL CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+        }
 
-    body {
-      background: #f4f6f8;
-      color: #333;
-    }
+        header {
+            text-align: center;
+            padding: 30px;
+            background: #1c1c1c;
+        }
 
-    header {
-      background: #0078ff;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid #00eaff;
+        }
 
-    header h1 {
-      font-size: 2em;
-    }
+        .profile h1 {
+            margin-top: 10px;
+            font-size: 32px;
+            color: #00eaff;
+        }
 
-    nav {
-      margin-top: 10px;
-    }
+        .social a {
+            margin: 10px;
+            text-decoration: none;
+            color: #00eaff;
+            font-weight: bold;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 500;
-    }
+        .about, .skills {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+        h2 {
+            border-left: 4px solid #00eaff;
+            padding-left: 10px;
+        }
 
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
+        .buttons button {
+            background: #00eaff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+            color: black;
+        }
 
-    #home img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 4px solid #0078ff;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
+        .info {
+            display: none;
+            margin-top: 20px;
+            background: #1c1c1c;
+            padding: 15px;
+            border-radius: 10px;
+        }
 
-    #home h2 {
-      color: #0078ff;
-      font-size: 1.8em;
-      margin-bottom: 10px;
-    }
-
-    #home p {
-      font-size: 1.1em;
-      color: #444;
-    }
-
-    #about, #skills, #contact {
-      background: white;
-      margin: 30px auto;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      max-width: 800px;
-      padding: 40px 20px;
-    }
-
-    h3 {
-      color: #0078ff;
-      font-size: 1.6em;
-      margin-bottom: 20px;
-    }
-
-    .skills-list {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .skill {
-      background: #0078ff;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: 500;
-    }
-
-    footer {
-      background: #0078ff;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
-      font-size: 0.9em;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 25px;
-      background: #0078ff;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #005ecc;
-    }
-  </style>
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            background: #111;
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>Aashi Guleria</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section id="home">
-    <img src="your-photo.jpg" alt="Aashi Guleria">
-    <h2>👋 Hi, I'm Aashi Guleria</h2>
-    <p>This site is hosted on <strong>RHEL 9</strong> using Apache Web Server.</p>
-    <p>Welcome to my personal website — stay tuned for more updates!</p>
-    <a href="https://github.com/aashiguleria07" class="btn">Visit My GitHub</a>
-  </section>
+    <header>
+        <div class="profile">
+            <img src="your-photo.jpg" alt="your-photo.jpg"> 
+            <h1>Aashi Guleria</h1>
+            <p>Linux Administrator | RHEL 9 Specialist | DevOps Learner</p>
+        </div>
 
-  <section id="about">
-    <h3>About Me</h3>
-    <p> Hi, I'm Aashi Guleria — a passionate web developer and Linux enthusiast from India.  
-    I love working with RHEL 9, Apache Server, and GitHub.  
-    My goal is to build creative, responsive, and secure websites that help people and businesses grow online.  
-    <br><br> In my free time, I enjoy learning about new technologies, exploring open-source tools, and improving my technical skills every day.
-  </p>
-</section>
+        <div class="social">
+            <a href="https://instagram.com/aashi__guleria" target="_blank">Instagram</a>
+            <a href="mailto:guleriaaashi@gmail.com">Email</a>
+            <a href="tel:9805427313">Phone</a>
+        </div>
+    </header>
 
-  <section id="skills">
-    <h3>My Skills</h3>
-    <div class="skills-list">
-      <div class="skill">Linux (RHEL 9)</div>
-      <div class="skill">Git & GitHub</div>
-      <div class="skill">Apache Server</div>
-    </div>
-  </section>
+    <section class="about">
+        <h2>About Me</h2>
+        <p>
+            My name is Aashish Guleria. I am a passionate Linux Administrator specializing in 
+            Red Hat Enterprise Linux 9. I enjoy working on servers, troubleshooting issues, 
+            automation, security, and DevOps technologies. My aim is to become a top-level Linux 
+            & Cloud Engineer.
+        </p>
+    </section>
 
-  <section id="contact">
-    <h3>Contact Me</h3>
-    <p>You can reach me via email at: <strong>guleriaaashi@gmail.com</strong></p>
-    <p>📞 Phone: <a href="tel:+919805427313">+91 9805427313</a></p>
-  <p>🌐 GitHub: <a href="https://github.com/aashiguleria07" target="_blank">github.com/aashiguleria07</a></p>
-</section>
+    <section class="skills">
+        <h2>My Skills (Click Buttons Below)</h2>
 
-  <footer>
-    © 2025 Aashi Guleria | Hosted on RHEL 9
-  </footer>
+        <div class="buttons">
+            <button onclick="show('linux')">Linux RHEL 9</button>
+            <button onclick="show('apache')">Apache Server</button>
+            <button onclick="show('git')">Git & GitHub</button>
+        </div>
+
+        <!-- Linux Section -->
+        <div id="linux" class="info">
+            <h3>Linux RHEL 9 Skills</h3>
+            <ul>
+                <li>User & Group Management</li>
+                <li>System Monitoring (top, htop, journalctl, systemctl)</li>
+                <li>Firewall (firewalld) configuration</li>
+                <li>File Permissions, Ownership, ACL</li>
+                <li>Networking & Troubleshooting (ip, nmcli, ss)</li>
+                <li>Package Management (yum, dnf, rpm)</li>
+                <li>Local Repository (Offline Repo Setup)</li>
+                <li>Cron Jobs & Automation</li>
+            </ul>
+        </div>
+
+        <!-- Apache Section -->
+        <div id="apache" class="info">
+            <h3>Apache Server Configuration</h3>
+            <ul>
+                <li>Install Apache (httpd)</li>
+                <li>Start/Stop/Enable Service</li>
+                <li>Virtual Hosts Setup</li>
+                <li>Custom DocumentRoot</li>
+                <li>Firewall Rules (HTTP/HTTPS)</li>
+                <li>Web Hosting Basics</li>
+            </ul>
+        </div>
+
+        <!-- Git Section -->
+        <div id="git" class="info">
+            <h3>Git & GitHub Skills</h3>
+            <ul>
+                <li>Git Installation & Setup</li>
+                <li>git add, commit, status, push, pull</li>
+                <li>Branching & Merging</li>
+                <li>GitHub Repo Creation</li>
+                <li>SSH Key Setup for GitHub</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Aashish Guleria | All Rights Reserved</p>
+    </footer>
+
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        function show(id) {
+            document.querySelectorAll('.info').forEach(div => {
+                div.style.display = "none";
+            });
+            document.getElementById(id).style.display = "block";
+        }
+    </script>
+
 </body>
-</htmlo>
+</html>
+
