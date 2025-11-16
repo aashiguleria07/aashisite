@@ -2,172 +2,238 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Aashi Guleria - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aashi Guleria | Advanced Portfolio</title>
 
-    <!-- INTERNAL CSS -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --main-bg: #f4f9ff;
+            --card-bg: #ffffff;
+            --text-color: #222;
+            --primary: #007bff;
+            --secondary: #ff9800;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        body.dark {
+            --main-bg: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #f0f6fc;
+            --primary: #1f6feb;
+            --secondary: #ffa726;
+            --shadow: rgba(255,255,255,0.05);
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0d0d0d;
-            color: white;
+            padding: 0;
+            background: var(--main-bg);
+            font-family: "Poppins", sans-serif;
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
         }
 
-        header {
-            text-align: center;
-            padding: 30px;
-            background: #1c1c1c;
-        }
-
-        .profile img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid #00eaff;
-        }
-
-        .profile h1 {
-            margin-top: 10px;
-            font-size: 32px;
-            color: #00eaff;
-        }
-
-        .social a {
-            margin: 10px;
-            text-decoration: none;
-            color: #00eaff;
-            font-weight: bold;
-        }
-
-        .about, .skills {
-            width: 80%;
+        .container {
+            max-width: 1100px;
             margin: auto;
             padding: 20px;
         }
 
-        h2 {
-            border-left: 4px solid #00eaff;
-            padding-left: 10px;
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
         }
 
-        .buttons button {
-            background: #00eaff;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px;
+        .darkToggle {
             cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 10px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            margin-top: -10px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: var(--primary);
+            border: none;
+            border-radius: 30px;
+            margin: 15px;
+            color: white;
             font-size: 16px;
-            border-radius: 6px;
-            color: black;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .info {
-            display: none;
-            margin-top: 20px;
-            background: #1c1c1c;
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section */
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px var(--shadow);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Skills */
+        .skill-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .skill {
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+        }
+
+        /* Projects */
+        .project {
             padding: 15px;
-            border-radius: 10px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--shadow);
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 15px;
+            padding: 20px;
             margin-top: 30px;
-            background: #111;
+            color: var(--text-color);
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <div class="profile">
-            <img src="your-photo.jpg" alt="your-photo.jpg"> 
-            <h1>Aashi Guleria</h1>
-            <p>Linux Administrator | RHEL 9 Specialist | DevOps Learner</p>
+    <div class="container">
+
+        <header>
+            <h2>Aashi Guleria</h2>
+            <button class="darkToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </header>
+
+        <!-- HERO -->
+        <div class="hero">
+            <img src="aashi.jpg" class="profile-img">
+            <h1>Hello, I'm <span style="color: var(--primary);">Aashi</span> 👋</h1>
+            <p class="tagline">Linux Admin | RHEL 9 | Web Developer | Tech Explorer</p>
+
+            <a href="https://github.com/aashiguleria07" target="_blank">
+                <button class="btn">Visit GitHub</button>
+            </a>
         </div>
 
-        <div class="social">
-            <a href="https://instagram.com/aashi__guleria" target="_blank">Instagram</a>
-            <a href="mailto:guleriaaashi@gmail.com">Email</a>
-            <a href="tel:9805427313">Phone</a>
-        </div>
-    </header>
-
-    <section class="about">
-        <h2>About Me</h2>
-        <p>
-            My name is Aashish Guleria. I am a passionate Linux Administrator specializing in 
-            Red Hat Enterprise Linux 9. I enjoy working on servers, troubleshooting issues, 
-            automation, security, and DevOps technologies. My aim is to become a top-level Linux 
-            & Cloud Engineer.
-        </p>
-    </section>
-
-    <section class="skills">
-        <h2>My Skills (Click Buttons Below)</h2>
-
-        <div class="buttons">
-            <button onclick="show('linux')">Linux RHEL 9</button>
-            <button onclick="show('apache')">Apache Server</button>
-            <button onclick="show('git')">Git & GitHub</button>
+        <!-- ABOUT -->
+        <div class="section">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate Linux Administrator and Web Developer.  
+                Skilled in RHEL 9, server management, networking, automation and web technologies.
+            </p>
         </div>
 
-        <!-- Linux Section -->
-        <div id="linux" class="info">
-            <h3>Linux RHEL 9 Skills</h3>
-            <ul>
-                <li>User & Group Management</li>
-                <li>System Monitoring (top, htop, journalctl, systemctl)</li>
-                <li>Firewall (firewalld) configuration</li>
-                <li>File Permissions, Ownership, ACL</li>
-                <li>Networking & Troubleshooting (ip, nmcli, ss)</li>
-                <li>Package Management (yum, dnf, rpm)</li>
-                <li>Local Repository (Offline Repo Setup)</li>
-                <li>Cron Jobs & Automation</li>
-            </ul>
+        <!-- SKILLS -->
+        <div class="section">
+            <h2>My Skills</h2>
+            <div class="skill-box">
+                <div class="skill">User Management</div>
+                <div class="skill">Group Management</div>
+                <div class="skill">File Permissions</div>
+                <div class="skill">Cron Jobs</div>
+                <div class="skill">Firewall (firewalld)</div>
+                <div class="skill">Networking</div>
+                <div class="skill">YUM / DNF / RPM</div>
+                <div class="skill">Local Repositories</div>
+                <div class="skill">Monitoring</div>
+            </div>
         </div>
 
-        <!-- Apache Section -->
-        <div id="apache" class="info">
-            <h3>Apache Server Configuration</h3>
-            <ul>
-                <li>Install Apache (httpd)</li>
-                <li>Start/Stop/Enable Service</li>
-                <li>Virtual Hosts Setup</li>
-                <li>Custom DocumentRoot</li>
-                <li>Firewall Rules (HTTP/HTTPS)</li>
-                <li>Web Hosting Basics</li>
-            </ul>
+        <!-- PROJECTS -->
+        <div class="section">
+            <h2>My Projects</h2>
+
+            <div class="project">
+                <h3>✔ Personal Portfolio Website</h3>
+                <p>Advanced portfolio hosted on GitHub Pages.</p>
+            </div>
+
+            <div class="project">
+                <h3>✔ Linux Automation Scripts</h3>
+                <p>Shell scripts for cronjobs, backup and monitoring.</p>
+            </div>
+
         </div>
 
-        <!-- Git Section -->
-        <div id="git" class="info">
-            <h3>Git & GitHub Skills</h3>
-            <ul>
-                <li>Git Installation & Setup</li>
-                <li>git add, commit, status, push, pull</li>
-                <li>Branching & Merging</li>
-                <li>GitHub Repo Creation</li>
-                <li>SSH Key Setup for GitHub</li>
-            </ul>
+        <!-- CONTACT -->
+        <div class="section">
+            <h2>Contact Me</h2>
+            <p>📧 Email: guleriaaashi@gmail.com</p>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2025 Aashish Guleria | All Rights Reserved</p>
-    </footer>
+        <footer>
+            © 2025 Aashi Guleria — All Rights Reserved
+        </footer>
 
-    <!-- INTERNAL JAVASCRIPT -->
-    <script>
-        function show(id) {
-            document.querySelectorAll('.info').forEach(div => {
-                div.style.display = "none";
-            });
-            document.getElementById(id).style.display = "block";
-        }
-    </script>
+    </div>
+
+<script>
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
-
