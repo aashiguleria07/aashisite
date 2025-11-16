@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashi Guleria | Portfolio</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
+  <title>Aashi Guleria | Portfolio</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <style>
     :root {
-      --main-bg:#f4f9ff; 
-      --card-bg:#fff; 
+      --main-bg:#f4f9ff;
+      --card-bg:#fff;
       --text:#222;
-      --primary:#007bff; 
-      --secondary:#ff9800; 
+      --primary:#007bff;
+      --secondary:#ff9800;
       --shadow:rgba(0,0,0,0.1);
     }
     body.dark {
-      --main-bg:#0d1117; 
-      --card-bg:#161b22; 
+      --main-bg:#0d1117;
+      --card-bg:#161b22;
       --text:#f0f6fc;
-      --primary:#1f6feb; 
-      --secondary:#ffa726; 
+      --primary:#1f6feb;
+      --secondary:#ffa726;
       --shadow:rgba(255,255,255,0.06);
     }
-
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{background:var(--main-bg);color:var(--text);}
+    body{background:var(--main-bg);color:var(--text);}    
     .container{max-width:1100px;margin:auto;padding:20px;}
 
     header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
@@ -35,181 +29,222 @@
 
     .hero{text-align:center;padding:50px 10px;}
     .profile-img{
-      width:180px;height:180px;border-radius:50%;
-      object-fit:cover;border:5px solid var(--primary);
-      box-shadow:0 0 20px var(--primary);
+      width:180px;height:180px;border-radius:50%;object-fit:cover;
+      border:5px solid var(--primary);box-shadow:0 0 20px var(--primary);
     }
-    h1{font-size:38px;} 
+    h1{font-size:38px;}   
     #typing{font-size:22px;height:28px;color:var(--primary);font-weight:700;margin-top:5px;}
 
-    /* BUTTON STYLE */
     .btn{
       padding:12px 30px;border:none;border-radius:30px;
       background:var(--primary);color:#fff;margin:15px;cursor:pointer;
       transition:0.3s;
     }
-    .btn:hover{
-      background:var(--secondary);
-      box-shadow:0 0 15px var(--secondary);
-      transform:translateY(-3px);
-    }
+    .btn:hover{background:var(--secondary);box-shadow:0 0 15px var(--secondary);transform:translateY(-3px);}  
 
-    /* SECTION */
     .section{
       background:var(--card-bg);padding:30px;margin-top:35px;
       border-radius:20px;box-shadow:0 0 15px var(--shadow);
     }
     .section h2{color:var(--primary);margin-bottom:15px;}
 
-    /* SKILLS */
     .skill-box{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-      gap:15px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;
     }
     .skill{
-      padding:12px;background:var(--primary);color:#fff;
-      text-align:center;border-radius:10px;cursor:pointer;
-      transition:0.3s;
-      border:2px solid transparent;
+      padding:12px;background:var(--primary);color:#fff;text-align:center;
+      border-radius:10px;cursor:pointer;transition:0.3s;border:2px solid transparent;
     }
-    .skill:hover{
-      background:var(--secondary);
-      border-color:#fff;
-      box-shadow:0 0 15px var(--secondary);
-      transform:translateY(-3px);
-    }
+    .skill:hover{background:var(--secondary);border-color:#fff;box-shadow:0 0 15px var(--secondary);transform:translateY(-3px);} 
 
-    footer{text-align:center;margin-top:30px;padding:20px;}
+    footer{text-align:center;margin-top:30px;padding:20px;}    
 
-    /* Modal */
     #modalBack{
       position:fixed;inset:0;background:rgba(0,0,0,0.5);
       display:none;justify-content:center;align-items:center;z-index:2000;
     }
     #modalBox{
-      background:var(--card-bg);padding:20px;width:90%;
-      max-width:750px;border-radius:15px;
+      background:var(--card-bg);padding:20px;width:90%;max-width:750px;border-radius:15px;
     }
     pre{
-      background:#0b1220;color:#dbe9ff;
-      padding:15px;border-radius:10px;white-space:pre-wrap;
+      background:#0b1220;color:#dbe9ff;padding:15px;border-radius:10px;white-space:pre-wrap;
     }
-  </style>
-</head>
-
+  </style></head>
 <body>
 <div class="container">
+  <header>
+    <h2>Aashi Guleria</h2>
+    <button class="darkToggle" id="modeBtn">🌙 Dark Mode</button>
+  </header>  <div class="hero">
+    <img src="aashi.jpg" class="profile-img">
+    <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
+    <div id="typing"></div><a href="https://github.com/aashiguleria07" target="_blank"><button class="btn">Visit My GitHub</button></a>
+<button class="btn" style="background:#E1306C;" id="instaBtn">Instagram</button>
 
-<header>
-  <h2>Aashi Guleria</h2>
-  <button class="darkToggle" id="modeBtn">🌙 Dark Mode</button>
-</header>
-
-<!-- HERO -->
-<div class="hero">
-  <img src="aashi.jpg" class="profile-img">
-  <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
-  <div id="typing"></div>
-
-  <a href="https://github.com/aashiguleria07" target="_blank">
-    <button class="btn">Visit My GitHub</button>
-  </a>
-
-  <button class="btn" style="background:#E1306C;" id="instaBtn">Instagram</button>
-</div>
-
-<!-- ABOUT -->
-<div class="section">
-  <h2>About Me</h2>
-  <p>
-    I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b>.
-    Skilled in <b>RHEL 9, user/group management, permissions, firewall, networking, cronjobs,
-    automation, shell scripting</b> and server management.
-    <br><br>
-    📞 <b>Contact:</b> 9805427313  
-    ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a>
-  </p>
-</div>
-
-<!-- SKILLS -->
-<div class="section">
-  <h2>My Skills</h2>
-  <div class="skill-box">
-    <div class="skill" data-skill="user">User Management</div>
-    <div class="skill" data-skill="group">Group Management</div>
-    <div class="skill" data-skill="perm">File Permissions</div>
-    <div class="skill" data-skill="cron">Cron Jobs</div>
-    <div class="skill" data-skill="firewall">Firewall</div>
-    <div class="skill" data-skill="network">Networking</div>
-    <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
-    <div class="skill" data-skill="repo">Local Repository</div>
-    <div class="skill" data-skill="monitor">Monitoring</div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<div class="section">
-  <h2>My Projects</h2>
-  <div class="project">
+  </div>  <div class="section">
+    <h2>About Me</h2>
+    <p>I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> skilled in RHEL 9, automation, permissions, networking,<br>cronjobs, firewall and server management.<br><br>📞 <b>Contact:</b> 9805427313 &nbsp; ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a></p>
+  </div>  <div class="section">
+    <h2>My Skills</h2>
+    <div class="skill-box">
+      <div class="skill" data-skill="user">User Management</div>
+      <div class="skill" data-skill="group">Group Management</div>
+      <div class="skill" data-skill="perm">File Permissions</div>
+      <div class="skill" data-skill="cron">Cron Jobs</div>
+      <div class="skill" data-skill="firewall">Firewall</div>
+      <div class="skill" data-skill="network">Networking</div>
+      <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
+      <div class="skill" data-skill="repo">Local Repository</div>
+      <div class="skill" data-skill="monitor">Monitoring</div>
+    </div>
+  </div>  <div class="section">
+    <h2>My Projects</h2>
     <h3>✔ Linux Automation Scripts</h3>
     <p>Shell scripts for cronjobs, backups and monitoring.</p>
-  </div>
-</div>
-
-<footer>© 2025 Aashi Guleria — All Rights Reserved</footer>
-
-</div>
-
-<!-- MODAL -->
-<div id="modalBack"><div id="modalBox"></div></div>
-
-<script>
+  </div>  <footer>
+    © 2025 Aashi Guleria — Made by Aashi | Updated Today
+  </footer>
+</div><div id="modalBack"><div id="modalBox"></div></div><script>
 /* Typing */
-const words=["Linux Admin","RHEL 9 Expert","Server Manager"];
-let i=0,j=0,del=false;
-function typing(){
- let w=words[i];
- document.getElementById("typing").innerText=w.substring(0,j);
- if(!del){ j++; if(j==w.length){del=true; setTimeout(typing,800); return;} }
- else{ j--; if(j==0){del=false; i=(i+1)%words.length;} }
- setTimeout(typing,120);
-}
-typing();
+const words=["Linux Admin","RHEL 9 Expert","Server Manager"]; let i=0,j=0,del=false;
+function typing(){ let w=words[i]; document.getElementById("typing").innerText=w.substring(0,j);
+  if(!del){ j++; if(j==w.length){del=true; setTimeout(typing,800); return;} }
+  else{ j--; if(j==0){del=false; i=(i+1)%words.length;} }
+  setTimeout(typing,120);} typing();
 
 /* Dark Mode */
-modeBtn.onclick=()=>{
- document.body.classList.toggle("dark");
- modeBtn.innerText=document.body.classList.contains("dark")?"☀️ Light Mode":"🌙 Dark Mode";
-};
+modeBtn.onclick=()=>{ document.body.classList.toggle("dark"); modeBtn.innerText=document.body.classList.contains("dark")?"☀️ Light Mode":"🌙 Dark Mode"; };
 
-/* Command Data */
-const cmds={};
+/* Commands Data */
+const cmds={
+  user:`1) useradd user1
+2) passwd user1
+3) userdel user1
+4) chage -l user1
+5) chage -E 2025-01-01 user1
+6) id user1
+7) lastlog
+8) su - user1
+9) finger user1
+10) whoami
+
+User accounts creation, password setting and expiry control. Useful for managing system users easily.`,
+
+  group:`1) groupadd devs
+2) groupdel devs
+3) usermod -aG devs user1
+4) gpasswd -a user1 devs
+5) gpasswd -d user1 devs
+6) groups user1
+7) getent group devs
+8) newgrp devs
+9) chgrp devs file1
+10) groupmod -n newdev devs
+
+Group creation and modification for managing users together. Helps in permission and team access control.`,
+
+  perm:`1) chmod 755 file
+2) chmod -R 700 folder
+3) chown user1 file
+4) chown user1:dev file
+5) chgrp dev file
+6) umask 022
+7) ls -l
+8) setfacl -m u:user1:rwx file
+9) getfacl file
+10) chmod +x script.sh
+
+Controls file access levels. Ensures proper security for users and groups.`,
+
+  cron:`1) crontab -e
+2) crontab -l
+3) crontab -r
+4) systemctl status crond
+5) systemctl restart crond
+6) echo "* * * * * cmd" >> /etc/crontab
+7) at 5pm
+8) atq
+9) atrm 1
+10) systemctl enable crond
+
+Automates tasks at fixed times. Good for backups, cleanup and scheduling actions.`,
+
+  firewall:`1) firewall-cmd --state
+2) firewall-cmd --zone=public --add-port=80/tcp
+3) firewall-cmd --permanent --add-port=22/tcp
+4) firewall-cmd --reload
+5) firewall-cmd --list-all
+6) firewall-cmd --add-service=http
+7) firewall-cmd --remove-service=ssh
+8) systemctl status firewalld
+9) systemctl restart firewalld
+10) firewall-cmd --get-zones
+
+Controls allowed ports and services. Protects the server from unwanted traffic.`,
+
+  network:`1) ip a
+2) ip r
+3) nmcli connection show
+4) nmcli device status
+5) ping -c3 google.com
+6) ss -tulnp
+7) nslookup google.com
+8) dig yahoo.com
+9) traceroute google.com
+10) hostnamectl
+
+Used to configure IP, test connectivity and check routing. Important for debugging network issues.`,
+
+  pkg:`1) yum install httpd
+2) dnf install nginx
+3) rpm -qa
+4) rpm -ql httpd
+5) yum remove httpd
+6) dnf update
+7) rpm -ivh pkg.rpm
+8) rpm -e pkg
+9) yum search ftp
+10) dnf info nano
+
+Manages software installation and updates. RPM handles low-level package files.`,
+
+  repo:`1) mkdir /repo
+2) cp *.rpm /repo
+3) createrepo /repo
+4) yum clean all
+5) vim /etc/yum.repos.d/local.repo
+6) yum repolist
+7) yum install pkg --disablerepo=* --enablerepo=local
+8) dnf config-manager --add-repo=/repo
+9) ls /etc/yum.repos.d
+10) dnf update
+
+Used when no internet repo available. Local repo makes offline installation possible.`,
+
+  monitor:`1) top
+2) htop
+3) free -h
+4) df -h
+5) du -sh *
+6) ps aux
+7) systemctl status
+8) journalctl -xe
+9) uptime
+10) vmstat 1
+
+Monitors CPU, RAM, disk and processes. Helps detect system load and issues.`
+};
 
 /* Modal */
 document.querySelectorAll(".skill").forEach(x=>{
- x.onclick=()=>{
-   document.getElementById("modalBox").innerHTML=
-   `<h2>${x.innerText}</h2>
-    <p>Commands content will appear here.</p>
-    <button class='btn' onclick='closeModal()'>Close</button>`;
-   document.getElementById("modalBack").style.display="flex";
- };
-});
-function closeModal(){ document.getElementById("modalBack").style.display="none"; }
+  x.onclick=()=>{
+    let k=x.getAttribute("data-skill");
+    document.getElementById("modalBox").innerHTML=
+    <h2>${x.innerText}</h2><pre>${cmds[k]}</pre><button class='btn' onclick='closeModal()'>Close</button>;document.getElementById("modalBack").style.display="flex";
 
-/* Instagram */
-document.getElementById("instaBtn").onclick=()=>{
- document.getElementById("modalBox").innerHTML=
- `<h2>Message Aashi</h2>
-  <p>Click below to send DM:</p>
-  <a href='https://ig.me/m/aashi__guleria' target='_blank'>
-    <button class='btn'>DM on Instagram</button>
-  </a><br><br>
-  <button class='btn' onclick='closeModal()'>Close</button>`;
- document.getElementById("modalBack").style.display="flex";
-};
-</script>
+}; }); function closeModal(){ document.getElementById("modalBack").style.display="none"; }
+
+/* Instagram */ document.getElementById("instaBtn").onclick=()=>{ document.getElementById("modalBox").innerHTML= <h2>Message Aashi</h2><p>Click below to send DM:</p> <a href='https://ig.me/m/aashi__guleria' target='_blank'><button class='btn'>DM on Instagram</button></a><br><br> <button class='btn' onclick='closeModal()'>Close</button>; document.getElementById("modalBack").style.display="flex"; }; </script>
 
 </body>
 </html>
