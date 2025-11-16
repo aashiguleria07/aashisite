@@ -1,298 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aashi Guleria | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aashi Guleria | Portfolio</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root {
-            --main-bg: #f4f9ff;
-            --card-bg: #ffffff;
-            --text-color: #222;
-            --primary: #007bff;
-            --secondary: #ff9800;
-            --shadow: rgba(0,0,0,0.1);
-        }
+  <style>
+    :root{
+      --main-bg:#f4f9ff; --card-bg:#ffffff; --text:#222; --primary:#007bff; --accent:#ff9800; --shadow: rgba(0,0,0,0.08);
+    }
+    body.dark{ --main-bg:#0d1117; --card-bg:#161b22; --text:#f0f6fc; --primary:#1f6feb; --accent:#ffa726; --shadow: rgba(255,255,255,0.03); }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+    body{background:var(--main-bg);color:var(--text);overflow-x:hidden;}
+    .container{max-width:1100px;margin:20px auto;padding:20px;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;}
+    .darkToggle{cursor:pointer;padding:10px 18px;border-radius:999px;background:var(--primary);color:#fff;border:none;}
+    .hero{text-align:center;padding:32px 10px;}
+    .profile-img{width:160px;height:160px;border-radius:50%;object-fit:cover;border:4px solid var(--primary);box-shadow:0 0 18px var(--primary);}
+    h1{font-size:34px;margin-top:12px;}
+    #typing{height:28px;font-size:18px;color:var(--primary);font-weight:700;margin-top:6px;}
+    .btn{padding:10px 20px;border-radius:30px;border:none;background:var(--primary);color:#fff;margin:8px;cursor:pointer;}
+    .btn.secondary{background:#E1306C;} /* instagram color */
+    .section{background:var(--card-bg);padding:20px;margin-top:20px;border-radius:14px;box-shadow:0 6px 22px var(--shadow);}
+    .section h2{color:var(--primary);margin-bottom:12px;}
+    .skill-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+    .skill{padding:12px;background:var(--primary);color:#fff;border-radius:8px;text-align:center;font-weight:600;cursor:pointer;}
+    .skill:hover{transform:scale(1.03);transition:0.15s; background:var(--accent);}
+    .project{padding:12px;background:var(--card-bg);border-radius:12px;box-shadow:0 6px 18px var(--shadow);margin-bottom:10px;border-left:5px solid var(--primary);}
+    footer{text-align:center;margin-top:18px;padding:10px;color:gray;}
 
-        body.dark {
-            --main-bg: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #f0f6fc;
-            --primary: #1f6feb;
-            --secondary: #ffa726;
-            --shadow: rgba(255,255,255,0.05);
-        }
+    /* fade */
+    .fade{opacity:0;transform:translateY(20px);transition:800ms ease;}
+    .fade.visible{opacity:1;transform:none;}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            font-family: 'Poppins', sans-serif;
-        }
+    /* modal */
+    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:1200;padding:18px;}
+    .modal{background:var(--card-bg);max-width:760px;width:100%;border-radius:12px;padding:18px;box-shadow:0 10px 30px var(--shadow);position:relative;}
+    .modal h3{margin-bottom:10px;color:var(--primary);}
+    .close-btn{position:absolute;right:12px;top:10px;background:transparent;border:none;font-size:18px;cursor:pointer;color:var(--text);}
+    pre.cmd{background:#0b1220;color:#dbe9ff;padding:12px;border-radius:8px;overflow:auto;white-space:pre-wrap;}
+    .copy-btn{float:right;margin-left:8px;padding:6px 10px;border-radius:8px;border:none;cursor:pointer;background:var(--primary);color:#fff;}
+    .contact-grid{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+    .contact-card{flex:1;min-width:220px;padding:12px;border-radius:10px;background:var(--card-bg);box-shadow:0 6px 18px var(--shadow);border:1px solid rgba(0,0,0,0.03);}
+    label{display:block;font-size:13px;margin-bottom:6px;color:gray;}
+    input[type=text], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);margin-bottom:8px;}
+    .send-mail{background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;}
 
-        body {
-            background: var(--main-bg);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Fade Animation */
-        .fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 1s ease-in-out;
-        }
-        .fade.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .darkToggle {
-            cursor: pointer;
-            padding: 10px 20px;
-            border-radius: 50px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 10px;
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        h1 {
-            font-size: 40px;
-        }
-
-        #typing {
-            height: 30px;
-            font-size: 22px;
-            color: var(--primary);
-            font-weight: 700;
-            margin-top: 5px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            background: var(--primary);
-            border: none;
-            border-radius: 30px;
-            margin: 15px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Section */
-        .section {
-            background: var(--card-bg);
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--shadow);
-        }
-
-        .section h2 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        /* Skills */
-        .skill-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        .skill {
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .skill:hover {
-            transform: scale(1.05);
-            background: var(--secondary);
-        }
-
-        /* Projects */
-        .project {
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 0 15px var(--shadow);
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
-    </style>
+    @media (max-width:600px){ .profile-img{width:120px;height:120px;} h1{font-size:26px;} .contact-grid{flex-direction:column;} }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <header>
+      <h2>Aashi Guleria</h2>
+      <div>
+        <button class="darkToggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </header>
 
-    <div class="container">
+    <!-- HERO -->
+    <div class="hero fade">
+      <img src="aashi.jpg" alt="Aashi" class="profile-img" />
+      <h1>Hello, I'm <span style="color:var(--primary)">Aashi</span> 👋</h1>
+      <div id="typing"></div>
 
-        <header>
-            <h2>Aashi Guleria</h2>
-            <button class="darkToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
-        </header>
+      <a href="https://github.com/aashiguleria07" target="_blank" rel="noopener noreferrer"><button class="btn">Visit My GitHub</button></a>
 
-        <!-- HERO -->
-        <div class="hero fade">
-            <img src="aashi.jpg" class="profile-img">
-
-            <h1>Hello, I'm <span style="color: var(--primary);">Aashi</span> 👋</h1>
-
-            <div id="typing"></div>
-
-            <a href="https://github.com/aashiguleria07" target="_blank">
-                <button class="btn">Visit My GitHub</button>
-            </a>
-
-            <a href="https://instagram.com/aashi__guleria" target="_blank">
-                <button class="btn" style="background:#E1306C;">Instagram</button>
-            </a>
-        </div>
-
-        <!-- ABOUT -->
-        <div class="section fade">
-            <h2>About Me</h2>
-            <p>
-                I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> and <b>Web Developer</b>.
-                Skilled in <b>RHEL 9, server management, user/group management, firewalls,
-                networking, permissions, cronjobs, automation, shell scripting</b> and modern web technologies.
-                <br><br>
-                I love exploring Linux deeply, creating automation scripts, optimizing servers,
-                and developing clean and powerful web applications.  
-                <br><br>
-                📞 <b>Contact:</b> 9805427313  
-                📷 <b>Instagram:</b> aashi__guleria
-            </p>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="section fade">
-            <h2>My Skills</h2>
-            <div class="skill-box">
-                <div class="skill">User Management</div>
-                <div class="skill">Group Management</div>
-                <div class="skill">File Permissions</div>
-                <div class="skill">Cron Jobs</div>
-                <div class="skill">Firewall (firewalld)</div>
-                <div class="skill">Networking</div>
-                <div class="skill">YUM / DNF / RPM</div>
-                <div class="skill">Local Repositories</div>
-                <div class="skill">Monitoring</div>
-            </div>
-        </div>
-
-        <!-- PROJECTS -->
-        <div class="section fade">
-            <h2>My Projects</h2>
-
-            <div class="project">
-                <h3>✔ Linux Automation Scripts</h3>
-                <p>Shell scripts for cronjobs, backups and monitoring.</p>
-            </div>
-
-            <div class="project">
-                <h3>✔ Web Development Projects</h3>
-                <p>Portfolio UI, templates, advanced web designs.</p>
-            </div>
-        </div>
-
-        <footer>
-            © 2025 Aashi Guleria — All Rights Reserved
-        </footer>
-
+      <!-- Instagram: opens contact modal (NOT direct profile by default) -->
+      <button class="btn secondary" id="instaBtn"><i class="fa-brands fa-instagram"></i> Message Me</button>
     </div>
 
-<!-- Typing Animation -->
-<script>
-    const text = ["Linux Admin", "RHEL 9 Expert", "Web Developer", "Tech Explorer"];
-    let i = 0;
-    let j = 0;
+    <!-- ABOUT -->
+    <div class="section fade">
+      <h2>About Me</h2>
+      <p>
+        I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> and </b>.<br>
+        Skilled in <b>RHEL 9, server management, user/group management, firewalls, networking, permissions, cronjobs, automation, </b> 
+        <br><br>
+        📞 <b>Contact:</b> 9805427313 &nbsp; • &nbsp; ✉️ <b>Email:</b> <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a>
+      </p>
+    </div>
 
-    function typingEffect() {
-        document.getElementById("typing").innerText = text[i].slice(0, j++);
-        if (j > text[i].length) {
-            j = 0;
-            i = (i + 1) % text.length;
-        }
-        setTimeout(typingEffect, 150);
+    <!-- SKILLS -->
+    <div class="section fade">
+      <h2>My Skills</h2>
+      <div class="skill-box">
+        <div class="skill" data-skill="user">User Management</div>
+        <div class="skill" data-skill="group">Group Management</div>
+        <div class="skill" data-skill="perm">File Permissions</div>
+        <div class="skill" data-skill="cron">Cron Jobs</div>
+        <div class="skill" data-skill="firewall">Firewall (firewalld)</div>
+        <div class="skill" data-skill="network">Networking</div>
+        <div class="skill" data-skill="pkg">YUM / DNF / RPM</div>
+        <div class="skill" data-skill="repo">Local Repositories</div>
+        <div class="skill" data-skill="monitor">Monitoring</div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section fade">
+      <h2>My Projects</h2>
+      <div class="project"><h3>✔ Linux Automation Scripts</h3><p>Shell scripts for cronjobs, backups and monitoring.</p></div>
+      <div class="project"><h3>✔ Web Development Projects</h3><p>Portfolio UI, templates, advanced web designs.</p></div>
+    </div>
+
+    <footer>© 2025 Aashi Guleria — All Rights Reserved</footer>
+  </div>
+
+  <!-- Modal: shows commands / contact -->
+  <div class="modal-back" id="modalBack">
+    <div class="modal" id="modal">
+      <button class="close-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+      <div id="modalContent">
+        <!-- dynamic content injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Typing effect */
+    const textArr = ["Linux Admin", "RHEL 9 Expert", "Web Developer", "Tech Explorer"];
+    let ti=0, tj=0, pause=0;
+    function typingEffect(){
+      const el = document.getElementById("typing");
+      const full = textArr[ti];
+      el.innerText = full.slice(0, tj);
+      if(tj < full.length && pause===0){ tj++; setTimeout(typingEffect, 120); }
+      else if (pause === 0) { pause = 1; setTimeout(typingEffect, 900); }
+      else { tj = 0; pause = 0; ti = (ti+1)%textArr.length; setTimeout(typingEffect, 200); }
     }
     typingEffect();
-</script>
 
-<!-- Fade Animation Script -->
-<script>
-    const elements = document.querySelectorAll(".fade");
-
-    function showElements() {
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect().top;
-            if (rect < window.innerHeight - 50) {
-                el.classList.add("visible");
-            }
-        });
+    /* Fade on scroll */
+    const fades = document.querySelectorAll(".fade");
+    function showOnScroll(){
+      fades.forEach(f => {
+        const r = f.getBoundingClientRect().top;
+        if(r < window.innerHeight - 50) f.classList.add("visible");
+      });
     }
-    window.addEventListener("scroll", showElements);
-    showElements();
-</script>
+    window.addEventListener("scroll", showOnScroll);
+    showOnScroll();
 
-<script>
-function toggleTheme() {
-    document.body.classList.toggle("dark");
-}
-</script>
+    /* Theme toggle */
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      themeToggle.innerText = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
 
+    /* Modal helpers */
+    const modalBack = document.getElementById("modalBack");
+    const modalContent = document.getElementById("modalContent");
+    const closeModalBtn = document.getElementById("closeModal");
+    function openModal(html){
+      modalContent.innerHTML = html;
+      modalBack.style.display = "flex";
+      // attach copy handlers after content inserted
+      setTimeout(()=> {
+        document.querySelectorAll(".copy-btn").forEach(btn=>{
+          btn.addEventListener("click", (e)=>{
+            const targetId = btn.getAttribute("data-target");
+            const text = document.getElementById(targetId).innerText;
+            navigator.clipboard.writeText(text).then(()=>{
+              btn.innerText = "Copied ✓";
+              setTimeout(()=> btn.innerText = "Copy", 1200);
+            }).catch(()=> { alert("Copy failed — use select & ctrl+c"); });
+          });
+        });
+      },50);
+    }
+    function closeModal(){ modalBack.style.display = "none"; modalContent.innerHTML=""; }
+    closeModalBtn.addEventListener("click", closeModal);
+    modalBack.addEventListener("click", (e)=> { if(e.target === modalBack) closeModal(); });
+
+    /* Commands data (RHEL 9 oriented) */
+    const commands = {
+      user: {
+        title: "User Management — Common Commands",
+        cmds:
+`# Create user & set password
+sudo useradd -m -s /bin/bash alice
+sudo passwd alice
+
+# Delete user (keep home)
+sudo userdel -r alice
+
+# Lock / unlock user
+sudo usermod -L alice
+sudo usermod -U alice
+
+# Add user to groups
+sudo usermod -aG wheel,audit alice
+
+# Show user info
+id alice
+getent passwd alice`
+      },
+      group: {
+        title: "Group Management — Common Commands",
+        cmds:
+`# Create / delete group
+sudo groupadd devops
+sudo groupdel devops
+
+# Change primary group of a user
+sudo usermod -g devops alice
+
+# Add user to supplementary group
+sudo usermod -aG docker alice
+
+# List groups & members
+getent group | grep devops
+groups alice`
+      },
+      perm: {
+        title: "File Permissions & Ownership",
+        cmds:
+`# Change owner & group
+sudo chown alice:devops /var/www/html -R
+
+# Change permissions (numeric & symbolic)
+sudo chmod 755 /var/www/html
+sudo chmod u=rwx,g=rx,o=rx file.txt
+
+# Set SGID / SUID / sticky bit
+sudo chmod g+s /opt/shared
+sudo chmod u+s /usr/bin/someprog
+sudo chmod +t /tmp
+
+# ACLs (set/get)
+sudo setfacl -m u:alice:rwx /data
+getfacl /data`
+      },
+      cron: {
+        title: "Cron Jobs — scheduling",
+        cmds:
+`# Edit crontab for current user
+crontab -e
+
+# Example: run backup daily at 2:30AM
+30 2 * * * /usr/local/bin/backup.sh
+
+# Systemd timers (recommended alternative)
+sudo systemctl enable --now myjob.timer
+journalctl -u myjob.service -f`
+      },
+      firewall: {
+        title: "Firewall (firewalld) — Basic Commands",
+        cmds:
+`# Check status
+sudo systemctl status firewalld
+sudo firewall-cmd --state
+
+# List zones and services
+sudo firewall-cmd --get-zones
+sudo firewall-cmd --list-all --zone=public
+
+# Open port permanently
+sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
+sudo firewall-cmd --reload
+
+# Add service (permanent)
+sudo firewall-cmd --zone=public --add-service=http --permanent
+sudo firewall-cmd --reload`
+      },
+      network: {
+        title: "Networking — Useful Commands (RHEL 9)",
+        cmds:
+`# Show interfaces & IPs
+ip addr show
+nmcli device status
+
+# Bring interface up/down
+sudo ip link set enp0s3 up
+sudo ip link set enp0s3 down
+
+# Manage NetworkManager connections
+nmcli connection show
+nmcli connection up "Wired connection 1"
+
+# Test connectivity
+ping -c4 8.8.8.8
+ss -tulnp | grep :22`
+      },
+      pkg: {
+        title: "YUM / DNF / RPM — Package Management",
+        cmds:
+`# Search & install with dnf
+sudo dnf search nginx
+sudo dnf install -y nginx
+
+# Update system
+sudo dnf update -y
+
+# rpm local package
+sudo rpm -ivh mypkg.rpm
+sudo rpm -qa | grep httpd
+
+# Show repos
+sudo dnf repolist
+sudo dnf info nginx`
+      },
+      repo: {
+        title: "Local Repository — Create & Use",
+        cmds:
+`# Install createrepo tool
+sudo dnf install -y createrepo
+
+# Create repo from directory
+sudo createrepo /var/www/html/repos/myrepo
+
+# Create repo file
+sudo tee /etc/yum.repos.d/local.repo > /dev/null <<EOF
+[local]
+name=Local Repo
+baseurl=file:///var/www/html/repos/myrepo
+enabled=1
+gpgcheck=0
+EOF
+
+# Clean & use
+sudo dnf clean all
+sudo dnf --disablerepo='*' --enablerepo=local install mypkg`
+      },
+      monitor: {
+        title: "Monitoring — Tools & Commands",
+        cmds:
+`# Systemd & logs
+sudo journalctl -f
+sudo journalctl -u sshd -n 200
+
+# Top-like tools
+top
+# (if installed) htop
+
+# Disk / iostat / vmstat
+df -h
+sudo iostat -x 1 5
+vmstat 1 5
+
+# Resource usage by process
+ps aux --sort=-%mem | head -n 10`
+      }
+    };
+
+    /* When skill clicked open modal with commands */
+    document.querySelectorAll(".skill").forEach(el=>{
+      el.addEventListener("click", ()=> {
+        const key = el.getAttribute("data-skill");
+        const data = commands[key];
+        if(!data) return;
+        const html = `
+          <h3>${data.title}</h3>
+          <p style="color:gray;margin-bottom:8px;">Click <strong>Copy</strong> to copy commands to clipboard. Paste in terminal on your RHEL 9 system (run as root or with sudo).</p>
+          <button class="copy-btn" data-target="cmdBlock">Copy</button>
+          <pre id="cmdBlock" class="cmd">${escapeHtml(data.cmds)}</pre>
+        `;
+        openModal(html);
+      });
+    });
+
+    /* Instagram / Contact modal */
+    document.getElementById("instaBtn").addEventListener("click", ()=>{
+      const html = `
+        <h3>Contact / Message Aashi</h3>
+        <p style="color:gray">You can message Aashi using email (preferred) or open Instagram manually. Email will open your mail app with a prefilled subject.</p>
+
+        <div style="margin-top:12px;">
+          <label>Email Aashi (direct)</label>
+          <button class="send-mail" id="emailNow">✉️ Send Email</button>
+          <small style="display:block;margin-top:8px;color:gray">Email: <a href="mailto:guleriaaashi@gmail.com">guleriaaashi@gmail.com</a></small>
+        </div>
+
+        <hr style="margin:12px 0;opacity:0.08">
+
+        <div>
+          <label>Quick message form (will open your mail client)</label>
+          <input type="text" id="contactName" placeholder="Your name" />
+          <input type="text" id="contactSubject" placeholder="Subject (e.g. Hi Aashi — query)" />
+          <textarea id="contactBody" rows="4" placeholder="Type your message here..."></textarea>
+          <button class="send-mail" id="contactSend">Open Mail App</button>
+        </div>
+
+        <hr style="margin:12px 0;opacity:0.08">
+
+        <div>
+          <label>Open Instagram (manual)</label>
+          <p style="color:gray;font-size:13px">If you want to open Instagram to DM from the Instagram app/web, use the button below — it will open Instagram (if user is logged in).</p>
+          <button class="send-mail" id="openInsta">Open Instagram</button>
+        </div>
+      `;
+      openModal(html);
+
+      // after modal opens, attach listeners:
+      setTimeout(()=>{
+        document.getElementById("emailNow").addEventListener("click", ()=>{
+          window.location.href = "mailto:guleriaaashi@gmail.com?subject=Hello%20Aashi&body=Hi%20Aashi,%0A%0AI%20saw%20your%20portfolio%20and%20would%20like%20to%20connect.%0A%0ARegards,";
+        });
+        document.getElementById("contactSend").addEventListener("click", ()=>{
+          const name = encodeURIComponent(document.getElementById("contactName").value || "Friend");
+          const subject = encodeURIComponent(document.getElementById("contactSubject").value || "Message from portfolio site");
+          const body = encodeURIComponent((document.getElementById("contactBody").value || "") + "\n\n— " + name);
+          window.location.href = mailto:guleriaaashi@gmail.com?subject=${subject}&body=${body};
+        });
+        document.getElementById("openInsta").addEventListener("click", ()=>{
+          // opens Instagram profile — user must DM from instagram after login
+          window.open("https://instagram.com/aashi__guleria", "_blank", "noopener");
+        });
+      }, 50);
+    });
+
+    /* small util: escape HTML for code block */
+    function escapeHtml(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+  </script>
 </body>
 </html>
