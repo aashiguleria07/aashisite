@@ -9,7 +9,7 @@
   <style>
     :root{
       --bg:#f4f9ff; --card:#ffffff; --text:#111; --accent:#0d90ff; --accent2:#ff3f7a;
-      --bubble-color: #ff8a00; /* orange bubble */
+      --bubble-color: #ff8a00; 
       --shadow: 0 6px 20px rgba(10,10,20,0.06);
     }
     body.dark{
@@ -21,47 +21,50 @@
     *{box-sizing:border-box}
     body{
       margin:0; font-family: 'Poppins',sans-serif; background:var(--bg); color:var(--text);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    .wrap{max-width:1100px; margin:28px auto; padding:18px;}
+    .wrap{max-width:900px; margin:28px auto; padding:18px;}
     header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    h1{font-size:22px;margin:0}
+    h1{font-size:26px;margin:0}
     .mode-btn{
       background:var(--accent); color:#fff; border:0; padding:8px 14px; border-radius:999px; cursor:pointer;
       box-shadow:var(--shadow);
     }
+
+    /* CENTER BIG HERO */
     .hero{
-      display:flex;gap:18px;align-items:center;padding:22px;border-radius:14px;background:var(--card);
+      text-align:center;
+      padding:28px;
+      border-radius:14px;
+      background:var(--card);
       box-shadow:var(--shadow);
     }
     .avatar{
-      width:110px;height:110px;border-radius:50%;object-fit:cover;border:5px solid var(--accent);
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      object-fit:cover;
+      border:6px solid var(--accent);
+      margin-bottom:14px;
     }
-    .hero-text{flex:1}
-    .buttons{margin-top:12px}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;border:0;margin-right:8px;cursor:pointer;}
+    .buttons{margin-top:14px}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:999px;border:0;margin-right:8px;cursor:pointer;font-size:15px;}
     .btn.ig{background:var(--accent2)}
 
-    .sections{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:18px}
-    @media (max-width:900px){ .sections{grid-template-columns:1fr} .avatar{width:86px;height:86px} }
-
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);margin-top:18px}
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
 
-    /* skill + bubble styles */
     .skill{
       position:relative;
       overflow:hidden;
       background:linear-gradient(90deg,var(--accent),#2fa0ff);
       color:#fff;padding:12px;border-radius:10px;text-align:center;cursor:pointer;
-      user-select:none;font-weight:600;box-shadow:0 6px 18px rgba(10,80,160,0.12);
+      font-weight:600;box-shadow:0 6px 18px rgba(10,80,160,0.12);
       transition:transform .18s ease, box-shadow .18s ease;
     }
     .skill:active{transform:translateY(2px)}
     .skill.pop { transform: scale(1.03); box-shadow:0 10px 28px rgba(10,80,160,0.16); }
 
-    /* bubble pseudo-element uses CSS variables set by JS (--bx, --by) */
     .skill::after{
       content:"";
       position:absolute;
@@ -73,16 +76,12 @@
       opacity:.9;
       pointer-events:none;
       transition: transform .55s cubic-bezier(.2,.9,.2,1), opacity .55s linear;
-      will-change: transform, opacity;
       z-index:2;
-      filter: blur(0.2px);
     }
 
-    /* active bubble state */
     .skill.bubble::after{
       transform:translate(-50%,-50%) scale(18);
       opacity:0;
-      transition: transform .6s cubic-bezier(.2,.9,.2,1), opacity .6s linear;
     }
 
     footer{text-align:center;margin-top:18px;color:var(--text);opacity:.8}
@@ -93,9 +92,6 @@
     #modal h2{margin:0 0 12px 0;color:var(--accent)}
     pre{background:#071021;color:#dbeeff;padding:14px;border-radius:8px;overflow:auto;white-space:pre-wrap}
     .modal-close{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;margin-top:12px}
-
-    /* small accessibility focus */
-    .skill:focus { outline: 3px solid rgba(255,138,0,0.18); outline-offset:3px; }
   </style>
 </head>
 <body>
@@ -105,40 +101,52 @@
       <button id="modeBtn" class="mode-btn">🌙 Dark</button>
     </header>
 
+    <!-- UPDATED HERO -->
     <div class="hero">
-      <img src="aashi.jpg" alt="Aashi" class="avatar" onerror="this.style.display='none'">
-      <div class="hero-text">
-        <div style="font-size:18px;font-weight:700">Hello, I'm Aashi</div>
-        <div style="margin-top:6px;color:gray;font-size:14px">Linux Administrator • RHEL 9</div>
-        <div class="buttons">
-          <a href="https://github.com/aashiguleria07" target="_blank" class="btn">GitHub</a>
-          <button class="btn ig" id="instaBtn">Instagram</button>
-        </div>
+      <img src="aashi.jpg" alt="Aashi" class="avatar">
+
+      <div style="font-size:24px;font-weight:700;">Hello, I'm <span style="color:var(--accent)">Aashi</span></div>
+      <div style="margin-top:6px;color:gray;font-size:16px">Linux Administrator • RHEL 9</div>
+
+      <div class="buttons">
+        <a href="https://github.com/aashiguleria07" target="_blank" class="btn">GitHub</a>
+        <button class="btn ig" id="instaBtn">Instagram</button>
       </div>
     </div>
 
-    <div class="sections">
-      <div class="card">
-        <h3 style="margin-top:0">My Skills</h3>
-        <div class="skills-grid" id="skillsBox">
-          <div tabindex="0" class="skill" data-key="user">User Management</div>
-          <div tabindex="0" class="skill" data-key="group">Group Management</div>
-          <div tabindex="0" class="skill" data-key="perm">File Permissions</div>
-          <div tabindex="0" class="skill" data-key="cron">Cron Jobs</div>
-          <div tabindex="0" class="skill" data-key="firewall">Firewall</div>
-          <div tabindex="0" class="skill" data-key="network">Networking</div>
-          <div tabindex="0" class="skill" data-key="pkg">YUM / DNF / RPM</div>
-          <div tabindex="0" class="skill" data-key="repo">Local Repository</div>
-          <div tabindex="0" class="skill" data-key="monitor">Monitoring</div>
-        </div>
-      </div>
+    <!-- ABOUT ME ADDED -->
+    <div class="card">
+      <h3 style="margin-top:0">About Me</h3>
+      <p style="line-height:1.6; font-size:15px;">
+        I am Aashi Guleria, a passionate Linux Administrator.<br><br>
+        <b>Contact:</b> 9805427313<br>
+        <b>Gmail:</b> guleriaaashi@gmail.com
+      </p>
+    </div>
 
-      <div class="card">
-        <h3 style="margin-top:0">Projects</h3>
-        <p style="color:gray;margin-top:6px">✔ Linux automation scripts for backups, monitoring and cron tasks.</p>
-        <hr style="margin:12px 0;border:none;height:1px;background:rgba(0,0,0,0.06)">
-        <div style="font-size:13px;color:gray">© <span id="year"></span> Aashi Guleria — Made by Aashi</div>
+    <!-- SKILLS + PROJECTS (unchanged) -->
+    <div class="card">
+      <h3 style="margin-top:0">My Skills</h3>
+      <div class="skills-grid" id="skillsBox">
+
+        <div tabindex="0" class="skill" data-key="user">User Management</div>
+        <div tabindex="0" class="skill" data-key="group">Group Management</div>
+        <div tabindex="0" class="skill" data-key="perm">File Permissions</div>
+        <div tabindex="0" class="skill" data-key="cron">Cron Jobs</div>
+        <div tabindex="0" class="skill" data-key="firewall">Firewall</div>
+        <div tabindex="0" class="skill" data-key="network">Networking</div>
+        <div tabindex="0" class="skill" data-key="pkg">YUM / DNF / RPM</div>
+        <div tabindex="0" class="skill" data-key="repo">Local Repository</div>
+        <div tabindex="0" class="skill" data-key="monitor">Monitoring</div>
+
       </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">Projects</h3>
+      <p style="color:gray;margin-top:6px">✔ Linux automation scripts for backups, monitoring and cron tasks.</p>
+      <hr style="margin:12px 0;border:none;height:1px;background:rgba(0,0,0,0.06)">
+      <div style="font-size:13px;color:gray">© <span id="year"></span> Aashi Guleria — Made by Aashi</div>
     </div>
 
     <footer>Click any skill to view commands (only commands will show).</footer>
@@ -146,7 +154,7 @@
 
   <!-- modal -->
   <div id="modalBack">
-    <div id="modal" role="dialog" aria-modal="true">
+    <div id="modal">
       <h2 id="modalTitle">Commands</h2>
       <pre id="cmdsArea"></pre>
       <button class="modal-close" id="closeModal">Close</button>
@@ -154,10 +162,8 @@
   </div>
 
 <script>
-  // date
   document.getElementById('year').innerText = new Date().getFullYear();
 
-  // dark/light toggle
   const modeBtn = document.getElementById('modeBtn');
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   if (prefersDark) document.body.classList.add('dark'), modeBtn.textContent = '☀️ Light';
@@ -166,7 +172,6 @@
     modeBtn.textContent = document.body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
   });
 
-  // commands dictionary — ONLY commands, no explanations
   const commands = {
     user:
 `useradd user1
@@ -179,7 +184,7 @@ chage -E 2025-12-31 user1
 lastlog
 su - user1
 getent passwd | grep user1`,
-
+    
     group:
 `groupadd devs
 groupdel devs
@@ -281,52 +286,34 @@ uptime
 vmstat 1 5`
   };
 
-  // modal controls
   const modalBack = document.getElementById('modalBack');
   const modalTitle = document.getElementById('modalTitle');
   const cmdsArea = document.getElementById('cmdsArea');
   const closeModal = document.getElementById('closeModal');
 
-  // bubble + click handler
   document.querySelectorAll('.skill').forEach(el=>{
     el.addEventListener('click', (e)=>{
-      // bubble position variables (relative to element)
       const rect = el.getBoundingClientRect();
-      const bx = (e.clientX - rect.left) + "px";
-      const by = (e.clientY - rect.top) + "px";
-      el.style.setProperty('--bx', bx);
-      el.style.setProperty('--by', by);
+      el.style.setProperty('--bx', (e.clientX - rect.left)+"px");
+      el.style.setProperty('--by', (e.clientY - rect.top)+"px");
 
-      // trigger pop/bubble animation
-      el.classList.add('bubble', 'pop');
-      // remove pop shortly after for smooth reset
+      el.classList.add('bubble','pop');
       setTimeout(()=> el.classList.remove('pop'), 260);
       setTimeout(()=> el.classList.remove('bubble'), 620);
 
-      // open modal with commands
       const key = el.getAttribute('data-key');
-      if (!commands[key]) return;
       modalTitle.textContent = el.textContent + ' — Commands';
       cmdsArea.textContent = commands[key];
       modalBack.style.display = 'flex';
-      closeModal.focus();
-    });
-
-    // keyboard accessibility: Enter or Space triggers click behavior
-    el.addEventListener('keydown', (ev)=>{
-      if (ev.key === 'Enter' || ev.key === ' ') {
-        ev.preventDefault();
-        el.click();
-      }
     });
   });
 
-  closeModal.addEventListener('click', ()=> modalBack.style.display = 'none');
-  modalBack.addEventListener('click', (e)=>{ if (e.target === modalBack) modalBack.style.display = 'none'; });
-  window.addEventListener('keydown', (e)=> { if (e.key === 'Escape') modalBack.style.display = 'none'; });
+  closeModal.addEventListener('click', ()=> modalBack.style.display='none');
+  modalBack.addEventListener('click', (e)=>{ if(e.target===modalBack) modalBack.style.display='none'; });
 
-  // instagram button
-  document.getElementById('instaBtn').addEventListener('click', ()=>{ window.open('https://ig.me/m/aashi__guleria', '_blank'); });
+  document.getElementById('instaBtn').addEventListener('click', ()=> {
+    window.open('https://ig.me/m/aashi__guleria','_blank');
+  });
 </script>
 </body>
 </html>
