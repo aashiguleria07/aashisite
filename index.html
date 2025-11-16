@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aashi Guleria | Advanced Portfolio</title>
+    <title>Aashi Guleria | Portfolio</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
@@ -27,19 +30,35 @@
             --shadow: rgba(255,255,255,0.05);
         }
 
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
             background: var(--main-bg);
-            font-family: "Poppins", sans-serif;
             color: var(--text-color);
-            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1100px;
             margin: auto;
             padding: 20px;
+        }
+
+        /* Fade Animation */
+        .fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s ease-in-out;
+        }
+        .fade.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Header */
@@ -79,9 +98,12 @@
             font-size: 40px;
         }
 
-        .tagline {
-            font-size: 18px;
-            margin-top: -10px;
+        #typing {
+            height: 30px;
+            font-size: 22px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 5px;
         }
 
         .btn {
@@ -146,12 +168,10 @@
             border-left: 5px solid var(--primary);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
             margin-top: 30px;
-            color: var(--text-color);
         }
     </style>
 </head>
@@ -166,27 +186,41 @@
         </header>
 
         <!-- HERO -->
-        <div class="hero">
+        <div class="hero fade">
             <img src="aashi.jpg" class="profile-img">
+
             <h1>Hello, I'm <span style="color: var(--primary);">Aashi</span> 👋</h1>
-            <p class="tagline">Linux Admin | RHEL 9 | Web Developer | Tech Explorer</p>
+
+            <div id="typing"></div>
 
             <a href="https://github.com/aashiguleria07" target="_blank">
-                <button class="btn">Visit GitHub</button>
+                <button class="btn">Visit My GitHub</button>
+            </a>
+
+            <a href="https://instagram.com/aashi__guleria" target="_blank">
+                <button class="btn" style="background:#E1306C;">Instagram</button>
             </a>
         </div>
 
         <!-- ABOUT -->
-        <div class="section">
+        <div class="section fade">
             <h2>About Me</h2>
             <p>
-                I am a passionate Linux Administrator and Web Developer.  
-                Skilled in RHEL 9, server management, networking, automation and web technologies.
+                I am <b>Aashi Guleria</b>, a passionate <b>Linux Administrator</b> and <b>Web Developer</b>.
+                Skilled in <b>RHEL 9, server management, user/group management, firewalls,
+                networking, permissions, cronjobs, automation, shell scripting</b> and modern web technologies.
+                <br><br>
+                I love exploring Linux deeply, creating automation scripts, optimizing servers,
+                and developing clean and powerful web applications.  
+                <br><br>
+                📞 <b>Contact:</b> 9805427313  
+                📷 <b>Instagram:</b> aashi__guleria
+		   <b>gmail Id:</b> guleriaaashi@gmail.com
             </p>
         </div>
 
         <!-- SKILLS -->
-        <div class="section">
+        <div class="section fade">
             <h2>My Skills</h2>
             <div class="skill-box">
                 <div class="skill">User Management</div>
@@ -202,25 +236,18 @@
         </div>
 
         <!-- PROJECTS -->
-        <div class="section">
+        <div class="section fade">
             <h2>My Projects</h2>
 
             <div class="project">
-                <h3>✔ Personal Portfolio Website</h3>
-                <p>Advanced portfolio hosted on GitHub Pages.</p>
+                <h3>✔ Linux Automation Scripts</h3>
+                <p>Shell scripts for cronjobs, backups and monitoring.</p>
             </div>
 
             <div class="project">
-                <h3>✔ Linux Automation Scripts</h3>
-                <p>Shell scripts for cronjobs, backup and monitoring.</p>
+                <h3>✔ Web Development Projects</h3>
+                <p>Portfolio UI, templates, advanced web designs.</p>
             </div>
-
-        </div>
-
-        <!-- CONTACT -->
-        <div class="section">
-            <h2>Contact Me</h2>
-            <p>📧 Email: guleriaaashi.com</p>
         </div>
 
         <footer>
@@ -228,6 +255,39 @@
         </footer>
 
     </div>
+
+<!-- Typing Animation -->
+<script>
+    const text = ["Linux Admin", "RHEL 9 Expert", "Web Developer", "Tech Explorer"];
+    let i = 0;
+    let j = 0;
+
+    function typingEffect() {
+        document.getElementById("typing").innerText = text[i].slice(0, j++);
+        if (j > text[i].length) {
+            j = 0;
+            i = (i + 1) % text.length;
+        }
+        setTimeout(typingEffect, 150);
+    }
+    typingEffect();
+</script>
+
+<!-- Fade Animation Script -->
+<script>
+    const elements = document.querySelectorAll(".fade");
+
+    function showElements() {
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect().top;
+            if (rect < window.innerHeight - 50) {
+                el.classList.add("visible");
+            }
+        });
+    }
+    window.addEventListener("scroll", showElements);
+    showElements();
+</script>
 
 <script>
 function toggleTheme() {
