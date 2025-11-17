@@ -160,6 +160,7 @@ color:#fff;
 pre{
 background:#000;padding:12px;border-radius:8px;color:#cce6ff;
 max-height:350px;overflow:auto;
+white-space: pre-wrap; /* For better command display */
 }
 
 .modal-close{
@@ -187,7 +188,7 @@ padding:8px 16px;background:#0d8bff;border-radius:10px;color:#fff;border:0;curso
 
 <div class="buttons">
 <a href="https://github.com/aashiguleria07"><button class="btn github">GitHub</button></a>
-<button class="btn ig" id="instaBtn">Instagram</button>
+<a href="https://ig.me/m/aashi__guleria" target="_blank"><button class="btn ig">Instagram DM</button></a>
 </div>
 </div>
 
@@ -373,7 +374,7 @@ getAverageRating();
 
 
 // =======================================================
-// 💻 EXISTING CODE (Modified slightly to fit new structure)
+// 💻 EXISTING CODE (Modified for 5 commands per skill)
 // =======================================================
 
 // 🌞 LIGHT / DARK MODE FIXED
@@ -391,55 +392,61 @@ document.getElementById("modeBtn").innerText = "☀ Light";
 }
 };
 
-// Instagram direct message
-instaBtn.onclick = () => window.open("https://ig.me/m/aashi__guleria");
-
-// commands
+// commands updated with 5 commands each
 const commands={
-user:`useradd test1
-passwd test1
-id test1
-usermod -aG wheel test1
-userdel -r test1`,
-group:`groupadd dev
-groupdel hr
-gpasswd -a user1 dev
-gpasswd -d user1 dev`,
-perm:`chmod 755 a.txt
-chmod 700 dir
-chown root:user file
-setfacl -m u:user:rwx file
-getfacl file`,
-cron:`crontab -e
-crontab -l
-systemctl restart crond
-echo "0 3 * * * /script" >> /etc/crontab
-systemctl status crond`,
-firewall:`firewall-cmd --state
-firewall-cmd --add-port=80/tcp --permanent
-firewall-cmd --remove-port=80/tcp --permanent
-firewall-cmd --reload
-firewall-cmd --list-all`,
-network:`ip a
-nmcli device status
-nmcli con up enp0s3
-ping google.com
-ss -tulnp`,
-pkg:`dnf install httpd -y
-dnf remove httpd -y
-dnf update -y
-rpm -qa | head
-dnf history`,
-repo:`mkdir /repo
-createrepo /repo
-vim /etc/yum.repos.d/local.repo
-dnf clean all
-dnf repolist`,
-monitor:`top
-htop
-df -h
-free -m
-systemctl list-units --failed`
+user:`1. useradd <username>
+2. passwd <username>
+3. id <username>
+4. usermod -aG wheel <username>
+5. userdel -r <username>`,
+
+group:`1. groupadd <groupname>
+2. groupdel <groupname>
+3. gpasswd -a <user> <group> (Add user)
+4. gpasswd -d <user> <group> (Remove user)
+5. cat /etc/group | grep <group>`,
+
+perm:`1. chmod 755 <file>
+2. chmod 700 <dir>
+3. chown <user>:<group> <file>
+4. setfacl -m u:<user>:rwx <file>
+5. getfacl <file>`,
+
+cron:`1. crontab -e
+2. crontab -l
+3. systemctl restart crond
+4. echo "0 3 * * * /path/to/script" >> /etc/crontab
+5. systemctl status crond`,
+
+firewall:`1. firewall-cmd --state
+2. firewall-cmd --add-port=80/tcp --permanent
+3. firewall-cmd --reload
+4. firewall-cmd --list-all
+5. firewall-cmd --remove-port=80/tcp --permanent`,
+
+network:`1. ip a (Show addresses)
+2. nmcli device status
+3. nmcli con up <interface>
+4. ping google.com -c 4
+5. ss -tulnp (View open ports)`,
+
+pkg:`1. dnf install <package> -y
+2. dnf remove <package> -y
+3. dnf update -y
+4. rpm -qa | grep <package>
+5. dnf history`,
+
+repo:`1. mkdir /repo_local
+2. createrepo /repo_local
+3. vim /etc/yum.repos.d/local.repo
+4. dnf clean all
+5. dnf repolist`,
+
+monitor:`1. top (Process monitoring)
+2. htop (Interactive process viewer)
+3. df -h (Disk usage)
+4. free -m (Memory usage)
+5. systemctl list-units --failed`
 };
 
 
