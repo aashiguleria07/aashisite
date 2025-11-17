@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
 <style>
 :root{
 /* DARK MODE COLORS */
@@ -16,6 +19,9 @@
 --card:rgba(255,255,255,0.05);
 --skillBlue:#1565ff;
 --skillHover:#ff8b00;
+/* New Rating Colors */
+--starDefault: #444;
+--starSelected: #ffc107; /* Yellow */
 }
 
 /* LIGHT MODE OVERRIDE */
@@ -25,6 +31,7 @@
 --muted:#444444;
 --card:#f0f4ff;
 --skillBlue:#3c82ff;
+--starDefault: #ccc;
 }
 
 /* MAIN STYLES */
@@ -111,6 +118,34 @@ background:var(--skillHover);
 transform:translateY(-4px);
 }
 
+/* 5-STAR RATING STYLES */
+.rating-area {
+margin-top: 15px;
+text-align: center;
+}
+.rating-stars {
+font-size: 30px;
+cursor: pointer;
+color: var(--starDefault);
+}
+.rating-stars:hover {
+color: var(--starSelected);
+}
+.star-filled {
+color: var(--starSelected) !important;
+}
+.rating-result {
+margin-top: 8px;
+font-size: 16px;
+font-weight: 600;
+}
+.rating-message {
+color: #4CAF50;
+margin-top: 10px;
+font-weight: 600;
+}
+
+
 /* MODAL */
 #modalBack{
 position:fixed;inset:0;background:rgba(0,0,0,0.6);
@@ -183,13 +218,25 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 <div class="card">
 <h3>Projects</h3>
 <p style="color:var(--muted);">✔ Linux automation scripts for backups, cron & monitoring.</p>
+
+<div class="rating-area">
+<div style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Rate My Portfolio</div>
+<div id="ratingStars">
+<span class="rating-stars" data-value="1">★</span>
+<span class="rating-stars" data-value="2">★</span>
+<span class="rating-stars" data-value="3">★</span>
+<span class="rating-stars" data-value="4">★</span>
+<span class="rating-stars" data-value="5">★</span>
+</div>
+<div id="ratingMessage" class="rating-message" style="display:none;">Thank you for rating!</div>
+<div id="averageRating" class="rating-result" style="color:var(--skillHover);">Current Average Rating: Loading...</div>
+</div>
 </div>
 
 <footer style="color:var(--muted);text-align:center;">Click any skill to view commands.</footer>
 
 </div>
 
-<!-- MODAL -->
 <div id="modalBack">
 <div id="modal">
 <h2 id="modalTitle">Commands</h2>
@@ -199,6 +246,135 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 </div>
 
 <script>
+// =======================================================
+// 🚀 NEW: FIREBASE CONFIGURATION AND RATING LOGIC
+// =======================================================
+
+// 1. Firebase Configuration (आपके द्वारा दी गई config)
+const firebaseConfig = {
+    apiKey: "AIzaSyDvpCiokWNDxzg9gfkCjWIkU9bfljoULd8",
+    authDomain: "aashi-portfolio-b1970.firebaseapp.com",
+    projectId: "aashi-portfolio-b1970",
+    storageBucket: "aashi-portfolio-b1970.appspot.com",
+    messagingSenderId: "1227537828",
+    appId: "1:1227537828:web:cf652bfa886039cb5531",
+    databaseURL: "https://aashi-portfolio-b1970-default-rtdb.asia-southeast1.firebaseio.com" // Realtime DB URL
+};
+
+// 2. Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const ratingsRef = database.ref('portfolioRatings'); // Firebase path: /portfolioRatings
+
+let userRated = false; // To prevent multiple ratings from the same session/load
+
+// 3. Function to save rating to Firebase
+function saveRating(rating) {
+    if (userRated) return; // Already rated
+
+    // Generate a unique key for the new rating
+    const newRatingRef = ratingsRef.push();
+    newRatingRef.set({
+        rating: rating,
+        timestamp: Date.now()
+    }).then(() => {
+        console.log("Rating saved successfully:", rating);
+        document.getElementById('ratingMessage').style.display = 'block';
+        userRated = true; // Mark as rated
+        // Disable stars after rating
+        document.querySelectorAll('.rating-stars').forEach(star => {
+            star.style.cursor = 'default';
+        });
+    }).catch(error => {
+        console.error("Error saving rating:", error);
+    });
+}
+
+// 4. Function to get and calculate average rating from Firebase
+function getAverageRating() {
+    ratingsRef.on('value', (snapshot) => {
+        const ratingsData = snapshot.val();
+        let totalRatings = 0;
+        let sumOfRatings = 0;
+
+        if (ratingsData) {
+            Object.values(ratingsData).forEach(entry => {
+                sumOfRatings += entry.rating;
+                totalRatings++;
+            });
+        }
+
+        const avg = totalRatings > 0 ? (sumOfRatings / totalRatings).toFixed(2) : 'N/A';
+        const avgText = totalRatings > 0 ? ${avg} out of 5 (${totalRatings} votes) : 'Be the first to rate!';
+        
+        document.getElementById('averageRating').innerText = Current Average Rating: ${avgText};
+
+        // Fill stars based on average rating (for display)
+        const roundedAvg = Math.round(avg);
+        document.querySelectorAll('.rating-stars').forEach((star, index) => {
+            if (index < roundedAvg) {
+                star.classList.add('star-filled');
+            } else {
+                star.classList.remove('star-filled');
+            }
+        });
+
+    }, (error) => {
+        console.error("Error fetching ratings:", error);
+        document.getElementById('averageRating').innerText = 'Error loading rating.';
+    });
+}
+
+// 5. Rating interaction logic
+const starElements = document.querySelectorAll('.rating-stars');
+
+starElements.forEach(star => {
+    // Hover effect
+    star.addEventListener('mouseover', function() {
+        if (userRated) return;
+        const value = parseInt(this.dataset.value);
+        starElements.forEach((s, index) => {
+            if (index < value) {
+                s.style.color = 'var(--starSelected)';
+            } else {
+                s.style.color = 'var(--starDefault)';
+            }
+        });
+    });
+
+    // Reset on mouseout
+    star.addEventListener('mouseout', function() {
+        if (userRated) return;
+        starElements.forEach(s => {
+            s.style.color = 'var(--starDefault)';
+        });
+    });
+
+    // Click to save rating
+    star.addEventListener('click', function() {
+        if (userRated) return;
+        const rating = parseInt(this.dataset.value);
+        
+        // Visually fill the clicked rating permanently
+        starElements.forEach((s, index) => {
+            if (index < rating) {
+                s.classList.add('star-filled');
+            } else {
+                s.classList.remove('star-filled');
+            }
+        });
+
+        saveRating(rating);
+    });
+});
+
+// Load the current average rating when the page loads
+getAverageRating();
+
+
+// =======================================================
+// 💻 EXISTING CODE (Modified slightly to fit new structure)
+// =======================================================
 
 // 🌞 LIGHT / DARK MODE FIXED
 let light = false;
