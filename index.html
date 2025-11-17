@@ -173,7 +173,7 @@ padding:8px 16px;background:#0d8bff;border-radius:10px;color:#fff;border:0;curso
 
 <header>
 <h1>Aashi Guleria — Portfolio</h1>
-<button id="modeBtn" class="mode-btn">🌙 Dark</button>
+<button id="modeBtn" class="mode-btn">☀ Light</button>
 </header>
 
 <div class="hero">
@@ -246,10 +246,9 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 
 <script>
 // =======================================================
-// 🚀 NEW: FIREBASE CONFIGURATION AND RATING LOGIC
+// 🚀 FIREBASE CONFIGURATION AND RATING LOGIC (FIXED)
 // =======================================================
 
-// 1. Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDvpCiokWNDxzg9gfkCjWIkU9bfljoULd8",
     authDomain: "aashi-portfolio-b1970.firebaseapp.com",
@@ -260,30 +259,25 @@ const firebaseConfig = {
     databaseURL: "https://aashi-portfolio-b1970-default-rtdb.asia-southeast1.firebaseio.com"
 };
 
-// 2. Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const ratingsRef = database.ref('portfolioRatings');
-const starElements = document.querySelectorAll('.rating-stars'); // Get stars once
-let userRated = false; // To prevent multiple ratings from the same session/load
-let userRatingValue = 0; // To store the rating value after a successful click
+const starElements = document.querySelectorAll('.rating-stars');
+let userRated = false;
+let userRatingValue = 0; 
 
-// Helper to set star colors based on a value
+// Helper function to set star colors based on a numeric value
 function setStarColors(value) {
     starElements.forEach((s, index) => {
-        if (index < value) {
-            s.style.color = 'var(--starSelected)';
-        } else {
-            s.style.color = 'var(--starDefault)';
-        }
+        // Use style.color directly for permanent visual update
+        s.style.color = (index < value) ? 'var(--starSelected)' : 'var(--starDefault)';
     });
 }
 
-// 3. Function to save rating to Firebase
+// Function to save rating to Firebase
 function saveRating(rating) {
-    if (userRated) return; // Already rated
+    if (userRated) return;
 
-    // Generate a unique key for the new rating
     const newRatingRef = ratingsRef.push();
     newRatingRef.set({
         rating: rating,
@@ -291,8 +285,8 @@ function saveRating(rating) {
     }).then(() => {
         console.log("Rating saved successfully:", rating);
         document.getElementById('ratingMessage').style.display = 'block';
-        userRated = true; // Mark as rated
-        // Disable stars after rating
+        userRated = true;
+        // Disable click on stars
         starElements.forEach(star => {
             star.style.cursor = 'default';
         });
@@ -301,7 +295,7 @@ function saveRating(rating) {
     });
 }
 
-// 4. Function to get and calculate average rating from Firebase
+// Function to get and calculate average rating from Firebase
 function getAverageRating() {
     ratingsRef.on('value', (snapshot) => {
         const ratingsData = snapshot.val();
@@ -320,23 +314,19 @@ function getAverageRating() {
         
         document.getElementById('averageRating').innerText = Current Average Rating: ${avgText};
 
-        // Fill stars based on average rating (for display) - ONLY if the user hasn't rated yet
+        // Only update stars with average if the user hasn't rated this session
         if (!userRated) {
             const roundedAvg = Math.round(avg);
             setStarColors(roundedAvg);
         }
-
-    }, (error) => {
-        console.error("Error fetching ratings:", error);
-        document.getElementById('averageRating').innerText = 'Error loading rating.';
     });
 }
 
-// 5. Rating interaction logic (Updated)
+// Rating interaction logic
 starElements.forEach(star => {
     // Hover effect
     star.addEventListener('mouseover', function() {
-        if (userRated) return; // If already rated, stop hover effect
+        if (userRated) return;
         const value = parseInt(this.dataset.value);
         setStarColors(value);
     });
@@ -344,10 +334,10 @@ starElements.forEach(star => {
     // Reset on mouseout
     star.addEventListener('mouseout', function() {
         if (userRated) {
-            // If rated, show the user's selected rating permanently
+            // Show the user's selected rating if already rated
             setStarColors(userRatingValue);
         } else {
-            // Otherwise, reset to default (load average rating again)
+            // Re-load average rating to reset hover effect
             getAverageRating(); 
         }
     });
@@ -356,7 +346,7 @@ starElements.forEach(star => {
     star.addEventListener('click', function() {
         if (userRated) return;
         const rating = parseInt(this.dataset.value);
-        userRatingValue = rating; // Store the clicked rating
+        userRatingValue = rating;
         
         // Visually fill the clicked rating permanently
         setStarColors(rating);
@@ -370,12 +360,13 @@ getAverageRating();
 
 
 // =======================================================
-// 💻 EXISTING CODE (Modified for fixes)
+// 💻 SKILL COMMANDS & MODE TOGGLE (FIXED)
 // =======================================================
 
-// Fix 1: Define Modal Elements for Skill Commands to work
+// Define Modal Elements (FIXED: Necessary for modal to open)
 const modalBack = document.getElementById('modalBack');
 const closeModal = document.getElementById('closeModal');
+const modeBtn = document.getElementById("modeBtn");
 
 // commands updated with 5 commands each
 const commands={
@@ -435,22 +426,21 @@ monitor:`1. top (Process monitoring)
 };
 
 
-// modal
+// Modal Open/Close Logic (Now working)
 document.querySelectorAll(".skill").forEach(s=>{
 s.onclick=()=>{
 document.getElementById("modalTitle").innerText=s.innerText+" Commands";
 document.getElementById("cmdsArea").innerText=commands[s.dataset.key];
-modalBack.style.display="flex"; // Now modalBack is defined and works
+modalBack.style.display="flex"; 
 };
 });
-closeModal.onclick=()=>modalBack.style.display="none"; // Now closeModal is defined and works
+closeModal.onclick=()=>modalBack.style.display="none"; 
 
 
-// Fix 2: Dark/Light Mode fixed
-let light = document.body.classList.contains("light"); // Check initial state (should be dark by default)
-const modeBtn = document.getElementById("modeBtn");
+// Dark/Light Mode Logic (FIXED: Proper initialization and button text)
+let light = document.body.classList.contains("light");
 
-// Set initial button text based on default dark mode
+// Set initial button text based on default dark mode (Dark is default)
 if (!light) {
     modeBtn.innerText = "☀ Light";
 } else {
@@ -472,7 +462,7 @@ modeBtn.onclick = () => {
 // Role text animation
 const roles=["Linux Administrator • RHEL 9","Shell Scripting Expert","Linux Automation Engineer"];
 let i=0,j=0,isDel=false;
-const roleText = document.getElementById('roleText'); // Define roleText
+const roleText = document.getElementById('roleText'); 
 
 function type(){
 let t=roles[i];
