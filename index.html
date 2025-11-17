@@ -1,49 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Aashi Guleria | Portfolio (Professional)</title>
 
-i<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Aashi Guleria | Portfolio (Professional)</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
---bg:#081124;--card:rgba(255,255,255,0.03);--text:#e6f0ff;--muted:rgba(230,240,255,0.7);
---accent:#4aa3ff;--accent2:#ff7aa6;--yellow:#ffd000;
---skillBlue:#1565ff;--skillHover:#ff8b00;
+/* DARK MODE COLORS */
+--bg:#081124;
+--text:#e6f0ff;
+--muted:#b5c8e6;
+--card:rgba(255,255,255,0.05);
+--skillBlue:#1565ff;
+--skillHover:#ff8b00;
 }
-html,body{height:100%;margin:0;font-family:Poppins;background:#081124;background-size:400% 400%;color:var(--text);}
-.wrap{max-width:980px;margin:25px auto;padding:15px;}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
-h1{margin:0;font-size:22px;color:var(--muted);}
-.mode-btn{padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;cursor:pointer;}
-.hero{padding:30px;text-align:center;background:rgba(255,255,255,0.03);border-radius:15px;border:1px solid rgba(255,255,255,0.08);}
-.avatar{width:150px;height:150px;border-radius:50%;border:5px solid rgba(74,163,255,0.3);object-fit:cover;}
-.name{font-size:28px;font-weight:700;margin-top:10px;}
-.name span{color:var(--accent);}
-.role-wrap{margin-top:5px;min-height:25px;}
-.animated-role{font-size:15px;color:var(--muted);font-weight:600;}
-.cursor{display:inline-block;width:4px;background:var(--accent);height:18px;margin-left:4px;animation:blink .7s infinite;}
-@keyframes blink{0%{opacity:1;}50%{opacity:0;}100%{opacity:1;}}
-.fade-cycle{animation:fade 2s infinite;}
-@keyframes fade{0%{opacity:0;}50%{opacity:1;}100%{opacity:0;}}
 
-.btn{padding:10px 20px;margin:8px;border-radius:12px;border:0;cursor:pointer;font-size:15px;background:rgba(255,255,255,0.1);color:#fff;}
+/* LIGHT MODE OVERRIDE */
+.light {
+--bg:#ffffff;
+--text:#000000;
+--muted:#444444;
+--card:#f0f4ff;
+--skillBlue:#3c82ff;
+}
+
+/* MAIN STYLES */
+html,body{
+height:100%;
+margin:0;
+font-family:Poppins;
+background:var(--bg);
+color:var(--text);
+}
+
+.wrap{max-width:980px;margin:25px auto;padding:15px;}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.mode-btn{
+padding:8px 16px;
+border-radius:40px;
+border:1px solid rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.1);
+color:var(--text);
+cursor:pointer;
+}
+
+.hero{
+padding:30px;
+text-align:center;
+background:var(--card);
+border-radius:15px;
+}
+
+.avatar{
+width:140px;height:140px;border-radius:50%;
+border:4px solid rgba(74,163,255,0.4);
+}
+
+.name{font-size:28px;font-weight:700;margin-top:10px;}
+.name span{color:#4aa3ff;}
+
+.animated-role{color:var(--muted);font-weight:600;}
+.cursor{display:inline-block;width:4px;height:16px;background:#4aa3ff;margin-left:4px;animation:blink .7s infinite;}
+
+@keyframes blink{
+0%{opacity:1;}50%{opacity:0;}100%{opacity:1;}
+}
+
+.btn{
+padding:10px 20px;margin:8px;border-radius:12px;font-size:15px;
+border:0;color:#fff;cursor:pointer;
+}
 .github{background:#0d8bff;}
 .ig{background:#ff7aa6;}
 
-.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;margin-top:20px;border:1px solid rgba(255,255,255,0.08);}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.card{
+background:var(--card);
+padding:18px;
+border-radius:12px;
+margin-top:20px;
+}
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:14px;
+}
 
 .skill{
 background:var(--skillBlue);
-padding:14px;text-align:center;color:#fff;border-radius:10px;
-font-weight:600;cursor:pointer;transition:.3s;
+padding:14px;
+color:#fff;
+text-align:center;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
 }
 .skill:hover{
 background:var(--skillHover);
-transform:translateY(-5px);
+transform:translateY(-4px);
 }
 
-#modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;}
-#modal{background:#111;padding:20px;border-radius:12px;max-width:850px;width:100%;color:#fff;}
-pre{background:#000;padding:12px;border-radius:8px;color:#cce6ff;max-height:350px;overflow:auto;}
-.modal-close{padding:8px 16px;background:#0d8bff;border:0;border-radius:10px;color:#fff;cursor:pointer;}
+/* MODAL */
+#modalBack{
+position:fixed;inset:0;background:rgba(0,0,0,0.6);
+display:none;align-items:center;justify-content:center;
+}
+
+#modal{
+background:#111;padding:20px;border-radius:12px;max-width:850px;width:100%;
+color:#fff;
+}
+
+pre{
+background:#000;padding:12px;border-radius:8px;color:#cce6ff;
+max-height:350px;overflow:auto;
+}
+
+.modal-close{
+padding:8px 16px;background:#0d8bff;border-radius:10px;color:#fff;border:0;cursor:pointer;
+}
 
 </style>
 </head>
@@ -53,7 +139,7 @@ pre{background:#000;padding:12px;border-radius:8px;color:#cce6ff;max-height:350p
 
 <header>
 <h1>Aashi Guleria — Portfolio</h1>
-<button id="modeBtn" class="mode-btn">🌙 Dark</button>
+<button id="modeBtn" class="mode-btn">☀ Light</button>
 </header>
 
 <div class="hero">
@@ -69,6 +155,7 @@ pre{background:#000;padding:12px;border-radius:8px;color:#cce6ff;max-height:350p
 <button class="btn ig" id="instaBtn">Instagram</button>
 </div>
 </div>
+
 
 <div class="card">
 <h3>About Me</h3>
@@ -112,24 +199,26 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 </div>
 
 <script>
-// Light / Dark Mode FIXED
-let dark=true;
-document.getElementById("modeBtn").onclick=()=>{
-dark=!dark;
-if(!dark){
-document.documentElement.style.setProperty('--bg','#ffffff');
-document.body.style.background="#ffffff";
-document.body.style.color="#000";
-document.getElementById("modeBtn").innerText="🌙 Dark";
+
+// 🌞 LIGHT / DARK MODE FIXED
+let light = false;
+
+document.getElementById("modeBtn").onclick = () => {
+light = !light;
+
+if(light){
+document.body.classList.add("light");
+document.getElementById("modeBtn").innerText = "🌙 Dark";
 } else {
-location.reload(); // dark reset
+document.body.classList.remove("light");
+document.getElementById("modeBtn").innerText = "☀ Light";
 }
 };
 
-// Instagram
-instaBtn.onclick=()=>window.open("https://ig.me/m/aashi__guleria");
+// Instagram direct message
+instaBtn.onclick = () => window.open("https://ig.me/m/aashi__guleria");
 
-// 5 commands per skill
+// commands
 const commands={
 user:`useradd test1
 passwd test1
@@ -137,19 +226,18 @@ id test1
 usermod -aG wheel test1
 userdel -r test1`,
 group:`groupadd dev
-groupadd hr
 groupdel hr
 gpasswd -a user1 dev
 gpasswd -d user1 dev`,
 perm:`chmod 755 a.txt
-chmod -R 700 dir1
-chown root:user1 file
-setfacl -m u:user1:rwx file
+chmod 700 dir
+chown root:user file
+setfacl -m u:user:rwx file
 getfacl file`,
 cron:`crontab -e
 crontab -l
 systemctl restart crond
-echo "0 3 * * * /backup" >> /etc/crontab
+echo "0 3 * * * /script" >> /etc/crontab
 systemctl status crond`,
 firewall:`firewall-cmd --state
 firewall-cmd --add-port=80/tcp --permanent
@@ -178,6 +266,7 @@ free -m
 systemctl list-units --failed`
 };
 
+
 // modal
 document.querySelectorAll(".skill").forEach(s=>{
 s.onclick=()=>{
@@ -188,17 +277,20 @@ modalBack.style.display="flex";
 });
 closeModal.onclick=()=>modalBack.style.display="none";
 
-// ROLE animation (typing + fade)
+
+// Role text animation
 const roles=["Linux Administrator • RHEL 9","Linux Automation"];
 let i=0,j=0,isDel=false;
+
 function type(){
-let txt=roles[i];
+let t=roles[i];
 if(!isDel){
-roleText.innerHTML=txt.substring(0,j)+'<span class="cursor"></span>';
+roleText.innerHTML=t.substring(0,j)+'<span class="cursor"></span>';
 j++;
-if(j==txt.length){setTimeout(()=>isDel=true,800);}
-} else {
-roleText.innerHTML=txt.substring(0,j)+'<span class="cursor"></span>';
+if(j==t.length){setTimeout(()=>isDel=true,700);}
+}
+else{
+roleText.innerHTML=t.substring(0,j)+'<span class="cursor"></span>';
 j--;
 if(j==0){isDel=false;i=(i+1)%roles.length;}
 }
@@ -207,4 +299,5 @@ setTimeout(type,80);
 type();
 </script>
 
-</body></html>
+</body>
+</html>
