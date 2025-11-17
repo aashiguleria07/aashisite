@@ -1,307 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Aashi Guleria | Portfolio (Professional)</title>
 
+i<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Aashi Guleria | Portfolio (Professional)</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-/* -------------------- ROOT COLORS -------------------- */
 :root{
-  --bg:#081124;
-  --card: rgba(255,255,255,0.03);
-  --text:#e6f0ff;
-  --muted:rgba(230,240,255,0.7);
-  --accent:#4aa3ff;
-  --accent2:#ff7aa6;
-  --glass: rgba(255,255,255,0.06);
-  --yellow:#ffd000;
-  --shadow: 0 10px 30px rgba(0,0,0,0.6);
-  --neon: 0 0 18px rgba(74,163,255,0.25), 0 0 40px rgba(74,163,255,0.08);
+--bg:#081124;--card:rgba(255,255,255,0.03);--text:#e6f0ff;--muted:rgba(230,240,255,0.7);
+--accent:#4aa3ff;--accent2:#ff7aa6;--yellow:#ffd000;
+--skillBlue:#1565ff;--skillHover:#ff8b00;
 }
+html,body{height:100%;margin:0;font-family:Poppins;background:#081124;background-size:400% 400%;color:var(--text);}
+.wrap{max-width:980px;margin:25px auto;padding:15px;}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
+h1{margin:0;font-size:22px;color:var(--muted);}
+.mode-btn{padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;cursor:pointer;}
+.hero{padding:30px;text-align:center;background:rgba(255,255,255,0.03);border-radius:15px;border:1px solid rgba(255,255,255,0.08);}
+.avatar{width:150px;height:150px;border-radius:50%;border:5px solid rgba(74,163,255,0.3);object-fit:cover;}
+.name{font-size:28px;font-weight:700;margin-top:10px;}
+.name span{color:var(--accent);}
+.role-wrap{margin-top:5px;min-height:25px;}
+.animated-role{font-size:15px;color:var(--muted);font-weight:600;}
+.cursor{display:inline-block;width:4px;background:var(--accent);height:18px;margin-left:4px;animation:blink .7s infinite;}
+@keyframes blink{0%{opacity:1;}50%{opacity:0;}100%{opacity:1;}}
+.fade-cycle{animation:fade 2s infinite;}
+@keyframes fade{0%{opacity:0;}50%{opacity:1;}100%{opacity:0;}}
 
-/* -------------------- ANIMATED BACKGROUND (Gradient) -------------------- */
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:"Poppins",sans-serif;
-  background: linear-gradient(120deg,#041226 0%, #07142a 50%, #041226 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-y:auto;
-  background-size: 400% 400%;
-  animation: gradientShift 18s ease infinite;
-}
-@keyframes gradientShift{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+.btn{padding:10px 20px;margin:8px;border-radius:12px;border:0;cursor:pointer;font-size:15px;background:rgba(255,255,255,0.1);color:#fff;}
+.github{background:#0d8bff;}
+.ig{background:#ff7aa6;}
 
-*{box-sizing:border-box}
-
-/* -------------------- LAYOUT WRAP -------------------- */
-.wrap{
-  max-width:980px;
-  margin:28px auto;
-  padding:18px;
-}
-
-/* -------------------- HEADER -------------------- */
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:18px;
-}
-h1{margin:0;font-size:22px;font-weight:700;color:var(--muted)}
-
-/* -------------------- MODE BUTTON (glass) -------------------- */
-.mode-btn{
-  padding:8px 16px;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:999px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  color:var(--text);
-  cursor:pointer;
-  box-shadow:var(--shadow), var(--neon);
-  backdrop-filter: blur(6px);
-  transition:all .2s;
-}
-.mode-btn:hover{ transform:translateY(-3px); }
-
-/* -------------------- HERO (dark neon card) -------------------- */
-.hero{
-  text-align:center;
-  padding:34px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4) inset;
-  border: 1px solid rgba(255,255,255,0.04);
-  position:relative;
-  overflow:hidden;
-}
-
-/* subtle neon glow ring behind avatar */
-.hero::before{
-  content:"";
-  position:absolute;
-  width:420px;height:420px;
-  left:50%;top:-40%;
-  transform:translateX(-50%);
-  background: radial-gradient(circle at 30% 30%, rgba(74,163,255,0.08), transparent 20%),
-              radial-gradient(circle at 70% 70%, rgba(255,122,150,0.03), transparent 10%);
-  filter:blur(40px);
-  pointer-events:none;
-  opacity:0.9;
-}
-
-/* avatar */
-.avatar{
-  width:150px;height:150px;
-  border-radius:50%;
-  object-fit:cover;
-  border:6px solid rgba(74,163,255,0.18);
-  box-shadow: 0 6px 30px rgba(74,163,255,0.06), 0 2px 12px rgba(0,0,0,0.6);
-  display:inline-block;
-}
-
-/* name */
-.hero .name{
-  font-size:28px;
-  font-weight:700;
-  margin-top:12px;
-  color:var(--text);
-  letter-spacing:0.2px;
-}
-.hero .name span{ color:var(--accent); text-shadow:0 2px 18px rgba(74,163,255,0.12); }
-
-/* role area holder */
-.role-wrap{
-  margin-top:8px;
-  min-height:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-}
-
-/* role text base */
-.animated-role{
-  font-size:15px;
-  color:var(--muted);
-  font-weight:600;
-  height:22px;
-  display:inline-block;
-  position:relative;
-  letter-spacing:0.2px;
-}
-
-/* small dot indicators */
-.role-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:linear-gradient(180deg,var(--accent),var(--accent2));
-  box-shadow: 0 0 18px rgba(74,163,255,0.18);
-}
-
-/* cursor for typing */
-.cursor{
-  display:inline-block;
-  width:3px;
-  height:18px;
-  background:var(--accent);
-  margin-left:6px;
-  vertical-align:middle;
-  animation: blink 700ms infinite;
-  border-radius:1px;
-  box-shadow: 0 0 8px rgba(74,163,255,0.8);
-}
-@keyframes blink{ 0%{opacity:1;}50%{opacity:0;}100%{opacity:1;} }
-
-/* fade animation helper */
-.fade-cycle{ animation: fadeInOut 2000ms linear infinite; }
-@keyframes fadeInOut{
-  0%{opacity:0}
-  25%{opacity:1}
-  75%{opacity:1}
-  100%{opacity:0}
-}
-
-/* blink class for toggling visibility */
-.blinking{ animation: none; opacity:1; transition:opacity .18s linear; }
-
-/* -------------------- BUTTONS (glass + neon) -------------------- */
-.buttons{margin-top:18px}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 20px;
-  margin-right:8px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.06);
-  cursor:pointer;
-  font-size:15px;
-  color:var(--text);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-  backdrop-filter: blur(6px);
-  transition: transform .18s, box-shadow .18s, color .18s;
-}
-.btn:hover{ transform:translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 0 40px rgba(74,163,255,0.06); }
-.btn:active{ transform:translateY(-1px) scale(.995); }
-
-/* special colored buttons */
-.btn.github{ background: linear-gradient(90deg,#0e76a8,#0d90ff); color:white; border-color: rgba(13,144,255,0.25);}
-.btn.ig{ background: linear-gradient(90deg,#ff6aa1,#ffad6a); color:white; border-color: rgba(255,122,150,0.16); }
-
-/* -------------------- CARDS / SECTIONS -------------------- */
-.card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  padding:18px;
-  border-radius:12px;
-  box-shadow:var(--shadow);
-  margin-top:18px;
-  border:1px solid rgba(255,255,255,0.03);
-}
-
-/* skills grid */
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
-  gap:14px;
-}
+.card{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;margin-top:20px;border:1px solid rgba(255,255,255,0.08);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
 
 .skill{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  padding:14px;
-  text-align:center;
-  color:var(--text);
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition: transform .18s, box-shadow .18s, color .18s;
-  border:1px solid rgba(255,255,255,0.03);
-  position:relative;
-  overflow:hidden;
+background:var(--skillBlue);
+padding:14px;text-align:center;color:#fff;border-radius:10px;
+font-weight:600;cursor:pointer;transition:.3s;
 }
-
-/* glow and rise on hover */
 .skill:hover{
-  transform:translateY(-8px);
-  box-shadow: 0 18px 60px rgba(74,163,255,0.06), 0 0 30px rgba(74,163,255,0.06);
-  color:#fff;
-}
-.skill::after{
-  content:"";
-  position:absolute;
-  left:-30%;
-  top:0;
-  width:60%;
-  height:100%;
-  transform:skewX(-18deg);
-  background: linear-gradient(90deg, rgba(74,163,255,0.06), rgba(255,122,150,0.03));
-  transition: all .45s ease;
-  opacity:0;
-}
-.skill:hover::after{ left:120%; opacity:1; }
-
-/* -------------------- MODAL -------------------- */
-#modalBack{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,0.55);
-  z-index:9999;
-}
-#modal{
-  width:100%;
-  max-width:880px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  color:var(--text);
-  padding:22px;
-  border-radius:12px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
-  border:1px solid rgba(255,255,255,0.04);
-}
-#modal h2{ margin-top:0; color:var(--accent); }
-pre{
-  background: linear-gradient(180deg,#031026 0%, #051226 100%);
-  color:#dbeeff;
-  padding:14px;
-  border-radius:8px;
-  max-height:360px;
-  overflow:auto;
-  white-space:pre-wrap;
-  border:1px solid rgba(255,255,255,0.03);
+background:var(--skillHover);
+transform:translateY(-5px);
 }
 
-/* modal close */
-.modal-close{
-  margin-top:12px;
-  padding:10px 16px;border:0;border-radius:10px;
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
-  color:white;cursor:pointer;transition:.18s;
-}
-.modal-close:hover{ transform:translateY(-4px); }
+#modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;}
+#modal{background:#111;padding:20px;border-radius:12px;max-width:850px;width:100%;color:#fff;}
+pre{background:#000;padding:12px;border-radius:8px;color:#cce6ff;max-height:350px;overflow:auto;}
+.modal-close{padding:8px 16px;background:#0d8bff;border:0;border-radius:10px;color:#fff;cursor:pointer;}
 
-/* footer */
-footer{text-align:center;margin:18px 0;opacity:0.6;color:var(--muted);font-size:14px}
-.small-muted{ color:var(--muted); font-size:14px; }
-
-/* responsive */
-@media (max-width:600px){
-  .wrap{ padding:12px; }
-  .avatar{ width:120px;height:120px; }
-  .hero{ padding:20px; border-radius:12px; }
-  .name{ font-size:22px; }
-  .buttons .btn{ padding:10px 14px; font-size:14px; }
-}
 </style>
 </head>
 <body>
@@ -309,267 +52,159 @@ footer{text-align:center;margin:18px 0;opacity:0.6;color:var(--muted);font-size:
 <div class="wrap">
 
 <header>
-  <h1>Aashi Guleria — Portfolio</h1>
-  <button id="modeBtn" class="mode-btn">🌙 Dark</button>
+<h1>Aashi Guleria — Portfolio</h1>
+<button id="modeBtn" class="mode-btn">🌙 Dark</button>
 </header>
 
-<!-- HERO -->
 <div class="hero">
-  <img src="aashi.jpg" class="avatar" alt="Aashi">
+<img src="aashi.jpg" class="avatar">
+<div class="name">Hello, I'm <span>Aashi</span></div>
 
-  <div class="name">
-    Hello, I'm <span>Aashi</span>
-  </div>
-
-  <!-- ROLE AREA: will cycle through Typing, Blink, Fade -->
-  <div class="role-wrap" aria-live="polite">
-    <div id="roleText" class="animated-role" aria-atomic="true"></div>
-    <div id="roleDot" class="role-dot" title="Role indicator" aria-hidden="true"></div>
-  </div>
-
-  <div class="buttons">
-    <a href="https://github.com/aashiguleria07" target="_blank" rel="noopener">
-      <button class="btn github">GitHub</button>
-    </a>
-    <button class="btn ig" id="instaBtn">Instagram</button>
-  </div>
+<div class="role-wrap">
+<div id="roleText" class="animated-role"></div>
 </div>
 
-<!-- ABOUT -->
+<div class="buttons">
+<a href="https://github.com/aashiguleria07"><button class="btn github">GitHub</button></a>
+<button class="btn ig" id="instaBtn">Instagram</button>
+</div>
+</div>
+
 <div class="card">
-  <h3 style="margin-top:6px;">About Me</h3>
-  <p style="line-height:1.6;font-size:15px;color:var(--muted);">
-    I am <strong>Aashi Guleria</strong>, a passionate Linux Administrator with experience on RHEL 9.
-    I build automation scripts, manage systems, networking, and secure servers.
-    <br><br>
-    <b>Contact:</b> 9805427313 &nbsp;&nbsp; <b>Gmail:</b> guleriaaashi@gmail.com
-  </p>
+<h3>About Me</h3>
+<p style="color:var(--muted);">
+I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
+<b>Contact:</b> 9805427313 — <b>Email:</b> guleriaaashi@gmail.com
+</p>
 </div>
 
-<!-- SKILLS -->
 <div class="card">
-  <h3 style="margin-top:6px;">My Skills</h3>
-  <div class="skills-grid" id="skillsBox">
-    <div class="skill" data-key="user">User Management</div>
-    <div class="skill" data-key="group">Group Management</div>
-    <div class="skill" data-key="perm">File Permissions</div>
-    <div class="skill" data-key="cron">Cron Jobs</div>
-    <div class="skill" data-key="firewall">Firewall</div>
-    <div class="skill" data-key="network">Networking</div>
-    <div class="skill" data-key="pkg">YUM / DNF / RPM</div>
-    <div class="skill" data-key="repo">Local Repository</div>
-    <div class="skill" data-key="monitor">Monitoring</div>
-  </div>
-  <p class="small-muted" style="margin-top:12px;">Hover any skill to see a glow effect. Click to view commands.</p>
+<h3>My Skills</h3>
+<div class="skills-grid">
+<div class="skill" data-key="user">User Management</div>
+<div class="skill" data-key="group">Group Management</div>
+<div class="skill" data-key="perm">File Permissions</div>
+<div class="skill" data-key="cron">Cron Jobs</div>
+<div class="skill" data-key="firewall">Firewall</div>
+<div class="skill" data-key="network">Networking</div>
+<div class="skill" data-key="pkg">YUM / DNF / RPM</div>
+<div class="skill" data-key="repo">Local Repository</div>
+<div class="skill" data-key="monitor">Monitoring</div>
+</div>
 </div>
 
-<!-- PROJECTS -->
 <div class="card">
-  <h3 style="margin-top:6px;">Projects</h3>
-  <p style="color:var(--muted);">✔ Linux automation scripts for backups, monitoring and cron tasks.</p>
-  <hr style="margin:12px 0;border:none;height:1px;background:rgba(255,255,255,0.02)">
-  <div style="font-size:13px;color:var(--muted)">
-    © <span id="year"></span> Aashi Guleria — Made by Aashi
-  </div>
+<h3>Projects</h3>
+<p style="color:var(--muted);">✔ Linux automation scripts for backups, cron & monitoring.</p>
 </div>
 
-<footer>Click any skill to view commands.</footer>
+<footer style="color:var(--muted);text-align:center;">Click any skill to view commands.</footer>
+
 </div>
 
 <!-- MODAL -->
 <div id="modalBack">
-  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <h2 id="modalTitle">Commands</h2>
-    <pre id="cmdsArea"></pre>
-    <button class="modal-close" id="closeModal">Close</button>
-  </div>
+<div id="modal">
+<h2 id="modalTitle">Commands</h2>
+<pre id="cmdsArea"></pre>
+<button class="modal-close" id="closeModal">Close</button>
+</div>
 </div>
 
 <script>
-// ---------------- YEAR ----------------
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// ---------------- DARK / LIGHT toggle (simple - swaps root colors lightly) ----------------
-const modeBtn = document.getElementById("modeBtn");
-let dark = true;
-modeBtn.addEventListener("click", ()=>{
-  dark = !dark;
-  if(!dark){
-    document.documentElement.style.setProperty('--bg','#f4f9ff');
-    document.documentElement.style.setProperty('--text','#111');
-    document.documentElement.style.setProperty('--muted','rgba(17,17,17,0.7)');
-    document.documentElement.style.setProperty('--glass','rgba(0,0,0,0.04)');
-    modeBtn.textContent = "🌙 Dark";
-  } else {
-    document.documentElement.style.setProperty('--bg','#081124');
-    document.documentElement.style.setProperty('--text','#e6f0ff');
-    document.documentElement.style.setProperty('--muted','rgba(230,240,255,0.7)');
-    modeBtn.textContent = "☀️ Light";
-  }
-});
-
-// ---------------- INSTAGRAM ----------------
-document.getElementById("instaBtn").onclick = ()=>{
-  window.open("https://ig.me/m/aashi__guleria", "_blank");
+// Light / Dark Mode FIXED
+let dark=true;
+document.getElementById("modeBtn").onclick=()=>{
+dark=!dark;
+if(!dark){
+document.documentElement.style.setProperty('--bg','#ffffff');
+document.body.style.background="#ffffff";
+document.body.style.color="#000";
+document.getElementById("modeBtn").innerText="🌙 Dark";
+} else {
+location.reload(); // dark reset
+}
 };
 
-// ---------------- COMMANDS DATA ----------------
-const commands = {
-  user:`useradd user1
-passwd user1
-usermod -c "Aashi User" user1
-userdel -r user1`,
-  group:`groupadd devs
-groupdel devs
-usermod -aG devs user1`,
-  perm:`chmod 755 script.sh
-chown user1 file1
-setfacl -m u:user1:rwx file1`,
-  cron:`crontab -e
-systemctl status crond
-echo "0 2 * * * /backup.sh" >> /etc/crontab`,
-  firewall:`firewall-cmd --state
-firewall-cmd --add-port=22/tcp --permanent
-firewall-cmd --reload`,
-  network:`ip a
+// Instagram
+instaBtn.onclick=()=>window.open("https://ig.me/m/aashi__guleria");
+
+// 5 commands per skill
+const commands={
+user:`useradd test1
+passwd test1
+id test1
+usermod -aG wheel test1
+userdel -r test1`,
+group:`groupadd dev
+groupadd hr
+groupdel hr
+gpasswd -a user1 dev
+gpasswd -d user1 dev`,
+perm:`chmod 755 a.txt
+chmod -R 700 dir1
+chown root:user1 file
+setfacl -m u:user1:rwx file
+getfacl file`,
+cron:`crontab -e
+crontab -l
+systemctl restart crond
+echo "0 3 * * * /backup" >> /etc/crontab
+systemctl status crond`,
+firewall:`firewall-cmd --state
+firewall-cmd --add-port=80/tcp --permanent
+firewall-cmd --remove-port=80/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all`,
+network:`ip a
 nmcli device status
-ping -c 3 8.8.8.8`,
-  pkg:`dnf install nginx -y
-dnf remove nginx -y
-rpm -qa`,
-  repo:`createrepo /repo
-yum repolist`,
-  monitor:`top
+nmcli con up enp0s3
+ping google.com
+ss -tulnp`,
+pkg:`dnf install httpd -y
+dnf remove httpd -y
+dnf update -y
+rpm -qa | head
+dnf history`,
+repo:`mkdir /repo
+createrepo /repo
+vim /etc/yum.repos.d/local.repo
+dnf clean all
+dnf repolist`,
+monitor:`top
 htop
-df -h`
+df -h
+free -m
+systemctl list-units --failed`
 };
 
-// ---------------- OPEN/CLOSE MODAL ----------------
+// modal
 document.querySelectorAll(".skill").forEach(s=>{
-  s.onclick = ()=>{
-    const key = s.dataset.key;
-    document.getElementById("modalTitle").textContent = s.textContent + " — Commands";
-    document.getElementById("cmdsArea").textContent = commands[key] || "# No commands found";
-    document.getElementById("modalBack").style.display = "flex";
-  };
+s.onclick=()=>{
+document.getElementById("modalTitle").innerText=s.innerText+" Commands";
+document.getElementById("cmdsArea").innerText=commands[s.dataset.key];
+modalBack.style.display="flex";
+};
 });
-document.getElementById("closeModal").onclick = ()=> document.getElementById("modalBack").style.display="none";
-document.getElementById("modalBack").onclick = (e)=> { if(e.target.id==="modalBack") document.getElementById("modalBack").style.display="none"; }
+closeModal.onclick=()=>modalBack.style.display="none";
 
-// ---------------- ROLE TEXT: Modes cycle (Typing, Blink, Fade) ----------------
-const roles = [
-  "Linux Administrator • RHEL 9",
-  "Shell Scripting Expert",
-  "Linux Automation Engineer"
-];
-
-let modeIndex = 0; // 0=typing,1=blink,2=fade
-const roleTextEl = document.getElementById("roleText");
-const roleDot = document.getElementById("roleDot");
-
-function clearRoleEffects(){
-  roleTextEl.classList.remove('fade-cycle');
-  roleTextEl.textContent = '';
-  // ensure no leftover timers
-  if(window._typingTimer) { clearTimeout(window._typingTimer); window._typingTimer = null; }
-  if(window._blinkInterval) { clearInterval(window._blinkInterval); window._blinkInterval = null; }
-  roleDot.style.opacity = '1';
+// ROLE animation (typing + fade)
+const roles=["Linux Administrator • RHEL 9","Shell Scripting Expert","Linux Automation Engineer"];
+let i=0,j=0,isDel=false;
+function type(){
+let txt=roles[i];
+if(!isDel){
+roleText.innerHTML=txt.substring(0,j)+'<span class="cursor"></span>';
+j++;
+if(j==txt.length){setTimeout(()=>isDel=true,800);}
+} else {
+roleText.innerHTML=txt.substring(0,j)+'<span class="cursor"></span>';
+j--;
+if(j==0){isDel=false;i=(i+1)%roles.length;}
 }
-
-// Typing mode
-function runTypingMode(text, done){
-  let i = 0;
-  roleTextEl.textContent = '';
-  roleTextEl.classList.remove('fade-cycle');
-  function step(){
-    roleTextEl.innerHTML = text.substring(0,i) + '<span class="cursor"></span>';
-    i++;
-    if(i<=text.length){
-      window._typingTimer = setTimeout(step, 70);
-    } else {
-      // pause with full text then finish
-      window._typingTimer = setTimeout(()=> {
-        roleTextEl.innerHTML = text; // remove cursor
-        done && done();
-      }, 1200);
-    }
-  }
-  step();
+setTimeout(type,80);
 }
-
-// Blink mode (simple toggle visible/invisible quickly)
-function runBlinkMode(text, done){
-  roleTextEl.classList.remove('fade-cycle');
-  roleTextEl.innerHTML = text + '<span class="cursor"></span>';
-  let times = 0;
-  const maxTimes = 6; // blink a few times (approx 3 seconds)
-  window._blinkInterval = setInterval(()=>{
-    roleTextEl.style.opacity = roleTextEl.style.opacity === '0' ? '1' : '0';
-    times++;
-    if(times >= maxTimes){
-      clearInterval(window._blinkInterval);
-      roleTextEl.style.opacity = '1';
-      roleTextEl.innerHTML = text; // final stable
-      done && done();
-    }
-  }, 500);
-}
-
-// Fade mode (CSS animation for fadeInOut)
-function runFadeMode(text, done){
-  roleTextEl.innerHTML = text;
-  roleTextEl.classList.remove('fade-cycle');
-  // force reflow to restart animation
-  void roleTextEl.offsetWidth;
-  roleTextEl.classList.add('fade-cycle');
-  // run for one full cycle (2s)
-  window._fadeTimer = setTimeout(()=> {
-    roleTextEl.classList.remove('fade-cycle');
-    done && done();
-  }, 2000);
-}
-
-// cycle through modes
-function cycleModes(){
-  clearRoleEffects();
-  const currentRole = roles[ modeIndex % roles.length ];
-  const currentMode = modeIndex % 3; // 0 typing,1 blink,2 fade
-
-  // indicator dot color change
-  roleDot.style.background = (currentMode===0 ? 'linear-gradient(90deg,#4aa3ff,#6fd7ff)' :
-                               currentMode===1 ? 'linear-gradient(90deg,#ff7aa6,#ffb07a)' :
-                               'linear-gradient(90deg,#ffd000,#ff7aa6)');
-
-  if(currentMode === 0){
-    runTypingMode(currentRole, ()=> { modeIndex++; setTimeout(cycleModes, 300); });
-  } else if(currentMode === 1){
-    runBlinkMode(currentRole, ()=> { modeIndex++; setTimeout(cycleModes, 300); });
-  } else {
-    runFadeMode(currentRole, ()=> { modeIndex++; setTimeout(cycleModes, 300); });
-  }
-}
-
-// start cycle on load
-cycleModes();
-
-// ---------------- OPTIONAL: reduce motion for accessibility ----------------
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(prefersReduced){
-  // show static single role
-  clearRoleEffects();
-  roleTextEl.textContent = roles[0];
-}
-
-// ---------------- small UX: keyboard accessible skills (enter opens) ----------------
-document.querySelectorAll('.skill').forEach(el=>{
-  el.setAttribute('tabindex','0');
-  el.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault();
-      el.click();
-    }
-  });
-});
+type();
 </script>
-</body>
-</html>
+
+</body></html>
