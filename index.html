@@ -131,9 +131,6 @@ color: var(--starDefault);
 .rating-stars:hover {
 color: var(--starSelected);
 }
-.star-filled {
-color: var(--starSelected) !important;
-}
 .rating-result {
 margin-top: 8px;
 font-size: 16px;
@@ -150,6 +147,7 @@ font-weight: 600;
 #modalBack{
 position:fixed;inset:0;background:rgba(0,0,0,0.6);
 display:none;align-items:center;justify-content:center;
+z-index: 1000; /* Ensure modal is on top */
 }
 
 #modal{
@@ -175,7 +173,7 @@ padding:8px 16px;background:#0d8bff;border-radius:10px;color:#fff;border:0;curso
 
 <header>
 <h1>Aashi Guleria — Portfolio</h1>
-<button id="modeBtn" class="mode-btn">☀ Light</button>
+<button id="modeBtn" class="mode-btn">🌙 Dark</button>
 </header>
 
 <div class="hero">
@@ -251,7 +249,7 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 // 🚀 NEW: FIREBASE CONFIGURATION AND RATING LOGIC
 // =======================================================
 
-// 1. Firebase Configuration (आपके द्वारा दी गई config)
+// 1. Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDvpCiokWNDxzg9gfkCjWIkU9bfljoULd8",
     authDomain: "aashi-portfolio-b1970.firebaseapp.com",
@@ -259,15 +257,27 @@ const firebaseConfig = {
     storageBucket: "aashi-portfolio-b1970.appspot.com",
     messagingSenderId: "1227537828",
     appId: "1:1227537828:web:cf652bfa886039cb5531",
-    databaseURL: "https://aashi-portfolio-b1970-default-rtdb.asia-southeast1.firebaseio.com" // Realtime DB URL
+    databaseURL: "https://aashi-portfolio-b1970-default-rtdb.asia-southeast1.firebaseio.com"
 };
 
 // 2. Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-const ratingsRef = database.ref('portfolioRatings'); // Firebase path: /portfolioRatings
-
+const ratingsRef = database.ref('portfolioRatings');
+const starElements = document.querySelectorAll('.rating-stars'); // Get stars once
 let userRated = false; // To prevent multiple ratings from the same session/load
+let userRatingValue = 0; // To store the rating value after a successful click
+
+// Helper to set star colors based on a value
+function setStarColors(value) {
+    starElements.forEach((s, index) => {
+        if (index < value) {
+            s.style.color = 'var(--starSelected)';
+        } else {
+            s.style.color = 'var(--starDefault)';
+        }
+    });
+}
 
 // 3. Function to save rating to Firebase
 function saveRating(rating) {
@@ -283,7 +293,7 @@ function saveRating(rating) {
         document.getElementById('ratingMessage').style.display = 'block';
         userRated = true; // Mark as rated
         // Disable stars after rating
-        document.querySelectorAll('.rating-stars').forEach(star => {
+        starElements.forEach(star => {
             star.style.cursor = 'default';
         });
     }).catch(error => {
@@ -310,15 +320,11 @@ function getAverageRating() {
         
         document.getElementById('averageRating').innerText = Current Average Rating: ${avgText};
 
-        // Fill stars based on average rating (for display)
-        const roundedAvg = Math.round(avg);
-        document.querySelectorAll('.rating-stars').forEach((star, index) => {
-            if (index < roundedAvg) {
-                star.classList.add('star-filled');
-            } else {
-                star.classList.remove('star-filled');
-            }
-        });
+        // Fill stars based on average rating (for display) - ONLY if the user hasn't rated yet
+        if (!userRated) {
+            const roundedAvg = Math.round(avg);
+            setStarColors(roundedAvg);
+        }
 
     }, (error) => {
         console.error("Error fetching ratings:", error);
@@ -326,44 +332,34 @@ function getAverageRating() {
     });
 }
 
-// 5. Rating interaction logic
-const starElements = document.querySelectorAll('.rating-stars');
-
+// 5. Rating interaction logic (Updated)
 starElements.forEach(star => {
     // Hover effect
     star.addEventListener('mouseover', function() {
-        if (userRated) return;
+        if (userRated) return; // If already rated, stop hover effect
         const value = parseInt(this.dataset.value);
-        starElements.forEach((s, index) => {
-            if (index < value) {
-                s.style.color = 'var(--starSelected)';
-            } else {
-                s.style.color = 'var(--starDefault)';
-            }
-        });
+        setStarColors(value);
     });
 
     // Reset on mouseout
     star.addEventListener('mouseout', function() {
-        if (userRated) return;
-        starElements.forEach(s => {
-            s.style.color = 'var(--starDefault)';
-        });
+        if (userRated) {
+            // If rated, show the user's selected rating permanently
+            setStarColors(userRatingValue);
+        } else {
+            // Otherwise, reset to default (load average rating again)
+            getAverageRating(); 
+        }
     });
 
     // Click to save rating
     star.addEventListener('click', function() {
         if (userRated) return;
         const rating = parseInt(this.dataset.value);
+        userRatingValue = rating; // Store the clicked rating
         
         // Visually fill the clicked rating permanently
-        starElements.forEach((s, index) => {
-            if (index < rating) {
-                s.classList.add('star-filled');
-            } else {
-                s.classList.remove('star-filled');
-            }
-        });
+        setStarColors(rating);
 
         saveRating(rating);
     });
@@ -374,23 +370,12 @@ getAverageRating();
 
 
 // =======================================================
-// 💻 EXISTING CODE (Modified for 5 commands per skill)
+// 💻 EXISTING CODE (Modified for fixes)
 // =======================================================
 
-// 🌞 LIGHT / DARK MODE FIXED
-let light = false;
-
-document.getElementById("modeBtn").onclick = () => {
-light = !light;
-
-if(light){
-document.body.classList.add("light");
-document.getElementById("modeBtn").innerText = "🌙 Dark";
-} else {
-document.body.classList.remove("light");
-document.getElementById("modeBtn").innerText = "☀ Light";
-}
-};
+// Fix 1: Define Modal Elements for Skill Commands to work
+const modalBack = document.getElementById('modalBack');
+const closeModal = document.getElementById('closeModal');
 
 // commands updated with 5 commands each
 const commands={
@@ -455,15 +440,39 @@ document.querySelectorAll(".skill").forEach(s=>{
 s.onclick=()=>{
 document.getElementById("modalTitle").innerText=s.innerText+" Commands";
 document.getElementById("cmdsArea").innerText=commands[s.dataset.key];
-modalBack.style.display="flex";
+modalBack.style.display="flex"; // Now modalBack is defined and works
 };
 });
-closeModal.onclick=()=>modalBack.style.display="none";
+closeModal.onclick=()=>modalBack.style.display="none"; // Now closeModal is defined and works
 
+
+// Fix 2: Dark/Light Mode fixed
+let light = document.body.classList.contains("light"); // Check initial state (should be dark by default)
+const modeBtn = document.getElementById("modeBtn");
+
+// Set initial button text based on default dark mode
+if (!light) {
+    modeBtn.innerText = "☀ Light";
+} else {
+    modeBtn.innerText = "🌙 Dark";
+}
+
+modeBtn.onclick = () => {
+    light = !light;
+
+    if(light){
+        document.body.classList.add("light");
+        modeBtn.innerText = "🌙 Dark";
+    } else {
+        document.body.classList.remove("light");
+        modeBtn.innerText = "☀ Light";
+    }
+};
 
 // Role text animation
 const roles=["Linux Administrator • RHEL 9","Shell Scripting Expert","Linux Automation Engineer"];
 let i=0,j=0,isDel=false;
+const roleText = document.getElementById('roleText'); // Define roleText
 
 function type(){
 let t=roles[i];
