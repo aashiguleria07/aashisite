@@ -54,6 +54,13 @@ border:1px solid rgba(255,255,255,0.2);
 background:rgba(255,255,255,0.1);
 color:var(--text);
 cursor:pointer;
+/* 💡 Light mode button fix for better visibility in light mode */
+transition: all 0.3s;
+}
+
+.light .mode-btn {
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.05);
 }
 
 .hero{
@@ -134,6 +141,13 @@ margin-top:20px;
     font-family: Poppins;
     font-size: 16px;
 }
+/* 💡 Light mode form input fix */
+.light .form-input {
+    border: 1px solid rgba(0,0,0,0.1);
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
 .form-input::placeholder {
     color: var(--muted);
 }
@@ -243,7 +257,7 @@ margin-top:15px; /* Add margin below content */
 
 <header>
 <h1>Aashi Guleria — Portfolio</h1>
-<button id="modeBtn" class="mode-btn">☀ Light</button>
+<button id="modeBtn" class="mode-btn">🌙 Dark</button>
 </header>
 
 <div class="hero">
@@ -297,15 +311,10 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 <div class="card">
     <h3>Gallery</h3>
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="aashi.jpg1" alt="MY PHOTO" onclick="showImageModal('aashi.jpg1', 'MY PHOTO')"></div>
-        <div class="gallery-item"><img src="aashi.jpg2" alt="MY PHOTO" onclick="showImageModal('aashi.jpg2', 'MY PHOTO')"></div>
-        <div class="gallery-item"><img src="aashi.jpg3" alt="MY PHOTO" onclick="showImageModal('aashi.jpg3', 'MY PHOTO')"></div>
-        <div class="gallery-item"><img src="aashi.jpg4" alt="MY PHOTO" onclick="showImageModal('aashi.jpg4', 'MY PHOTO')"></div>
-	<div class="gallery-item"><img src="aashi.jpg5" alt="MY PHOTO" onclick="showImageModal('aashi.jpg5', 'MY PHOTO')"></div>
-	<div class="gallery-item"><img src="aashi.jpg6" alt="MY PHOTO" onclick="showImageModal('aashi.jpg6', 'MY PHOTO')"></div>
-	<div class="gallery-item"><img src="aashi.jpg7" alt="MY PHOTO" onclick="showImageModal('aashi.jpg7', 'MY PHOTO')"></div>
-	<div class="gallery-item"><img src="aashi.jpg8" alt="MY PHOTO" onclick="showImageModal('aashi.jpg8', 'MY PHOTO')"></div>
-	<div class="gallery-item"><img src="aashi.jpg9" alt="MY PHOTO" onclick="showImageModal('aashi.jpg9', 'MY PHOTO')"></div>
+        <div class="gallery-item"><img src="1000075026.webp" alt="Aashi in Tea Garden" onclick="showImageModal('1000075026.webp', 'Tea Garden')"></div>
+        <div class="gallery-item"><img src="1000061750.jpg" alt="Aashi in Car" onclick="showImageModal('1000061750.jpg', 'In Car')"></div>
+        <div class="gallery-item"><img src="1000069605.jpg" alt="Temple Visit" onclick="showImageModal('1000069605.jpg', 'Temple Visit')"></div>
+        <div class="gallery-item"><img src="1000066371.jpg" alt="Mumbai Trip" onclick="showImageModal('1000066371.jpg', 'Mumbai Trip')"></div>
     </div>
 </div>
 
@@ -357,64 +366,73 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 </div>
 
 <script>
+// Get elements
+const modeBtn = document.getElementById("modeBtn");
+const modalBack = document.getElementById("modalBack");
+const closeModal = document.getElementById("closeModal");
+const skillModalContent = document.getElementById("skillModalContent");
+const imageModalContentWrap = document.getElementById("imageModalContentWrap");
+const roleText = document.getElementById("roleText");
+
 
 // 🌞 LIGHT / DARK MODE FIXED
-let light = false;
+let light = false; // Start with dark mode
 
-document.getElementById("modeBtn").onclick = () => {
-light = !light;
+modeBtn.onclick = () => {
+    light = !light;
 
-if(light){
-document.body.classList.add("light");
-document.getElementById("modeBtn").innerText = "🌙 Dark";
-} else {
-document.body.classList.remove("light");
-document.getElementById("modeBtn").innerText = "☀ Light";
-}
+    if(light){
+        document.body.classList.add("light");
+        modeBtn.innerText = "🌙 Dark";
+    } else {
+        document.body.classList.remove("light");
+        modeBtn.innerText = "☀ Light";
+    }
 };
+
 
 // commands
 const commands={
-user:`useradd test1
+    user:`useradd test1
 passwd test1
 id test1
 usermod -aG wheel test1
 userdel -r test1`,
-group:`groupadd dev
+    group:`groupadd dev
 groupdel hr
 gpasswd -a user1 dev
 gpasswd -d user1 dev`,
-perm:`chmod 755 a.txt
+    perm:`chmod 755 a.txt
 chmod 700 dir
 chown root:user file
 setfacl -m u:user:rwx file
 getfacl file`,
-cron:`crontab -e
+    cron:`crontab -e
 crontab -l
 systemctl restart crond
 echo "0 3 * * * /script" >> /etc/crontab
 systemctl status crond`,
-firewall:`firewall-cmd --state
+    firewall:`firewall-cmd --state
 firewall-cmd --add-port=80/tcp --permanent
 firewall-cmd --remove-port=80/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --list-all`,
-network:`ip a
+    network:`ip a
 nmcli device status
 nmcli con up enp0s3
 ping google.com
 ss -tulnp`,
-pkg:`dnf install httpd -y
+    pkg:`dnf install httpd -y
 dnf remove httpd -y
 dnf update -y
 rpm -qa | head
 dnf history`,
-repo:`mkdir /repo
+    repo:`mkdir /repo
 createrepo /repo
 vim /etc/yum.repos.d/local.repo
 dnf clean all
 dnf repolist`,
-monitor:`top
+    monitor:`top
 htop
 df -h
 free -m
@@ -422,52 +440,57 @@ systemctl list-units --failed`
 };
 
 
-// ⌨️ MODAL FOR SKILLS
+// ⌨️ MODAL FOR SKILLS — FIXED
 document.querySelectorAll(".skill").forEach(s=>{
-s.onclick=()=>{
-document.getElementById("modalTitle").innerText=s.innerText+" Commands";
-document.getElementById("cmdsArea").innerText=commands[s.dataset.key];
-document.getElementById("skillModalContent").style.display="block";
-document.getElementById("imageModalContentWrap").style.display="none"; // Hide image content
-modalBack.style.display="flex";
-};
+    s.onclick=()=>{
+        document.getElementById("modalTitle").innerText=s.innerText+" Commands";
+        document.getElementById("cmdsArea").innerText=commands[s.dataset.key];
+        
+        // Ensure skill modal content is visible and image content is hidden
+        skillModalContent.style.display="block";
+        imageModalContentWrap.style.display="none"; 
+        
+        modalBack.style.display="flex"; // Use the stored variable
+    };
 });
 
 // 🖼️ MODAL FOR IMAGES
 function showImageModal(src, title) {
     document.getElementById("imageModalTitle").innerText = title;
     document.getElementById("imageModalContent").src = src;
-    document.getElementById("skillModalContent").style.display="none"; // Hide skill content
-    document.getElementById("imageModalContentWrap").style.display="block";
+    
+    // Ensure image modal content is visible and skill content is hidden
+    skillModalContent.style.display="none"; 
+    imageModalContentWrap.style.display="block";
+    
     modalBack.style.display="flex";
 }
 
 closeModal.onclick=()=>modalBack.style.display="none";
 
 
-// 💬 WHATSAPP FEEDBACK LOGIC
+// 💬 WHATSAPP FEEDBACK LOGIC — FIXED VERSION (As requested by user)
 document.getElementById('feedbackForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Stop the form from submitting normally
+    event.preventDefault(); 
 
-    const name = document.getElementById('visitorName').value;
-    const message = document.getElementById('visitorMessage').value;
-    const phoneNumber = '919805427313'; // ✅ अपना WhatsApp नंबर यहां बदलें (देश कोड के साथ)
+    const name = document.getElementById('visitorName').value.trim();
+    const message = document.getElementById('visitorMessage').value.trim();
+    const phoneNumber = "919805427313";
 
-    if (name && message) {
-        // WhatsApp message format: URL-encode the text
-        const whatsappText = encodeURIComponent(Visitor Feedback on Portfolio:\n\nName: ${name}\nMessage: ${message});
-        
-        // WhatsApp URL
-        const whatsappUrl = https://wa.me/${phoneNumber}?text=${whatsappText};
-
-        // Open WhatsApp link in a new tab
-        window.open(whatsappUrl, '_blank');
-        
-        // Optionally, clear the form after opening WhatsApp
-        document.getElementById('feedbackForm').reset();
-    } else {
-        alert("Please fill in both your Name and your Message.");
+    if (name === "" || message === "") {
+        alert("Please enter both Name and Message.");
+        return;
     }
+
+    // Construct the WhatsApp message
+    const whatsappMessage = Visitor Feedback on Portfolio:\n\nName: ${name}\nMessage: ${message};
+    const whatsappUrl = https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)};
+
+    // Open WhatsApp URL
+    window.open(whatsappUrl, '_blank');
+    
+    // Optional: Clear form after submission attempt
+    document.getElementById('feedbackForm').reset();
 });
 
 
