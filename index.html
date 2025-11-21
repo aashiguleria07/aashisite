@@ -121,6 +121,40 @@ border-radius:12px;
 margin-top:20px;
 }
 
+/* 📝 FEEDBACK FORM STYLES */
+.form-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.1);
+    color: var(--text);
+    font-family: Poppins;
+    font-size: 16px;
+}
+.form-input::placeholder {
+    color: var(--muted);
+}
+.feedback-btn {
+    width: 100%;
+    background: #25D366; /* WhatsApp Green */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.feedback-btn:hover {
+    background: #1da850;
+}
+/* END FEEDBACK FORM STYLES */
+
+
 .skills-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -263,11 +297,27 @@ I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
 <div class="card">
     <h3>Gallery</h3>
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="1000075026.webp" alt="Aashi in Tea Garden" onclick="showImageModal('1000075026.webp', 'Tea Garden')"></div>
-        <div class="gallery-item"><img src="1000061750.jpg" alt="Aashi in Car" onclick="showImageModal('1000061750.jpg', 'In Car')"></div>
-        <div class="gallery-item"><img src="1000069605.jpg" alt="Temple Visit" onclick="showImageModal('1000069605.jpg', 'Temple Visit')"></div>
-        <div class="gallery-item"><img src="1000066371.jpg" alt="Mumbai Trip" onclick="showImageModal('1000066371.jpg', 'Mumbai Trip')"></div>
+        <div class="gallery-item"><img src="aashi.jpg1" alt="MY PHOTO" onclick="showImageModal('aashi.jpg1', 'MY PHOTO')"></div>
+        <div class="gallery-item"><img src="aashi.jpg2" alt="MY PHOTO" onclick="showImageModal('aashi.jpg2', 'MY PHOTO')"></div>
+        <div class="gallery-item"><img src="aashi.jpg3" alt="MY PHOTO" onclick="showImageModal('aashi.jpg3', 'MY PHOTO')"></div>
+        <div class="gallery-item"><img src="aashi.jpg4" alt="MY PHOTO" onclick="showImageModal('aashi.jpg4', 'MY PHOTO')"></div>
+	<div class="gallery-item"><img src="aashi.jpg5" alt="MY PHOTO" onclick="showImageModal('aashi.jpg5', 'MY PHOTO')"></div>
+	<div class="gallery-item"><img src="aashi.jpg6" alt="MY PHOTO" onclick="showImageModal('aashi.jpg6', 'MY PHOTO')"></div>
+	<div class="gallery-item"><img src="aashi.jpg7" alt="MY PHOTO" onclick="showImageModal('aashi.jpg7', 'MY PHOTO')"></div>
+	<div class="gallery-item"><img src="aashi.jpg8" alt="MY PHOTO" onclick="showImageModal('aashi.jpg8', 'MY PHOTO')"></div>
+	<div class="gallery-item"><img src="aashi.jpg9" alt="MY PHOTO" onclick="showImageModal('aashi.jpg9', 'MY PHOTO')"></div>
     </div>
+</div>
+
+
+<div class="card">
+    <h3>Visitor Feedback 💬</h3>
+    <p style="color:var(--muted); margin-bottom: 15px;">How was the site? Send me your thoughts directly on WhatsApp!</p>
+    <form id="feedbackForm">
+        <input type="text" id="visitorName" class="form-input" placeholder="Your Name" required>
+        <textarea id="visitorMessage" class="form-input" rows="3" placeholder="How is the site? (Description)" required></textarea>
+        <button type="submit" class="feedback-btn"><i class="fab fa-whatsapp"></i> Send Feedback via WhatsApp</button>
+    </form>
 </div>
 
 
@@ -393,6 +443,32 @@ function showImageModal(src, title) {
 }
 
 closeModal.onclick=()=>modalBack.style.display="none";
+
+
+// 💬 WHATSAPP FEEDBACK LOGIC
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop the form from submitting normally
+
+    const name = document.getElementById('visitorName').value;
+    const message = document.getElementById('visitorMessage').value;
+    const phoneNumber = '919805427313'; // ✅ अपना WhatsApp नंबर यहां बदलें (देश कोड के साथ)
+
+    if (name && message) {
+        // WhatsApp message format: URL-encode the text
+        const whatsappText = encodeURIComponent(Visitor Feedback on Portfolio:\n\nName: ${name}\nMessage: ${message});
+        
+        // WhatsApp URL
+        const whatsappUrl = https://wa.me/${phoneNumber}?text=${whatsappText};
+
+        // Open WhatsApp link in a new tab
+        window.open(whatsappUrl, '_blank');
+        
+        // Optionally, clear the form after opening WhatsApp
+        document.getElementById('feedbackForm').reset();
+    } else {
+        alert("Please fill in both your Name and your Message.");
+    }
+});
 
 
 // Role text animation
