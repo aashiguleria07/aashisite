@@ -6,277 +6,387 @@
 <title>Aashi Guleria | Portfolio (Professional)</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root{
-/* DARK MODE COLORS */
---bg:#081124;
---text:#e6f0ff;
---muted:#b5c8e6;
---card:rgba(255,255,255,0.05);
---skillBlue:#1565ff;
---skillHover:#ff8b00;
+  /* dark theme */
+  --bg: #081124;
+  --card: rgba(255,255,255,0.04);
+  --text: #e6f0ff;
+  --muted: #99b6dd;
+  --accent: #4aa3ff;
+  --skill: #1565ff;
+  --skill-hover: #ff8b00;
+  --green: #25D366;
 }
 
-/* LIGHT MODE OVERRIDE */
 .light {
---bg:#ffffff;
---text:#000000;
---muted:#444444;
---card:#f0f4ff;
---skillBlue:#3c82ff;
+  --bg: #f6f9ff;
+  --card: #ffffff;
+  --text: #0b1220;
+  --muted: #606b78;
+  --accent: #0d6efd;
+  --skill: #3c82ff;
+  --skill-hover: #ff8b00;
+  --green: #16a34a;
 }
 
-/* MAIN */
-body{
-margin:0;
-font-family:Poppins;
-background:var(--bg);
-color:var(--text);
+*{box-sizing:border-box;font-family:Poppins, system-ui, sans-serif}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);}
+
+/* page container */
+.container{
+  max-width:1200px;
+  margin:18px auto;
+  padding:14px;
 }
 
-.wrap{max-width:980px;margin:25px auto;padding:15px;}
-
+/* header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+h1{margin:0;font-size:20px;font-weight:700}
 .mode-btn{
-padding:8px 16px;border-radius:40px;
-border:1px solid rgba(255,255,255,0.2);
-background:rgba(255,255,255,0.1);
-color:var(--text);cursor:pointer;
+  background:transparent;border:1px solid rgba(255,255,255,0.12);
+  padding:8px 14px;border-radius:999px;color:var(--text);cursor:pointer;
 }
 
+/* main layout: 4 vertical columns like screenshot */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+/* column cards */
+.col{
+  background:var(--card);
+  padding:18px;border-radius:12px;min-height:420px;
+  display:flex;flex-direction:column;gap:12px;
+  align-items:stretch;
+}
+
+/* hero top (first column content) */
 .hero{
-padding:30px;text-align:center;background:var(--card);border-radius:15px;
+  text-align:center;padding:14px;border-radius:10px;background:transparent;
 }
-
 .avatar{
-width:140px;height:140px;border-radius:50%;
-border:4px solid rgba(74,163,255,0.4);
+  width:120px;height:120px;border-radius:50%;object-fit:cover;
+  border:4px solid rgba(74,163,255,0.22);
+  display:block;margin:0 auto;
 }
+.name{font-size:18px;font-weight:700;margin-top:10px}
+.role{color:var(--muted);font-weight:600;margin-top:6px}
+.cursor{display:inline-block;width:4px;height:16px;background:var(--accent);margin-left:6px;animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* Buttons */
-.btn{padding:10px 20px;margin:8px;border-radius:12px;font-size:15px;border:0;color:#fff;cursor:pointer;}
-.github{background:#333;}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;color:#fff;cursor:pointer;font-weight:600}
+.github{background:#111}
+.ig{background:linear-gradient(45deg,#f09433,#833ab4)}
+.whatsapp{background:var(--green)}
+.gmail{background:#d2322d}
 
-/* Contact Buttons */
-.buttons-contact{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-.contact-btn{padding:10px 18px;border-radius:8px;font-size:16px;color:#fff;font-weight:600;border:0;cursor:pointer;display:flex;align-items:center;gap:8px;}
-.ig-new{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888,#833ab4,#5851db);}
-.whatsapp-new{background:#25D366;}
-.gmail-new{background:#D93025;}
-.resume-download{background:#0d8bff;display:block;margin:15px auto 0;color:#fff;text-align:center;font-weight:600;}
+/* content styles */
+.card-title{font-weight:700;margin:0 0 6px 0}
+.muted{color:var(--muted);font-size:14px}
 
-.card{background:var(--card);padding:18px;border-radius:12px;margin-top:20px;}
-
-/* Skills */
-.skills-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:14px;
-}
+/* skills list (in second column maybe) */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
 .skill{
-background:var(--skillBlue);padding:14px;color:#fff;
-text-align:center;border-radius:10px;font-weight:600;
-cursor:pointer;transition:.3s;
+  background:var(--skill);color:#fff;padding:12px;border-radius:10px;text-align:center;cursor:pointer;font-weight:600;
+  transition:transform .18s, background .18s;
 }
-.skill:hover{background:var(--skillHover);transform:translateY(-4px);}
+.skill:hover{transform:translateY(-4px);background:var(--skill-hover)}
 
-/* Gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
-.gallery-item img{width:100%;height:250px;object-fit:cover;border-radius:8px;cursor:pointer;transition:.3s;}
-.gallery-item img:hover{transform:scale(1.03);box-shadow:0 5px 15px rgba(0,0,0,0.3);}
+/* gallery thumbnails */
+.gallery-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.gallery-item img{width:100%;height:140px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s}
+.gallery-item img:hover{transform:scale(1.03);box-shadow:0 8px 20px rgba(0,0,0,0.4)}
 
-/* Modal */
-#modalBack{
-position:fixed;inset:0;background:rgba(0,0,0,0.85);
-display:none;align-items:center;justify-content:center;z-index:1000;
+/* resume big button center */
+.resume-btn{display:block;padding:12px;border-radius:10px;text-align:center;background:linear-gradient(90deg,#2db2ff,#0d8bff);color:#fff;text-decoration:none;font-weight:700}
+
+/* feedback form */
+.form-input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);color:var(--text);resize:vertical}
+.feedback-btn{width:100%;padding:12px;border-radius:8px;border:0;background:var(--green);color:#fff;font-weight:700;cursor:pointer}
+
+/* modal */
+#modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:9999}
+#modal{background:#0b1220;padding:18px;border-radius:10px;max-width:900px;width:94%;color:#fff}
+#cmdsArea{white-space:pre-wrap;background:#071024;padding:12px;border-radius:8px;color:#cfe7ff;max-height:420px;overflow:auto}
+#imageModalContent{max-width:100%;max-height:70vh;display:block;margin:8px auto;border-radius:8px}
+
+/* footer inside columns small */
+.col-footer{margin-top:auto;font-size:13px;color:var(--muted);text-align:center}
+
+/* responsive */
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,1fr)}
 }
-#modal{background:#111;padding:20px;border-radius:12px;max-width:850px;width:90%;color:#fff;}
-
-#imageModalContent{max-height:80vh;width:auto;max-width:100%;margin:auto;display:block;border-radius:8px;}
-
-pre{background:#000;padding:12px;border-radius:8px;color:#cce6ff;max-height:350px;overflow:auto;}
-.modal-close{padding:8px 16px;background:#0d8bff;border-radius:10px;color:#fff;border:0;cursor:pointer;margin-top:15px;}
-
+@media (max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .avatar{width:100px;height:100px}
+  .col{min-height:auto}
+}
 </style>
 </head>
-
 <body>
-<div class="wrap">
 
-<header>
-<h1>Aashi Guleria — Portfolio</h1>
-<button id="modeBtn" class="mode-btn">☀ Light</button>
-</header>
+<div class="container">
 
-<div class="hero">
-<img src="aashi.jpg" class="avatar">
-<div class="name">Hello, I'm <span>Aashi</span></div>
-<div class="role-wrap"><div id="roleText"></div></div>
-<div class="buttons">
-<a href="https://github.com/aashiguleria07" target="_blank"><button class="btn github"><i class="fab fa-github"></i> GitHub</button></a>
-</div>
-</div>
+  <header>
+    <h1>Aashi Guleria — Portfolio</h1>
+    <button id="modeBtn" class="mode-btn">☀ Light</button>
+  </header>
 
-<div class="card">
-<h3>About Me</h3>
-<p>I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
-<b>Contact:</b> 9805427313 — <b>Email:</b> guleriaaashi@gmail.com</p>
-</div>
+  <!-- grid of 4 vertical columns -->
+  <div class="grid">
 
-<div class="card">
-<h3>My Skills</h3>
-<div class="skills-grid">
-<div class="skill" data-key="user">User Management</div>
-<div class="skill" data-key="group">Group Management</div>
-<div class="skill" data-key="perm">Permissions</div>
-<div class="skill" data-key="cron">Cron Jobs</div>
-<div class="skill" data-key="firewall">Firewall</div>
-<div class="skill" data-key="network">Networking</div>
-<div class="skill" data-key="pkg">YUM / RPM</div>
-<div class="skill" data-key="repo">Local Repo</div>
-<div class="skill" data-key="monitor">Monitoring</div>
-</div>
-</div>
+    <!-- Column 1: Contact / Hero -->
+    <div class="col" id="col-contact">
+      <div class="hero">
+        <img src="aashi.jpg" alt="Aashi" class="avatar" id="avatarImg">
+        <div class="name">Hello, I'm <span style="color:var(--accent)">Aashi</span></div>
+        <div class="role" id="roleText"></div>
 
-<div class="card">
-<h3>Gallery</h3>
-<div class="gallery-grid">
-    <div class="gallery-item"><img src="1000075026.webp" onclick="showImageModal('1000075026.webp','Tea Garden')"></div>
-    <div class="gallery-item"><img src="1000061750.jpg" onclick="showImageModal('1000061750.jpg','In Car')"></div>
-    <div class="gallery-item"><img src="1000069605.jpg" onclick="showImageModal('1000069605.jpg','Temple Visit')"></div>
-    <div class="gallery-item"><img src="1000066371.jpg" onclick="showImageModal('1000066371.jpg','Mumbai Trip')"></div>
-</div>
-</div>
-
-<div class="card">
-<h3>Visitor Feedback 💬</h3>
-<form id="feedbackForm">
-<input type="text" id="visitorName" class="form-input" placeholder="Your Name" required>
-<textarea id="visitorMessage" class="form-input" rows="3" placeholder="How is the site?" required></textarea>
-<button type="submit" class="feedback-btn"><i class="fab fa-whatsapp"></i> Send Feedback</button>
-</form>
-</div>
-
-<div class="card">
-<h3>Contact Me</h3>
-<div class="buttons-contact">
-<a href="https://ig.me/m/aashi__guleria" target="_blank"><button class="contact-btn ig-new"><i class="fab fa-instagram"></i> Instagram</button></a>
-<a href="https://wa.me/919805427313" target="_blank"><button class="contact-btn whatsapp-new"><i class="fab fa-whatsapp"></i> WhatsApp</button></a>
-<a href="mailto:guleriaaashi@gmail.com" target="_blank"><button class="contact-btn gmail-new"><i class="far fa-envelope"></i> Gmail</button></a>
-</div>
-</div>
-
-</div>
-
-<!-- Modal -->
-<div id="modalBack">
-    <div id="modal">
-        <div id="skillModalContent">
-            <h2 id="modalTitle"></h2>
-            <pre id="cmdsArea"></pre>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <a class="btn github" href="https://github.com/aashiguleria07" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          <button class="btn ig" id="instaBtn"><i class="fab fa-instagram"></i> Instagram</button>
+          <a class="btn whatsapp" href="https://wa.me/919805427313" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
+      </div>
 
-        <div id="imageModalContentWrap" style="display:none;">
-            <h2 id="imageModalTitle"></h2>
-            <img id="imageModalContent">
-        </div>
+      <div style="margin-top:8px">
+        <h3 class="card-title">About Me</h3>
+        <p class="muted">I am <b>Aashi Guleria</b>, a passionate Linux Administrator (RHEL 9).<br>
+        <b>Contact:</b> 9805427313 — <b>Email:</b> guleriaaashi@gmail.com</p>
+      </div>
 
-        <button class="modal-close" id="closeModal">Close</button>
+      <div class="col-footer">Click any skill to view commands • Mobile friendly</div>
     </div>
+
+    <!-- Column 2: Skills -->
+    <div class="col" id="col-skills">
+      <h3 class="card-title">My Skills</h3>
+      <p class="muted">Click any box to see commands</p>
+
+      <div class="skills-grid" id="skillsGrid">
+        <div class="skill" data-key="user">User Management</div>
+        <div class="skill" data-key="group">Group Management</div>
+        <div class="skill" data-key="perm">File Permissions</div>
+        <div class="skill" data-key="cron">Cron Jobs</div>
+        <div class="skill" data-key="firewall">Firewall</div>
+        <div class="skill" data-key="network">Networking</div>
+        <div class="skill" data-key="pkg">YUM / DNF / RPM</div>
+        <div class="skill" data-key="repo">Local Repository</div>
+        <div class="skill" data-key="monitor">Monitoring</div>
+      </div>
+
+      <div style="margin-top:16px">
+        <h3 class="card-title">Projects</h3>
+        <p class="muted">✔ Linux automation scripts for backups, cron & monitoring.</p>
+      </div>
+
+    </div>
+
+    <!-- Column 3: Gallery -->
+    <div class="col" id="col-gallery">
+      <h3 class="card-title">Gallery</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="1000075026.webp" alt="Tea Garden" onclick="showImageModal('1000075026.webp','Tea Garden')"></div>
+        <div class="gallery-item"><img src="1000061750.jpg" alt="In Car" onclick="showImageModal('1000061750.jpg','In Car')"></div>
+        <div class="gallery-item"><img src="1000069605.jpg" alt="Temple" onclick="showImageModal('1000069605.jpg','Temple Visit')"></div>
+        <div class="gallery-item"><img src="1000066371.jpg" alt="Mumbai Trip" onclick="showImageModal('1000066371.jpg','Mumbai Trip')"></div>
+      </div>
+
+      <div style="margin-top:12px">
+        <a class="resume-btn" href="aashi_resume.pdf" target="_blank">Download Full Resume (PDF)</a>
+      </div>
+
+    </div>
+
+    <!-- Column 4: Feedback & Contact -->
+    <div class="col" id="col-feedback">
+      <h3 class="card-title">Visitor Feedback 💬</h3>
+      <p class="muted">How was the site? Send your thoughts directly on WhatsApp!</p>
+
+      <form id="feedbackForm" style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+        <input type="text" id="visitorName" class="form-input" placeholder="Your Name" required>
+        <textarea id="visitorMessage" class="form-input" rows="4" placeholder="How is the site? (Description)" required></textarea>
+        <button type="submit" class="feedback-btn"><i class="fab fa-whatsapp"></i> Send Feedback via WhatsApp</button>
+      </form>
+
+      <div style="margin-top:16px">
+        <h3 class="card-title">Contact Me</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn ig" href="https://ig.me/m/aashi__guleria" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+          <a class="btn whatsapp" href="https://wa.me/919805427313" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a class="btn gmail" href="mailto:guleriaaashi@gmail.com"><i class="far fa-envelope"></i> Gmail</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div> <!-- end grid -->
+
+</div> <!-- end container -->
+
+<!-- modal overlay -->
+<div id="modalBack">
+  <div id="modal">
+    <div id="skillModalContent">
+      <h2 id="modalTitle">Commands</h2>
+      <pre id="cmdsArea">Select a skill to view commands.</pre>
+    </div>
+
+    <div id="imageModalContentWrap" style="display:none;text-align:center">
+      <h2 id="imageModalTitle"></h2>
+      <img id="imageModalContent" src="" alt="Image" />
+    </div>
+
+    <div style="text-align:right;margin-top:12px">
+      <button class="modal-close" id="closeModal" style="padding:8px 12px;border-radius:8px;background:#0d8bff;border:0;color:#fff;cursor:pointer">Close</button>
+    </div>
+  </div>
 </div>
+
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <script>
-/* THEME SWITCH */
-document.getElementById("modeBtn").onclick = () => {
-document.body.classList.toggle("light");
-document.getElementById("modeBtn").innerText =
-document.body.classList.contains("light") ? "🌙 Dark" : "☀ Light";
-};
+/* ===== THEME (dark/light) ===== */
+const modeBtn = document.getElementById('modeBtn');
+modeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  modeBtn.innerText = document.body.classList.contains('light') ? '🌙 Dark' : '☀ Light';
+});
 
-/* FIX: modalBack defined */
-const modalBack = document.getElementById("modalBack");
+/* ===== Role typing animation ===== */
+const roleText = document.getElementById('roleText');
+const roles = ["Linux Administrator • RHEL 9","Shell Scripting Expert","Linux Automation Engineer"];
+let ri=0, rj=0, rdel=false;
+function typeRole(){
+  const t = roles[ri];
+  if(!rdel){
+    roleText.innerHTML = t.slice(0,rj) + '<span class="cursor"></span>';
+    rj++;
+    if(rj === t.length) setTimeout(()=> rdel = true, 700);
+  } else {
+    roleText.innerHTML = t.slice(0,rj) + '<span class="cursor"></span>';
+    rj--;
+    if(rj === 0){ rdel = false; ri = (ri+1) % roles.length; }
+  }
+  setTimeout(typeRole, 80);
+}
+typeRole();
 
-/* Commands */
+/* ===== modalBack & close button (important) ===== */
+const modalBack = document.getElementById('modalBack');
+const closeModal = document.getElementById('closeModal');
+
+/* ===== image modal function ===== */
+function showImageModal(src, title){
+  document.getElementById('imageModalTitle').innerText = title;
+  const img = document.getElementById('imageModalContent');
+  img.src = src;
+
+  document.getElementById('skillModalContent').style.display = 'none';
+  document.getElementById('imageModalContentWrap').style.display = 'block';
+  modalBack.style.display = 'flex';
+}
+
+/* click outside modal to close */
+modalBack.addEventListener('click', (e) => {
+  if(e.target === modalBack) modalBack.style.display = 'none';
+});
+closeModal.addEventListener('click', ()=> modalBack.style.display = 'none');
+
+/* ===== skills commands ===== */
 const commands = {
-user:`useradd test1
+  user:`useradd test1
 passwd test1
-id test1`,
-group:`groupadd dev
-groupdel hr`,
-perm:`chmod 755 a.txt
-chmod 700 dir`,
-cron:`crontab -e
-crontab -l`,
-firewall:firewall-cmd --state,
-network:`ip a
-nmcli device status`,
-pkg:dnf install httpd -y,
-repo:createrepo /repo,
-monitor:`top
-df -h`
+id test1
+usermod -aG wheel test1
+userdel -r test1`,
+  group:`groupadd dev
+groupdel hr
+gpasswd -a user1 dev
+gpasswd -d user1 dev`,
+  perm:`chmod 755 a.txt
+chmod 700 dir
+chown root:user file
+setfacl -m u:user:rwx file
+getfacl file`,
+  cron:`crontab -e
+crontab -l
+systemctl restart crond
+echo "0 3 * * * /script" >> /etc/crontab
+systemctl status crond`,
+  firewall:`firewall-cmd --state
+firewall-cmd --add-port=80/tcp --permanent
+firewall-cmd --remove-port=80/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all`,
+  network:`ip a
+nmcli device status
+nmcli con up enp0s3
+ping google.com
+ss -tulnp`,
+  pkg:`dnf install httpd -y
+dnf remove httpd -y
+dnf update -y
+rpm -qa | head
+dnf history`,
+  repo:`mkdir /repo
+createrepo /repo
+vim /etc/yum.repos.d/local.repo
+dnf clean all
+dnf repolist`,
+  monitor:`top
+htop
+df -h
+free -m
+systemctl list-units --failed`
 };
 
-/* Skill Modal OPEN */
-document.querySelectorAll(".skill").forEach(s=>{
-s.onclick=()=>{
-document.getElementById("modalTitle").innerText = s.innerText + " Commands";
-document.getElementById("cmdsArea").innerText = commands[s.dataset.key];
-
-document.getElementById("skillModalContent").style.display="block";
-document.getElementById("imageModalContentWrap").style.display="none";
-modalBack.style.display="flex";
-};
+/* wire skill buttons */
+document.querySelectorAll('.skill').forEach(s => {
+  s.addEventListener('click', () => {
+    const key = s.dataset.key;
+    document.getElementById('modalTitle').innerText = s.innerText + " Commands";
+    document.getElementById('cmdsArea').innerText = commands[key] || "No commands found.";
+    document.getElementById('skillModalContent').style.display = 'block';
+    document.getElementById('imageModalContentWrap').style.display = 'none';
+    modalBack.style.display = 'flex';
+  });
 });
 
-/* Image Modal */
-function showImageModal(src,title){
-document.getElementById("imageModalTitle").innerText=title;
-document.getElementById("imageModalContent").src=src;
-
-document.getElementById("skillModalContent").style.display="none";
-document.getElementById("imageModalContentWrap").style.display="block";
-modalBack.style.display="flex";
-}
-
-document.getElementById("closeModal").onclick=()=>modalBack.style.display="none";
-
-/* WhatsApp Feedback UPDATED */
-document.getElementById('feedbackForm').addEventListener('submit',function(event){
-event.preventDefault();
-
-const name=document.getElementById('visitorName').value.trim();
-const message=document.getElementById('visitorMessage').value.trim();
-const phone="919805427313";
-
-if(!name||!message){
-alert("Please fill all fields!");
-return;
-}
-
-const text=encodeURIComponent(Visitor Feedback:\nName: ${name}\nMessage: ${message});
-window.location.href=https://wa.me/${phone}?text=${text};
+/* ===== Instagram quick open button (in hero) ===== */
+document.getElementById('instaBtn').addEventListener('click', ()=> {
+  window.open('https://ig.me/m/aashi__guleria', '_blank');
 });
 
-/* Role Typing */
-const roles=["Linux Administrator • RHEL 9","Shell Scripting Expert","Linux Automation Engineer"];
-let i=0,j=0,del=false;
+/* ===== Feedback form -> WhatsApp ===== */
+document.getElementById('feedbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('visitorName').value.trim();
+  const message = document.getElementById('visitorMessage').value.trim();
+  const phone = "919805427313";
 
-function type(){
-let t=roles[i];
-
-if(!del){
-roleText.innerHTML=t.slice(0,j)+'<span class="cursor"></span>';
-j++;
-if(j===t.length) setTimeout(()=>del=true,700);
-}else{
-roleText.innerHTML=t.slice(0,j)+'<span class="cursor"></span>';
-j--;
-if(j===0){del=false;i=(i+1)%roles.length;}
-}
-setTimeout(type,80);
-}
-type();
+  if(!name || !message){
+    alert("Please fill both Name and Message.");
+    return;
+  }
+  const text = encodeURIComponent(Visitor Feedback on Portfolio:%0A%0AName: ${name}%0AMessage: ${message});
+  // open WhatsApp web or app
+  window.open(https://wa.me/${phone}?text=${text}, '_blank');
+  this.reset();
+});
 </script>
 
 </body>
